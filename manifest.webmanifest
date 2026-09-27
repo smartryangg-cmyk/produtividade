@@ -1,0 +1,14 @@
+{
+  "name": "Produtividade",
+  "short_name": "Produtividade",
+  "description": "Tarefas, foco, hábitos e notas em um só lugar.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f1117",
+  "theme_color": "#4f46e5",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

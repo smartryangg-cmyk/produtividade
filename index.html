@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Produtividade</title>
+  <meta name="description" content="Tarefas, foco, hábitos e notas em um só lugar.">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <img src="icons/icon.svg" alt="" width="28" height="28">
+        <span>Produtividade</span>
+      </div>
+      <a href="#hoje" data-route="hoje"><span class="ico">☀️</span><span>Hoje</span></a>
+      <a href="#tarefas" data-route="tarefas"><span class="ico">✅</span><span>Tarefas</span></a>
+      <a href="#foco" data-route="foco"><span class="ico">⏱️</span><span>Foco</span></a>
+      <a href="#habitos" data-route="habitos"><span class="ico">🔁</span><span>Hábitos</span></a>
+      <a href="#notas" data-route="notas"><span class="ico">📝</span><span>Notas</span></a>
+      <div class="sidebar-footer">
+        <button class="ghost small" id="theme-toggle" type="button" title="Alternar tema">🌓 Tema</button>
+        <button class="ghost small" id="export-btn" type="button" title="Baixar backup">⬇️ Backup</button>
+        <label class="ghost small btn-like" title="Restaurar backup">⬆️ Restaurar
+          <input type="file" id="import-input" accept="application/json" hidden>
+        </label>
+      </div>
+    </nav>
+
+    <main id="view" tabindex="-1"></main>
+  </div>
+
+  <div id="focus-pill" class="focus-pill" hidden></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
