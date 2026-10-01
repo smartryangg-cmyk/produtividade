@@ -1,5 +1,5 @@
 // Service worker: cache dos arquivos estáticos para funcionar offline.
-const CACHE = 'produtividade-v1';
+const CACHE = 'produtividade-v2';
 const ASSETS = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icons/icon.svg'];
 
 self.addEventListener('install', (e) => {

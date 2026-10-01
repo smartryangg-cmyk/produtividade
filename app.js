@@ -376,7 +376,7 @@ function tick() {
 /* ============================================================
    Hábitos
    ============================================================ */
-const HABIT_COLORS = ['#4f46e5', '#16a34a', '#d97706', '#dc2626', '#0891b2', '#c026d3'];
+const HABIT_COLORS = ['#2B6E63', '#B4502E', '#C98A1F', '#6E4B6E', '#4C5F77', '#4F7A52'];
 
 function habitStreak(h) {
   let streak = 0;
@@ -541,7 +541,9 @@ function currentRoute() {
 
 function render() {
   const route = currentRoute();
-  $('#view').innerHTML = ROUTES[route]();
+  const view = $('#view');
+  view.innerHTML = ROUTES[route]();
+  view.dataset.route = route;
   document.querySelectorAll('.sidebar a').forEach((a) => {
     a.classList.toggle('active', a.dataset.route === route);
     if (a.dataset.route === route) a.setAttribute('aria-current', 'page');
