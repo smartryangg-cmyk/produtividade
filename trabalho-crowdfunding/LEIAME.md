@@ -1,14 +1,16 @@
 # Trabalho: Crowdfunding
 
-Versão final para visualizadores e professores: **16 slides** e **1 vídeo narrado** sobre financiamento coletivo, com passo a passo, impacto social, plataformas de arrecadação, casos reais, imagens reais e referências.
+Versão final para visualizadores e professores, em **duas versões**: com e sem a parte de videogames financiados por crowdfunding (Hollow Knight, Undertale, Chroma Squad e Star Citizen).
 
-| Arquivo | O que é |
-|---|---|
-| `index.html` | Site da apresentação: aba Slides (16 slides, setas, tela cheia) e aba Vídeo (narração, legendas, capítulos) |
-| `video-crowdfunding.mp4` | Vídeo final em 1080p com narração (4min16s) |
-| `narracao-crowdfunding.mp3` | Narração do vídeo, gerada com ElevenLabs (Eleven v4, voz "Henrique") |
-| `slides-crowdfunding.pptx` | Os 16 slides em PowerPoint |
-| `img/` | Imagens usadas: fotos do Wikimedia Commons e capturas de tela das plataformas (créditos no site) |
+| | Com videogames | Sem videogames |
+|---|---|---|
+| Site | `index.html` (17 slides) | `sem-videogame.html` (16 slides) |
+| Vídeo narrado | `video-com-videogame.mp4` (4min55s) | `video-sem-videogame.mp4` (4min16s) |
+| Vídeo leve (para enviar) | `video-com-videogame-leve.mp4` | `video-sem-videogame-leve.mp4` |
+| Narração | `narracao-com-videogame.mp3` | `narracao-sem-videogame.mp3` |
+| Slides | `slides-com-videogame.pptx` | `slides-sem-videogame.pptx` |
+
+Cada site tem um link no topo para a outra versão. Narração gerada com ElevenLabs (Eleven v4, voz "Henrique"). Imagens em `img/`, com créditos no fim de cada site.
 
 Atalhos no site: setas trocam de slide · `F` tela cheia · `S` slides · `V` vídeo · `Espaço` play/pausa.
 
@@ -22,4 +24,4 @@ npx wrangler pages project create crowdfunding-trabalho --production-branch main
 npx wrangler pages deploy trabalho-crowdfunding --project-name crowdfunding-trabalho --branch main
 ```
 
-Endereço: https://crowdfunding-trabalho.pages.dev
+Endereços: https://crowdfunding-trabalho.pages.dev (com videogames) e https://crowdfunding-trabalho.pages.dev/sem-videogame (sem videogames).

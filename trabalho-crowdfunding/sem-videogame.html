@@ -135,28 +135,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 .case .big{font-family:var(--display);font-weight:800;font-size:calc(var(--u)*2.9);color:var(--ac);line-height:1}
 .case p{margin:0;font-size:calc(var(--u)*1.28);line-height:1.35;color:#3B4560}
 .case p b{color:#16213B}
-/* videogames */
-.games{display:grid;grid-template-columns:1.25fr 1fr;gap:calc(var(--u)*2);min-height:0}
-.hk{overflow:hidden;display:grid;grid-template-rows:minmax(0,1fr) auto}
-.hk .vis{position:relative;min-height:0;overflow:hidden}
-.hk .vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hk .vis .badge{position:absolute;left:calc(var(--u)*1.2);top:calc(var(--u)*1.2);background:#16213B;color:#FFC23D;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:calc(var(--u)*1);border-radius:99px;padding:calc(var(--u)*.3) calc(var(--u)*1)}
-.hk .body{padding:calc(var(--u)*1.3) calc(var(--u)*1.8) calc(var(--u)*1.5);display:grid;gap:calc(var(--u)*.8)}
-.hk h3{margin:0;font-family:var(--display);font-size:calc(var(--u)*2.4);color:#16213B}
-.hk h3 small{font-family:var(--body);font-weight:700;font-size:calc(var(--u)*1.15);color:#6A7390;margin-left:calc(var(--u)*.6)}
-.hk .row{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*1)}
-.hk .row div{display:grid;gap:calc(var(--u)*.2)}
-.hk .row .num{font-size:calc(var(--u)*2.3);color:var(--ac)}
-.hk .row span{font-size:calc(var(--u)*1.1);color:#56607A;line-height:1.25}
-.glist{display:grid;gap:calc(var(--u)*1.1);align-content:start}
-.gitem{display:grid;grid-template-columns:calc(var(--u)*12) 1fr;overflow:hidden;min-height:0}
-.gitem img{width:100%;height:100%;object-fit:cover;min-height:calc(var(--u)*8.5)}
-.gitem .body{padding:calc(var(--u)*.9) calc(var(--u)*1.3);display:grid;gap:calc(var(--u)*.25);align-content:center}
-.gitem h3{margin:0;font-family:var(--display);font-size:calc(var(--u)*1.75);color:#16213B}
-.gitem h3 small{font-family:var(--body);font-weight:700;font-size:calc(var(--u)*1);color:#6A7390;margin-left:calc(var(--u)*.5)}
-.gitem .num{font-size:calc(var(--u)*1.9);color:var(--ac)}
-.gitem p{margin:0;font-size:calc(var(--u)*1.15);line-height:1.3;color:#3B4560}
-.gitem.br h3::after{content:"Brasil";margin-left:calc(var(--u)*.6);font-family:var(--body);font-size:calc(var(--u)*.9);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#22B573;border-radius:99px;padding:calc(var(--u)*.1) calc(var(--u)*.7);vertical-align:middle}
 /* passo a passo */
 .steps10{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:calc(var(--u)*1.2) calc(var(--u)*3);align-content:center}
 .steps10 li{display:grid;grid-template-columns:calc(var(--u)*3.6) 1fr;gap:calc(var(--u)*1.2);align-items:center}
@@ -308,21 +286,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 .v5 h3{margin:0;font-family:var(--display);font-size:2cqw}
 .v5 .vnum{font-size:3cqw;color:#FFC23D}
 .v5 p{margin:0;font-size:1.3cqw;color:#C9D3EA;line-height:1.3}
-/* v-games */
-.vg{display:grid;grid-template-columns:1.2fr 1fr;gap:1.8cqw;height:34cqw}
-.vg .main{display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden}
-.vg .main .vimg{border-radius:0}
-.vg .main .row{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw;padding:1.2cqw 1.6cqw}
-.vg .main .row div{display:grid;gap:.2cqw}
-.vg .main .vnum{font-size:2.5cqw;color:#FFC23D}
-.vg .main span{font-size:1.15cqw;color:#C9D3EA}
-.vg .side{display:grid;gap:1cqw;grid-template-rows:repeat(3,1fr);min-height:0}
-.vg .gi{display:grid;grid-template-columns:11cqw 1fr;overflow:hidden;min-height:0}
-.vg .gi img{width:100%;height:100%;object-fit:cover}
-.vg .gi .b{padding:.8cqw 1.2cqw;display:grid;gap:.2cqw;align-content:center}
-.vg .gi b{font-family:var(--display);font-size:1.7cqw}
-.vg .gi .vnum{font-size:2cqw;color:#4CD495}
-.vg .gi span{font-size:1.1cqw;color:#C9D3EA}
 /* steps */
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:1.2cqw}
 .steps li{display:grid;grid-template-columns:4.6cqw 1fr;align-items:center;gap:1.5cqw;font-size:2.3cqw;line-height:1.2}
@@ -394,10 +357,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   #slideStage:not(:fullscreen){aspect-ratio:auto}
   #slideStage:not(:fullscreen) > .frame{position:relative;inset:auto}
   #slideStage:not(:fullscreen) .sd{--u:6.2px;padding:28px 18px 40px 24px;gap:16px}
-  #slideStage:not(:fullscreen) :is(.cover,.def,.hist,.net,.cases,.mod2,.rs,.imp3,.vr,.sum,.types,.games){grid-template-columns:1fr}
-  #slideStage:not(:fullscreen) .hk{grid-template-rows:200px auto}
-  #slideStage:not(:fullscreen) .hk .row{grid-template-columns:1fr 1fr}
-  #slideStage:not(:fullscreen) .gitem{grid-template-columns:110px 1fr}
+  #slideStage:not(:fullscreen) :is(.cover,.def,.hist,.net,.cases,.mod2,.rs,.imp3,.vr,.sum,.types){grid-template-columns:1fr}
   #slideStage:not(:fullscreen) :is(.shots,.shots.three){grid-template-columns:1fr 1fr}
   #slideStage:not(:fullscreen) :is(.chk4,.steps10){grid-template-columns:1fr}
   #slideStage:not(:fullscreen) .steps10{grid-auto-flow:row;grid-template-rows:none}
@@ -419,7 +379,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><small>Trabalho escolar</small>Crowdfunding: o poder de muitos<br><a class="btn vlink" href="sem-videogame.html">Ver versão sem videogames</a></div>
+    <div class="brand"><small>Trabalho escolar</small>Crowdfunding: o poder de muitos<br><a class="btn vlink" href="index.html">Ver versão com videogames</a></div>
     <div class="tabs" role="tablist" aria-label="Parte da apresentação">
       <button role="tab" id="tab-slides" aria-controls="tab-slides-panel" aria-selected="true">Slides</button>
       <button role="tab" id="tab-video" aria-controls="tab-video-panel" aria-selected="false">Vídeo</button>
@@ -484,23 +444,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
           <div class="card case"><div class="vis"><img class="contain" src="img/pebble.png" alt="Três relógios Pebble"></div><div class="body"><h3>Relógio Pebble<small>2012</small></h3><span class="big">US$ 10,27 mi</span><p>Pediu <b>US$ 100 mil</b> e recebeu 100 vezes mais, de <b>68.929 apoiadores</b>. Em 2015, o Pebble Time passou de US$ 20 mi.</p></div></div>
           <div class="card case"><div class="vis"><img src="img/oculus.jpg" alt="Kit de desenvolvimento do Oculus Rift"></div><div class="body"><h3>Oculus Rift<small>2012</small></h3><span class="big">US$ 2,4 mi</span><p>Meta de <b>US$ 250 mil</b>. Dois anos depois, a empresa foi comprada pelo <b>Facebook por cerca de US$ 2 bilhões</b>.</p></div></div>
           <div class="card case"><div class="vis"><img src="img/kittens.jpg" alt="Pessoas jogando Exploding Kittens"></div><div class="body"><h3>Exploding Kittens<small>2015</small></h3><span class="big">219.382</span><p>apoiadores, o <b>projeto com mais apoiadores</b> do Kickstarter na época, com <b>US$ 8,78 mi</b>.</p></div></div>
-        </div>
-      </div>
-
-      <div class="frame sd" style="--ac:#7B5CFF" data-title="Videogames">
-        <header class="sd-h"><p class="sd-k">Casos reais · videogames</p><h2>Jogos que existem graças aos fãs</h2></header>
-        <div class="games">
-          <div class="card hk">
-            <div class="vis"><img src="img/game-hollow.jpg" alt="Cena do jogo Hollow Knight"><span class="badge">Kickstarter · 2014</span></div>
-            <div class="body"><h3>Hollow Knight<small>Team Cherry · Austrália</small></h3>
-              <div class="row"><div><span class="num">A$ 35 mil</span><span>era a meta</span></div><div><span class="num">A$ 57 mil</span><span>arrecadados</span></div><div><span class="num">2.158</span><span>apoiadores</span></div><div><span class="num">2,8 mi</span><span>cópias vendidas até 2019</span></div></div>
-            </div>
-          </div>
-          <div class="glist">
-            <div class="card gitem"><img src="img/game-undertale.jpg" alt="Cena do jogo Undertale"><div class="body"><h3>Undertale<small>2013</small></h3><span class="num">US$ 51 mil</span><p>Pediu US$ 5 mil e recebeu 10 vezes mais, de 2.398 apoiadores.</p></div></div>
-            <div class="card gitem br"><img src="img/game-chroma.jpg" alt="Cena do jogo Chroma Squad"><div class="body"><h3>Chroma Squad<small>2013</small></h3><span class="num">Meta de US$ 55 mil</span><p>Do estúdio brasileiro Behold, bateu a meta no Kickstarter com 15 dias de folga.</p></div></div>
-            <div class="card gitem"><img src="img/game-starcitizen.jpg" alt="Estande do Star Citizen na Gamescom 2017"><div class="body"><h3>Star Citizen<small>desde 2012</small></h3><span class="num">US$ 1 bi+</span><p>Maior financiamento coletivo de um jogo, de 6,5 mi de apoiadores. Ainda não foi lançado.</p></div></div>
-          </div>
         </div>
       </div>
 
@@ -610,7 +553,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
         <header class="sd-h"><p class="sd-k">Resumo</p><h2>Os três tópicos em uma tela</h2></header>
         <div class="sum">
           <div class="card" style="--hc:#3D8BFF"><h3>1 · Passo a passo</h3><ul><li><b>Defina</b> o projeto e o público</li><li><b>Calcule a meta</b> com a taxa</li><li><b>Escolha</b> plataforma, modelo e prazo</li><li><b>Monte a página</b> e as recompensas</li><li><b>Divulgue</b> e atualize</li><li><b>Entregue</b> e preste contas</li></ul></div>
-          <div class="card" style="--hc:#FF5C77"><h3>2 · Impacto social</h3><ul><li><b>RS 2024:</b> uma vaquinha passou de R$ 70 mi</li><li><b>Saúde:</b> ~R$ 11 mi para um remédio (DF, 2020)</li><li><b>Cultura e games:</b> Hollow Knight, Undertale</li><li><b>Renda:</b> Oculus virou empresa de US$ 2 bi</li><li><b>Risco:</b> golpes e projetos não entregues</li></ul></div>
+          <div class="card" style="--hc:#FF5C77"><h3>2 · Impacto social</h3><ul><li><b>RS 2024:</b> uma vaquinha passou de R$ 70 mi</li><li><b>Saúde:</b> ~R$ 11 mi para um remédio (DF, 2020)</li><li><b>Cultura</b> e arte independente</li><li><b>Renda:</b> Oculus virou empresa de US$ 2 bi</li><li><b>Risco:</b> golpes e projetos não entregues</li></ul></div>
           <div class="card" style="--hc:#22B573"><h3>3 · Plataformas</h3><ul><li><b>Vakinha</b> · doação</li><li><b>Catarse</b> · projetos criativos</li><li><b>Benfeitoria</b> · projetos sociais</li><li><b>Apoia.se</b> · apoio mensal</li><li><b>Kickstarter, Indiegogo e GoFundMe</b> · mundo</li></ul></div>
         </div>
       </div>
@@ -639,7 +582,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
           <li>O ANTAGONISTA / CRUSOÉ. <i>Nada se compara com o volume de doações desta enchente</i>. Maio 2024.</li>
           <li>CORREIO BRAZILIENSE. <i>Famílias que lutam para comprar o remédio mais caro do mundo</i>. Ago. 2020.</li>
           <li>CONSUMER REPORTS. <i>Coolest has to ship 20,000 rewards to Kickstarter backers</i>. 2017.</li>
-          <li>HOLLOW KNIGHT WIKI, PC GAMER, ENGADGET e SHACKNEWS. Casos de videogames.</li>
           <li>CVM. <i>Resolução nº 88, de 27/04/2022</i>.</li>
           <li>REMESSA ONLINE. <i>Taxas da Vakinha</i>.</li>
           <li>Imagens: Wikimedia Commons (créditos no site) e capturas de tela das plataformas, 08/10/2026.</li>
@@ -649,10 +591,10 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
     </div>
     <div class="bar">
       <button class="btn icon" id="prevSlide" aria-label="Slide anterior"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <span class="count" id="deckCount">1 / 17</span>
+      <span class="count" id="deckCount">1 / 16</span>
       <button class="btn icon" id="nextSlide" aria-label="Próximo slide"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
       <button class="btn primary" data-fs="slideStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
-      <a class="btn" href="slides-com-videogame.pptx" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar slides (.pptx)</span></a>
+      <a class="btn" href="slides-sem-videogame.pptx" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar slides (.pptx)</span></a>
     </div>
     <div class="chips" id="thumbs" aria-label="Slides"></div>
   </section>
@@ -711,19 +653,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
             <div class="vcard in" style="--d:2.2"><div class="vis"><img class="contain" src="img/pebble.png" alt=""></div><div class="body"><h3>Pebble · 2012</h3><span class="vnum">US$ 10,27 mi</span><p>Meta de US$ 100 mil · 68.929 apoiadores</p></div></div>
             <div class="vcard in" style="--d:10.2"><div class="vis"><img src="img/oculus.jpg" alt=""></div><div class="body"><h3>Oculus · 2012</h3><span class="vnum">US$ 2,4 mi</span><p>Comprado pelo Facebook por ~US$ 2 bi em 2014</p></div></div>
             <div class="vcard in" style="--d:22.6"><div class="vis"><img src="img/kittens.jpg" alt=""></div><div class="body"><h3>Exploding Kittens · 2015</h3><span class="vnum">219.382</span><p>apoiadores, recorde do Kickstarter</p></div></div>
-          </div>
-        </div>
-
-        <div class="scene" data-dur="38.71" data-name="Videogames" data-cap="Os videogames também nasceram assim. Em 2014, o pequeno estúdio australiano Team Cherry pediu 35 mil dólares australianos no Kickstarter para criar Hollow Knight. Arrecadou mais de 57 mil, de cerca de 2 mil apoiadores, e o jogo vendeu milhões de cópias. Undertale pediu 5 mil dólares e recebeu mais de 51 mil. O brasileiro Chroma Squad, do estúdio Behold, também saiu do papel pelo Kickstarter. E Star Citizen já passou de 1 bilhão de dólares, o maior financiamento coletivo de um jogo, mas segue em desenvolvimento há mais de dez anos.">
-          <p class="kicker in" style="--d:.2">Casos reais · videogames</p>
-          <div class="vg">
-            <div class="vcard main in" style="--d:2.4"><figure class="vimg"><img class="kb" src="img/game-hollow.jpg" alt=""><figcaption>Hollow Knight · Team Cherry</figcaption></figure>
-              <div class="row"><div><span class="vnum">A$ 35 mil</span><span>meta no Kickstarter</span></div><div><span class="vnum">A$ 57 mil</span><span>arrecadados · 2014</span></div><div><span class="vnum">milhões</span><span>de cópias vendidas</span></div></div></div>
-            <div class="side">
-              <div class="vcard gi in" style="--d:18.8"><img src="img/game-undertale.jpg" alt=""><div class="b"><b>Undertale</b><span class="vnum">US$ 5 mil → 51 mil</span><span>2013</span></div></div>
-              <div class="vcard gi in" style="--d:23.6"><img src="img/game-chroma.jpg" alt=""><div class="b"><b>Chroma Squad</b><span class="vnum">Brasil</span><span>estúdio Behold · Kickstarter</span></div></div>
-              <div class="vcard gi in" style="--d:28.8"><img src="img/game-starcitizen.jpg" alt=""><div class="b"><b>Star Citizen</b><span class="vnum">US$ 1 bi+</span><span>recorde · ainda em desenvolvimento</span></div></div>
-            </div>
           </div>
         </div>
 
@@ -822,14 +751,14 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
         <button class="bigplay" id="bigPlay" aria-label="Reproduzir vídeo"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span></button>
       </div>
     </div>
-    <audio id="narr" src="narracao-com-videogame.mp3" preload="auto"></audio>
+    <audio id="narr" src="narracao-sem-videogame.mp3" preload="auto"></audio>
     <div class="bar">
       <button class="btn primary" id="playBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l12 7.5-12 7.5z" fill="currentColor"/></svg><span>Reproduzir</span></button>
       <button class="btn" id="restartBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Recomeçar</span></button>
       <button class="btn" id="capBtn" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg><span>Legendas: ligadas</span></button>
       <button class="btn" data-fs="videoStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
-      <a class="btn" href="video-com-videogame.mp4" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar vídeo (.mp4)</span></a>
-      <span class="time" id="timeLbl">0:00 / 4:55</span>
+      <a class="btn" href="video-sem-videogame.mp4" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar vídeo (.mp4)</span></a>
+      <span class="time" id="timeLbl">0:00 / 4:16</span>
     </div>
     <div class="chips" id="chapters" aria-label="Capítulos"></div>
   </section>
@@ -847,10 +776,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
       <li>O ANTAGONISTA / CRUSOÉ. <em>“Nada se compara com o volume de doações desta enchente”</em>, maio 2024: <a href="https://oantagonista.com.br/brasil/crusoe-nada-se-compara-com-o-volume-de-doacoes-desta-enchente/" target="_blank" rel="noopener">oantagonista.com.br</a>.</li>
       <li>CORREIO BRAZILIENSE. <em>Conheça famílias que lutam para comprar o “remédio mais caro do mundo”</em>, ago. 2020: <a href="https://www.correiobraziliense.com.br/brasil/2020/08/4869128-conheca-familias-que-lutam-para-comprar-o--remedio-mais-caro-do-mundo.html" target="_blank" rel="noopener">correiobraziliense.com.br</a>.</li>
       <li>CONSUMER REPORTS. <em>Coolest has to ship 20,000 rewards to Kickstarter backers by 2020</em>: <a href="https://www.consumerreports.org/consumerist/coolest-has-to-ship-20000-rewards-to-kickstarter-backers-by-2020/" target="_blank" rel="noopener">consumerreports.org</a>.</li>
-      <li>ADELAIDE REVIEW e HOLLOW KNIGHT WIKI. <em>Hollow Knight Kickstarter</em> (meta A$ 35 mil, 2.158 apoiadores; 2,8 milhões de cópias até fev. 2019): <a href="https://hollowknight.wiki/w/Hollow_Knight_Kickstarter" target="_blank" rel="noopener">hollowknight.wiki</a>.</li>
-      <li>PC GAMER. <em>The making of Undertale</em>: <a href="https://www.pcgamer.com/uk/the-making-of-undertale/" target="_blank" rel="noopener">pcgamer.com</a>.</li>
-      <li>ENGADGET. <em>Knights of Pen and Paper dev's new game Chroma Squad hits Kickstarter goal</em>, ago. 2013: <a href="https://www.engadget.com/2013-08-05-knights-of-pen-and-paper-devs-new-game-chroma-squad-hits-kickst.html" target="_blank" rel="noopener">engadget.com</a>.</li>
-      <li>SHACKNEWS. <em>Star Citizen crosses $1 billion in funds raised from over 6.5 million players</em>: <a href="https://www.shacknews.com/article/149284/star-citizen-billion-dollar-funds-raised" target="_blank" rel="noopener">shacknews.com</a>.</li>
       <li>CVM. <em>Resolução CVM nº 88, de 27 de abril de 2022</em>. Resumo: <a href="https://finsidersbrasil.com.br/noticias-sobre-fintechs/nova-regra-aumenta-limite-de-oferta-em-crowdfunding-para-r-15-milhoes" target="_blank" rel="noopener">finsidersbrasil.com.br</a>.</li>
       <li>REMESSA ONLINE. <em>Como sacar dinheiro da Vakinha online</em>: <a href="https://www.remessaonline.com.br/blog/como-sacar-dinheiro-da-vakinha-online/" target="_blank" rel="noopener">remessaonline.com.br</a>.</li>
     </ol>
@@ -866,8 +791,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
       <li>SOS Rio Grande do Sul: Do Oiapoque ao Chuí. Nayana Magalhães/GEA. CC BY 3.0. <a href="https://commons.wikimedia.org/wiki/File:SOS_Rio_Grande_do_Sul_-_Do_Oiapoque_ao_Chu%C3%AD_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</li>
       <li>Logotipos do Kickstarter, GoFundMe e Indiegogo: marcas de seus donos, via Wikimedia Commons, usadas apenas para identificação.</li>
       <li>Páginas da Vakinha, Catarse, Benfeitoria, Apoia.se, Indiegogo e GoFundMe: capturas de tela feitas em 08/10/2026 para fins educativos. Marcas e conteúdos pertencem aos seus donos.</li>
-      <li>Imagens de Hollow Knight (Team Cherry), Undertale (Toby Fox) e Chroma Squad (Behold Studios): capturas oficiais das páginas dos jogos na Steam. Uso educativo; direitos dos seus donos.</li>
-      <li>Estande do Star Citizen na Gamescom 2017. QSO4YOU.com. CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Star_Citizen_Stand_Gamescom_2017.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</li>
       <li>Narração: voz sintética gerada com ElevenLabs (modelo Eleven v4).</li>
     </ul>
     <p class="hint">Números e taxas conferidos em outubro de 2026. Valores de plataformas mudam com frequência.</p>
