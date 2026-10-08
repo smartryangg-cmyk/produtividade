@@ -5,16 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Crowdfunding em Cena</title>
 <meta name="description" content="Crowdfunding, o poder de muitos: apresentação e vídeo narrado sobre financiamento coletivo, com passo a passo, impacto social, plataformas de arrecadação e casos reais.">
+<link rel="canonical" href="https://kranoedu.site/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crowdfunding: o poder de muitos">
+<meta property="og:description" content="Apresentação e vídeo narrado sobre crowdfunding: passo a passo, impacto social, plataformas de arrecadação e casos reais.">
+<meta property="og:url" content="https://kranoedu.site/">
+<meta property="og:image" content="https://kranoedu.site/img/og-capa.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23FFC23D%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-size=%2213%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22%2316213B%22%3ER$%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
 <style>
+@font-face{font-family:"Halvarson";src:url("fonts/halvarson.woff2") format("woff2");font-display:swap;unicode-range:U+0020-0023,U+0026-002F,U+003A-007E,U+00A0-00FF,U+0100-024F,U+2018-201E}
+@font-face{font-family:"Anak Manja";src:url("fonts/anak-manja.woff2") format("woff2");font-display:swap}
 /* Layout: a presentation console — tab bar on top, one 16:9 stage, references underneath. */
 :root{
   --bg:#EEF1F7; --surface:#FFFFFF; --fg:#18233D; --muted:#56607A; --line:#D5DBE8;
   --navy:#16213B; --blue:#3D8BFF; --coral:#FF5C77; --green:#22B573; --gold:#FFC23D;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --display:"Halvarson", "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --fun:"Anak Manja", "Bricolage Grotesque", system-ui, sans-serif;
   --body:"Nunito Sans", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0E1424; --surface:#172038; --fg:#E7ECF7; --muted:#9AA5C0; --line:#2A3553; color-scheme:dark}}
@@ -26,7 +37,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-
 [hidden]{display:none!important}
 .wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:grid;gap:20px}
 header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.01em;text-wrap:balance}
+.brand{font-family:var(--display);font-weight:400;font-size:1.5rem;letter-spacing:.02em;text-wrap:balance}
 .brand small{display:block;font-family:var(--body);font-weight:600;font-size:.8rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 .tabs{display:flex;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
 .tabs button{min-height:44px;font:600 .95rem var(--body);color:var(--muted);background:none;border:0;border-radius:999px;padding:8px 18px;cursor:pointer}
@@ -88,6 +99,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 .cv-main{display:grid;gap:calc(var(--u)*1.4)}
 .cv-t{margin:0;font-family:var(--display);font-weight:800;font-size:calc(var(--u)*9);line-height:.95;letter-spacing:-.03em}
 .cv-t span{color:#FFC23D}
+.cover .cv-t span{display:block}
 .cv-s{margin:0;font-size:calc(var(--u)*2.1);color:#C9D3EA;max-width:44ch;line-height:1.35}
 .cv-topics{list-style:none;margin:calc(var(--u)*1) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:calc(var(--u)*1)}
 .cv-topics li{display:flex;align-items:center;gap:calc(var(--u)*.8);font-size:calc(var(--u)*1.45);font-weight:600;background:rgba(255,255,255,.09);border-radius:99px;padding:calc(var(--u)*.6) calc(var(--u)*1.4) calc(var(--u)*.6) calc(var(--u)*.7)}
@@ -244,15 +256,106 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 /* conclusão */
 .end{grid-template-rows:1fr auto}
 .end .cv-t{font-size:calc(var(--u)*7)}
+.end .cv-t,.scene .h.xl{font-size:calc(var(--u,1cqw)*6.4)!important}
 .thanks{position:absolute;right:calc(var(--u)*5);top:calc(var(--u)*3.6);margin:0;font-family:var(--display);font-weight:800;font-size:calc(var(--u)*2.4);color:#FFC23D}
 /* referências */
 .refs-sd{margin:0;padding-left:calc(var(--u)*2);font-size:calc(var(--u)*1.25);color:#3B4560;line-height:1.3;columns:2;column-gap:calc(var(--u)*3)}
 .refs-sd li{break-inside:avoid;margin-bottom:calc(var(--u)*.7)}
 
+/* equipe + compartilhar */
+.team{display:grid;grid-template-columns:1fr calc(var(--u)*24);gap:calc(var(--u)*2.6);align-items:center}
+.people{display:grid;gap:calc(var(--u)*1.3)}
+.person{display:grid;grid-template-columns:calc(var(--u)*6) 1fr;gap:calc(var(--u)*1.6);align-items:center;padding:calc(var(--u)*1.5) calc(var(--u)*1.8)}
+.person .av{width:calc(var(--u)*6);height:calc(var(--u)*6);border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;font-size:calc(var(--u)*2.8);background:var(--pc)}
+.person h3{margin:0;font-family:var(--display);font-size:calc(var(--u)*2.4);color:#16213B}
+.person p{margin:calc(var(--u)*.3) 0 0;font-size:calc(var(--u)*1.45);line-height:1.35;color:#3B4560}
+.qrbox{padding:calc(var(--u)*1.8);display:grid;gap:calc(var(--u)*1);justify-items:center;text-align:center}
+.qrbox .qr{width:100%;aspect-ratio:1;display:grid;place-items:center}
+.qr svg,.qr img{width:100%;height:auto;display:block}
+.qrbox b{font-family:var(--display);font-size:calc(var(--u)*1.7);color:#16213B}
+.qrbox span{font-size:calc(var(--u)*1.1);color:#56607A;overflow-wrap:anywhere}
+.share-grid{display:grid;grid-template-columns:1fr 200px;gap:20px;align-items:start}
+.share-grid .qr{width:200px;background:#fff;border-radius:12px;padding:10px}
+.team-list{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px}
+.team-list li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center}
+.team-list .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-family:var(--display);background:var(--pc)}
+.team-list b{display:block}
+.team-list span{color:var(--muted);font-size:.92rem}
+.share-url{font:600 .9rem var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow-wrap:anywhere;user-select:all}
+.share-msg{min-height:1.4em;color:var(--muted);font-size:.85rem;margin:6px 0 0}
+@media (max-width:640px){.share-grid{grid-template-columns:1fr}.share-grid .qr{justify-self:start}}
+/* video credits */
+.vteam{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6cqw}
+.vteam .vcard{padding:2cqw 1.8cqw;display:grid;gap:.8cqw;align-content:start}
+.vteam .av{width:6cqw;height:6cqw;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:2.8cqw;background:var(--pc);color:#fff}
+.vteam b{font-family:var(--display);font-size:2.6cqw}
+.vteam p{margin:0;font-size:1.5cqw;color:#C9D3EA;line-height:1.38}
+
+/* fontes do grupo: Halvarson (titulos e numeros) e Anak Manja (destaques sem acento) */
+.fun{font-family:var(--fun);font-weight:400;letter-spacing:.01em}
+.cv-t,.h.xl{font-family:var(--fun)!important;font-weight:400!important;font-size:calc(var(--u,1cqw)*7)!important;letter-spacing:.01em!important;line-height:1.02!important}
+.sd-h h2,.h,.num,.vnum,.av,.big,.case h3,.net h3,.shot h3,.mc b,.ty2 b,.ty b,.imp3 h3,.pc b,.alert h3,.chk4 strong,.sum h3,.hk h3,.gitem h3,.person h3,.qrbox b,.vteam b,.v5 h3,.v10 h3,.v12 h3,.model b,.node b,.v11 b,.vg .gi b,.tline .yr,.money strong,.cv-topics b,.steps10 li > b,.steps li b,.chk4 b,.v12 li b,.panel h2,.panel h3{font-family:var(--display);font-weight:800;font-synthesis:none;letter-spacing:.02em}
+.sd-h h2{font-size:calc(var(--u)*4.2)}
+.h{letter-spacing:.02em}
+.vlink{min-height:44px}
+@media (max-width:820px){#slideStage:not(:fullscreen) .cv-t{font-size:clamp(30px,10vw,52px)!important}#slideStage:not(:fullscreen) .cover .cv-t span{display:block}#slideStage:not(:fullscreen) .cv-main{min-width:0}}
+#slideStage:not(:fullscreen) .end .cv-t{font-size:clamp(26px,8.6vw,44px)!important}
+.av img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+/* ===== ATIVIDADE (interativo) ===== */
+.guide{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.guide li{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-size:.88rem;color:var(--muted)}
+.guide b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--coral);color:#fff;font-size:.8rem}
+.guide strong{color:var(--fg)}
+.act-intro{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--coral);border-radius:14px;padding:16px 20px;color:var(--muted)}
+.act-intro strong{color:var(--fg)}
+.act-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;align-items:start}
+.act-grid > *{min-width:0}
+.ctrl{display:grid;gap:6px;margin-bottom:16px}
+.ctrl label,.ctrl .lb{font-weight:700;font-size:.92rem;display:flex;justify-content:space-between;gap:8px}
+.ctrl output{font-variant-numeric:tabular-nums;color:var(--coral);font-weight:800}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{min-height:44px;font:600 .9rem var(--body);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:8px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+:root[data-theme="dark"] .seg button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue)}}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:var(--line)}
+input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--coral);border:4px solid var(--surface);margin-top:-9px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--coral);border:4px solid var(--surface)}
+input[type=range]:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+.res{display:grid;gap:12px}
+.res .big{font-family:var(--display);font-weight:800;font-synthesis:none;font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
+.meter2{height:16px;border-radius:99px;background:var(--line);overflow:hidden;position:relative}
+.meter2 i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--green),#4CD495);border-radius:99px;transition:width .4s}
+.meter2.miss i{background:linear-gradient(90deg,var(--coral),#FF8FA2)}
+.res-rows{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.res-rows div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
+.res-rows span{font-size:.8rem;color:var(--muted)}
+.res-rows b{font-variant-numeric:tabular-nums;font-size:1.05rem}
+.verdict{border-radius:12px;padding:12px 14px;font-weight:600;line-height:1.4}
+.verdict.ok{background:color-mix(in srgb,var(--green) 16%,var(--surface));color:var(--fg)}
+.verdict.no{background:color-mix(in srgb,var(--coral) 16%,var(--surface));color:var(--fg)}
+.challenge{border-top:1px dashed var(--line);padding-top:12px;display:grid;gap:8px}
+.challenge p{margin:0}
+.quiz-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.quiz-head .score{font-variant-numeric:tabular-nums;font-weight:800;color:var(--coral)}
+.qnum{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.qtext{font-family:var(--display);font-weight:800;font-synthesis:none;font-size:1.35rem;line-height:1.25;margin:6px 0 14px;text-wrap:balance}
+.opts{display:grid;gap:8px}
+.opts button{min-height:52px;text-align:left;font:600 1rem var(--body);background:var(--bg);color:var(--fg);border:2px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.opts button kbd{font:700 .8rem var(--body);display:grid;place-items:center;min-width:26px;height:26px;border-radius:8px;background:var(--surface);border:1px solid var(--line)}
+.opts button.right{border-color:var(--green);background:color-mix(in srgb,var(--green) 14%,var(--surface))}
+.opts button.wrong{border-color:var(--coral);background:color-mix(in srgb,var(--coral) 12%,var(--surface))}
+.opts button:disabled{cursor:default}
+.explain{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:var(--bg);border:1px solid var(--line);line-height:1.45}
+.quiz-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+@media (max-width:860px){.act-grid{grid-template-columns:1fr}}
+@media (max-width:480px){.res-rows{grid-template-columns:1fr}.res .big{font-size:2rem}}
 /* ===== VIDEO (fixed dark look) ===== */
 .video{background:radial-gradient(120% 90% at 85% 0%, #22325A 0%, #121B31 55%, #0D1426 100%);color:#fff;font-family:var(--body);overflow:hidden;cursor:pointer}
 .video::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:4cqw 4cqw}
-.scene{position:absolute;inset:0;padding:4.4cqw 5.6cqw 9.6cqw;display:none;flex-direction:column;justify-content:center;gap:1.8cqw}
+.scene{position:absolute;inset:0;padding:4.4cqw 5.6cqw max(9.6cqw,44px);display:none;flex-direction:column;justify-content:center;gap:1.8cqw}
 .scene.on{display:flex}
 .paused .scene *, .paused .scene{animation-play-state:paused!important}
 .kicker{font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:1.3cqw;color:#FFC23D;margin:0}
@@ -354,13 +457,14 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 /* v11 */
 .v11{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2cqw}
 .v11 .vcard{overflow:hidden;display:grid;grid-template-rows:auto auto}
-.v11 .vis{aspect-ratio:16/9;background:#fff;display:grid;place-items:center;overflow:hidden}
+.v11 .vis{aspect-ratio:16/7.6;background:#fff;display:grid;place-items:center;overflow:hidden}
 .v11 .vis img{width:100%;height:100%;object-fit:cover;object-position:top}
 .v11 .vis img.logo{width:70%;height:auto;object-fit:contain}
 .v11 .body{padding:.7cqw 1.1cqw .9cqw;display:grid;gap:.1cqw}
 .v11 b{font-family:var(--display);font-size:1.8cqw}
 .v11 span{font-size:1.15cqw;color:#C9D3EA}
 .v11 .w b{color:#6FAAFF}
+@container (max-width:560px){.v11 span{display:none}.v11 .body{padding:.6cqw 1cqw}}
 /* v12 */
 .v12{display:grid;grid-template-columns:1fr 1.15fr;gap:2.2cqw;align-items:start}
 .v12 .vcard{padding:2cqw 2.2cqw;display:grid;gap:.8cqw}
@@ -373,7 +477,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 .v12 li b{display:grid;place-items:center;width:3.6cqw;height:3.6cqw;border-radius:50%;background:#22B573;font-family:var(--display);font-size:1.8cqw}
 .v12 li em{font-style:normal;display:block;font-size:1.4cqw;color:#9EB5DD}
 /* captions + progress */
-.cap{position:absolute;left:6cqw;right:6cqw;bottom:2.6cqw;text-align:center;font-size:1.75cqw;line-height:1.35;color:#fff;text-shadow:0 .15cqw .5cqw rgba(0,0,0,.6);min-height:2.4cqw}
+.cap{position:absolute;left:4cqw;right:4cqw;bottom:2.2cqw;text-align:center;font-size:max(1.75cqw,11px);line-height:1.35;color:#fff;text-shadow:0 .15cqw .5cqw rgba(0,0,0,.6);min-height:2.4cqw}
 .cap span{background:rgba(5,10,22,.62);padding:.3cqw 1cqw;border-radius:.6cqw;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .nocap .cap{display:none}
 .prog{position:absolute;left:0;right:0;bottom:0;height:.6cqw;background:rgba(255,255,255,.12)}
@@ -385,7 +489,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 
 /* record mode (used locally to export the MP4) */
 .rec .wrap{padding:0;max-width:none}
-.rec header.top,.rec .bar,.rec .panel,.rec .chips,.rec #tab-slides-panel{display:none!important}
+.rec header.top,.rec .guide,.rec .bar,.rec .panel,.rec .chips,.rec #tab-slides-panel,.rec #tab-act-panel{display:none!important}
 .rec .stage{border-radius:0;box-shadow:none}
 .rec .bigplay{display:none}
 
@@ -410,6 +514,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   #slideStage:not(:fullscreen) .hist .fig{height:240px}
   #slideStage:not(:fullscreen) .rs .photos{grid-template-rows:200px 160px}
   #slideStage:not(:fullscreen) .refs-sd{columns:1}
+  #slideStage:not(:fullscreen) .team{grid-template-columns:1fr}
+  #slideStage:not(:fullscreen) .qrbox{max-width:260px}
   #slideStage:not(:fullscreen) .case{grid-template-rows:180px auto}
 }
 @media (max-width:480px){ #slideStage:not(:fullscreen) :is(.shots,.shots.three){grid-template-columns:1fr} }
@@ -419,12 +525,18 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><small>Trabalho escolar</small>Crowdfunding: o poder de muitos<br><a class="btn vlink" href="sem-videogame.html">Ver versão sem videogames</a></div>
+    <div class="brand"><small>Trabalho escolar</small><span class="fun">Crowdfunding: o poder de muitos</span><br><a class="btn vlink" href="sem-videogame.html">Ver versão sem videogames</a></div>
     <div class="tabs" role="tablist" aria-label="Parte da apresentação">
       <button role="tab" id="tab-slides" aria-controls="tab-slides-panel" aria-selected="true">Slides</button>
       <button role="tab" id="tab-video" aria-controls="tab-video-panel" aria-selected="false">Vídeo</button>
+      <button role="tab" id="tab-act" aria-controls="tab-act-panel" aria-selected="false">Atividade</button>
     </div>
   </header>
+  <ol class="guide" aria-label="Como usar">
+    <li><b>1</b><span><strong>Slides:</strong> use as setas ou clique nos números</span></li>
+    <li><b>2</b><span><strong>Vídeo:</strong> aperte play, com narração e legendas</span></li>
+    <li><b>3</b><span><strong>Atividade:</strong> simulador e quiz para a turma</span></li>
+  </ol>
 
   <!-- ================= SLIDES ================= -->
   <section role="tabpanel" id="tab-slides-panel" aria-labelledby="tab-slides">
@@ -646,10 +758,18 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
         </ol>
       </div>
 
+      <div class="frame sd" style="--ac:#22B573" data-title="Quem fez">
+        <header class="sd-h"><p class="sd-k">Equipe</p><h2>Quem fez este trabalho</h2></header>
+        <div class="team">
+          <div class="people"><div class="card person" style="--pc:#3D8BFF"><span class="av"><img src="img/ryan.jpg" alt="Ryan"></span><div><h3>Ryan</h3><p>Desenvolveu o site, o vídeo, os slides, a estrutura online e os princípios de crowdfunding.</p></div></div><div class="card person" style="--pc:#7B5CFF"><span class="av">W</span><div><h3>Wesley</h3><p>Apresentou o trabalho e trouxe a ideia do videogame Hollow Knight.</p></div></div><div class="card person" style="--pc:#E0A100"><span class="av">P</span><div><h3>Pedro</h3><p>Apresentou o trabalho e trouxe a ideia da construção da base da Estátua da Liberdade.</p></div></div></div>
+          <div class="card qrbox"><div class="qr" data-qr></div><b>Abra o site no celular</b><span data-share-text></span></div>
+        </div>
+      </div>
+
     </div>
     <div class="bar">
       <button class="btn icon" id="prevSlide" aria-label="Slide anterior"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <span class="count" id="deckCount">1 / 17</span>
+      <span class="count" id="deckCount">1 / 18</span>
       <button class="btn icon" id="nextSlide" aria-label="Próximo slide"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
       <button class="btn primary" data-fs="slideStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
       <a class="btn" href="slides-com-videogame.pptx" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar slides (.pptx)</span></a>
@@ -817,6 +937,11 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
           <p class="kicker in" style="--d:5.4">Planejamento de quem cria · cuidado de quem apoia</p>
         </div>
 
+        <div class="scene" data-dur="9" data-name="Equipe" data-cap="">
+          <p class="kicker in" style="--d:.2">Quem fez este trabalho</p>
+          <div class="vteam"><div class="vcard in" style="--pc:#3D8BFF;--d:0.8"><span class="av"><img src="img/ryan.jpg" alt="Ryan"></span><b>Ryan</b><p>Desenvolveu o site, o vídeo, os slides, a estrutura online e os princípios de crowdfunding.</p></div><div class="vcard in" style="--pc:#7B5CFF;--d:1.7"><span class="av">W</span><b>Wesley</b><p>Apresentou o trabalho e trouxe a ideia do videogame Hollow Knight.</p></div><div class="vcard in" style="--pc:#E0A100;--d:2.6"><span class="av">P</span><b>Pedro</b><p>Apresentou o trabalho e trouxe a ideia da construção da base da Estátua da Liberdade.</p></div></div>
+        </div>
+
         <div class="cap" id="cap"></div>
         <div class="prog"><i id="progFill"></i></div>
         <button class="bigplay" id="bigPlay" aria-label="Reproduzir vídeo"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span></button>
@@ -829,9 +954,74 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
       <button class="btn" id="capBtn" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg><span>Legendas: ligadas</span></button>
       <button class="btn" data-fs="videoStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
       <a class="btn" href="video-com-videogame.mp4" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar vídeo (.mp4)</span></a>
-      <span class="time" id="timeLbl">0:00 / 4:55</span>
+      <span class="time" id="timeLbl">0:00 / 5:04</span>
     </div>
     <div class="chips" id="chapters" aria-label="Capítulos"></div>
+  </section>
+
+  <!-- ================= ATIVIDADE ================= -->
+  <section role="tabpanel" id="tab-act-panel" aria-labelledby="tab-act" hidden>
+    <p class="act-intro"><strong>Para os apresentadores:</strong> depois do vídeo, use o simulador para montar uma campanha com a turma e o quiz para testar o que todos aprenderam. Peça para a turma responder em voz alta antes de clicar.</p>
+    <div class="act-grid">
+      <div class="panel">
+        <h2>Monte uma campanha</h2>
+        <div class="ctrl"><span class="lb">Projeto</span>
+          <div class="seg" id="simPreset" role="group" aria-label="Projeto">
+            <button aria-pressed="true" data-goal="10000" data-n="180" data-avg="60">Biblioteca da escola</button>
+            <button aria-pressed="false" data-goal="50000" data-n="500" data-avg="80">Jogo independente</button>
+            <button aria-pressed="false" data-goal="30000" data-n="900" data-avg="35">Tratamento de saúde</button>
+          </div></div>
+        <div class="ctrl"><label for="simGoal">Meta <output id="oGoal"></output></label><input type="range" id="simGoal" min="1000" max="100000" step="1000" value="10000"></div>
+        <div class="ctrl"><label for="simN">Apoiadores <output id="oN"></output></label><input type="range" id="simN" min="10" max="3000" step="10" value="180"></div>
+        <div class="ctrl"><label for="simAvg">Valor médio por apoio <output id="oAvg"></output></label><input type="range" id="simAvg" min="5" max="300" step="5" value="60"></div>
+        <div class="ctrl"><span class="lb">Modelo</span>
+          <div class="seg" id="simModel" role="group" aria-label="Modelo">
+            <button aria-pressed="true" data-m="aon">Tudo ou nada</button>
+            <button aria-pressed="false" data-m="flex">Flexível</button>
+          </div></div>
+        <p class="hint" style="margin:0">Taxa usada no cálculo: Vakinha, 6,4% + R$ 0,50 por doação.</p>
+      </div>
+      <div class="panel res" aria-live="polite">
+        <h2 style="margin:0">Resultado</h2>
+        <div><span class="qnum">Arrecadado</span><div class="big" id="rRaised"></div></div>
+        <div class="meter2" id="rMeter"><i id="rFill"></i></div>
+        <div class="res-rows"><div><span>da meta</span><b id="rPct"></b></div><div><span>taxa da plataforma</span><b id="rFee"></b></div><div><span>criador recebe</span><b id="rNet"></b></div></div>
+        <p class="verdict" id="rVerdict"></p>
+        <div class="challenge"><p><strong>Desafio para a turma:</strong> com o valor médio escolhido, quantos apoiadores são necessários para o criador receber a meta inteira, já descontada a taxa?</p>
+          <div class="bar"><button class="btn" id="chBtn">Revelar resposta</button></div><p id="chAns" class="explain" hidden></p></div>
+      </div>
+    </div>
+    <div class="panel" id="quiz">
+      <div class="quiz-head"><h2 style="margin:0">Pergunte à turma</h2><span class="score" id="qScore"></span></div>
+      <p class="qnum" id="qNum"></p>
+      <p class="qtext" id="qText"></p>
+      <div class="opts" id="qOpts"></div>
+      <p class="explain" id="qExplain" hidden></p>
+      <div class="quiz-nav">
+        <button class="btn" id="qPrev">Anterior</button>
+        <button class="btn primary" id="qNext">Próxima pergunta</button>
+        <button class="btn" id="qReset">Recomeçar quiz</button>
+      </div>
+      <p class="hint">Atalhos: teclas 1, 2 e 3 escolhem a resposta.</p>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="team-h">
+    <h2 id="team-h">Quem fez este trabalho</h2>
+    <div class="share-grid">
+      <div>
+        <ul class="team-list"><li><span class="av" style="--pc:#3D8BFF"><img src="img/ryan.jpg" alt="Ryan"></span><div><b>Ryan</b><span>Desenvolveu o site, o vídeo, os slides, a estrutura online e os princípios de crowdfunding.</span></div></li><li><span class="av" style="--pc:#7B5CFF">W</span><div><b>Wesley</b><span>Apresentou o trabalho e trouxe a ideia do videogame Hollow Knight.</span></div></li><li><span class="av" style="--pc:#E0A100">P</span><div><b>Pedro</b><span>Apresentou o trabalho e trouxe a ideia da construção da base da Estátua da Liberdade.</span></div></li></ul>
+        <h3>Compartilhe o site</h3>
+        <p class="share-url" id="shareUrl" data-share-text></p>
+        <div class="bar">
+          <button class="btn primary" id="shareBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg><span>Compartilhar</span></button>
+          <a class="btn" id="waBtn" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8.4 19z"/><path d="M9 9.5c.5 2 2 3.6 4.4 4.6l1.3-1.2 1.8.9-.4 1.6c-3.7.2-7.3-3.3-7.4-7.1l1.6-.4.9 1.8z"/></svg><span>WhatsApp</span></a>
+          <button class="btn" id="copyBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copiar link</span></button>
+        </div>
+        <p class="share-msg" id="shareMsg" role="status"></p>
+      </div>
+      <div class="qr" data-qr aria-label="QR code do site"></div>
+    </div>
   </section>
 
   <section class="panel refs" aria-labelledby="refs-h">
@@ -883,13 +1073,13 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   const PAUSE='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg><span>Pausar</span>';
 
   /* ---- tabs ---- */
-  const tabs={slides:$('#tab-slides'),video:$('#tab-video')};
+  const tabs={slides:$('#tab-slides'),video:$('#tab-video'),act:$('#tab-act')};
   function show(which){
     for(const k in tabs){const on=k===which;tabs[k].setAttribute('aria-selected',on);$('#'+tabs[k].getAttribute('aria-controls')).hidden=!on;}
     if(which!=='video') pause();
     try{localStorage.setItem('cf-tab',which)}catch(e){}
   }
-  tabs.slides.onclick=()=>show('slides'); tabs.video.onclick=()=>show('video');
+  tabs.slides.onclick=()=>show('slides'); tabs.video.onclick=()=>show('video'); tabs.act.onclick=()=>show('act');
 
   /* ---- slides ---- */
   const frames=$$('#slideStage > .frame'); let si=0;
@@ -962,6 +1152,68 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   };
   window.cfTotal=total;
 
+  /* ---- atividade: simulador + quiz ---- */
+  const brl=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:v<1000?2:0});
+  const sim={goal:$('#simGoal'),n:$('#simN'),avg:$('#simAvg'),model:'aon'};
+  function simRender(){
+    const goal=+sim.goal.value,n=+sim.n.value,avg=+sim.avg.value;
+    const raised=n*avg, fee=raised*0.064+n*0.5, net=raised-fee, pct=raised/goal*100, hit=raised>=goal;
+    $('#oGoal').textContent=brl(goal); $('#oN').textContent=n.toLocaleString('pt-BR'); $('#oAvg').textContent=brl(avg);
+    $('#rRaised').textContent=brl(raised); $('#rPct').textContent=Math.round(pct)+'%';
+    $('#rFee').textContent='− '+brl(fee); $('#rNet').textContent=brl(sim.model==='aon'&&!hit?0:net);
+    $('#rFill').style.width=Math.min(100,pct)+'%'; $('#rMeter').classList.toggle('miss',!hit);
+    const v=$('#rVerdict'); v.className='verdict '+(hit?'ok':'no');
+    v.textContent = hit ? `Meta batida! Depois da taxa, o criador recebe ${brl(net)}.`
+      : sim.model==='aon' ? `Faltaram ${brl(goal-raised)}. No tudo ou nada, o dinheiro volta para os ${n.toLocaleString('pt-BR')} apoiadores e o criador não recebe nada.`
+      : `Faltaram ${brl(goal-raised)}, mas no modelo flexível o criador fica com ${brl(net)}.`;
+    $('#chAns').hidden=true;
+  }
+  [sim.goal,sim.n,sim.avg].forEach(i=>i.addEventListener('input',()=>{ $$('#simPreset button').forEach(b=>b.setAttribute('aria-pressed','false')); simRender(); }));
+  $$('#simPreset button').forEach(b=>b.onclick=()=>{ $$('#simPreset button').forEach(x=>x.setAttribute('aria-pressed',x===b)); sim.goal.value=b.dataset.goal; sim.n.value=b.dataset.n; sim.avg.value=b.dataset.avg; simRender(); });
+  $$('#simModel button').forEach(b=>b.onclick=()=>{ $$('#simModel button').forEach(x=>x.setAttribute('aria-pressed',x===b)); sim.model=b.dataset.m; simRender(); });
+  $('#chBtn').onclick=()=>{ const goal=+sim.goal.value, avg=+sim.avg.value, per=avg*(1-0.064)-0.5;
+    const need=Math.ceil(goal/per); const a=$('#chAns'); a.hidden=false;
+    a.textContent=`Cada apoio de ${brl(avg)} deixa ${brl(per)} para o criador. Para receber ${brl(goal)}, são necessários ${need.toLocaleString('pt-BR')} apoiadores.`; };
+  simRender();
+
+  const QUIZ=[{"q": "Em 1885, quantas pessoas ajudaram a pagar a base da Estátua da Liberdade?", "o": ["Cerca de 12 mil", "Cerca de 120 mil", "Cerca de 1,2 milhão"], "a": 1, "e": "Mais de 120 mil pessoas doaram, muitas com menos de 1 dólar. O jornal publicou o nome dos doadores."}, {"q": "No modelo “tudo ou nada”, o que acontece se a campanha não bate a meta?", "o": ["O criador fica com metade", "O dinheiro volta para os apoiadores", "A plataforma fica com o dinheiro"], "a": 1, "e": "No tudo ou nada, o criador só recebe se bater a meta. Se não bater, cada apoiador recebe o dinheiro de volta."}, {"q": "Qual plataforma brasileira é a mais usada para doações e causas pessoais?", "o": ["Vakinha", "Kickstarter", "Apoia.se"], "a": 0, "e": "A Vakinha é focada em doações. O Kickstarter é para projetos com recompensa e o Apoia.se para apoio mensal."}, {"q": "De uma doação de R$ 100 na Vakinha, quanto chega ao criador?", "o": ["R$ 100,00", "R$ 93,10", "R$ 87,00"], "a": 1, "e": "A taxa é de 6,4% + R$ 0,50 por doação: R$ 6,40 + R$ 0,50 = R$ 6,90. Sobram R$ 93,10."}, {"q": "Quanto uma única vaquinha arrecadou para as vítimas das enchentes do RS em 2024?", "o": ["Cerca de R$ 700 mil", "Cerca de R$ 7 milhões", "Mais de R$ 70 milhões"], "a": 2, "e": "Passou de R$ 70 milhões. O recorde anterior de uma campanha na plataforma era R$ 3,2 milhões."}, {"q": "Hollow Knight pediu A$ 35 mil no Kickstarter. Quanto arrecadou?", "o": ["A$ 20 mil", "A$ 57 mil", "A$ 1 milhão"], "a": 1, "e": "Arrecadou cerca de A$ 57 mil de 2.158 apoiadores e depois vendeu milhões de cópias."}, {"q": "Qual destes é um sinal de alerta de golpe?", "o": ["Campanha com atualizações e notas", "Pedido de Pix urgente para um desconhecido", "Doação pela página oficial da plataforma"], "a": 1, "e": "Pressão e Pix direto para desconhecidos são sinais de golpe. Prefira a página oficial e campanhas que prestam contas."}]; let qi=0; const answered={};
+  function qRender(){
+    const q=QUIZ[qi], done=answered[qi];
+    $('#qNum').textContent=`Pergunta ${qi+1} de ${QUIZ.length}`; $('#qText').textContent=q.q;
+    const box=$('#qOpts'); box.innerHTML='';
+    q.o.forEach((o,k)=>{ const b=document.createElement('button'); b.innerHTML='<kbd>'+(k+1)+'</kbd><span></span>'; b.lastChild.textContent=o;
+      if(done!==undefined){ b.disabled=true; if(k===q.a) b.classList.add('right'); else if(k===done) b.classList.add('wrong'); }
+      b.onclick=()=>{ if(answered[qi]!==undefined) return; answered[qi]=k; qRender(); }; box.appendChild(b); });
+    const ex=$('#qExplain'); ex.hidden=done===undefined; if(done!==undefined) ex.textContent=(done===q.a?'Isso mesmo! ':'Resposta certa: '+q.o[q.a]+'. ')+q.e;
+    const ok=Object.entries(answered).filter(([i,v])=>QUIZ[i].a===v).length;
+    $('#qScore').textContent=`Acertos da turma: ${ok} de ${Object.keys(answered).length}`;
+    $('#qPrev').disabled=qi===0; $('#qNext').disabled=qi===QUIZ.length-1;
+  }
+  $('#qPrev').onclick=()=>{ if(qi>0){qi--;qRender();} }; $('#qNext').onclick=()=>{ if(qi<QUIZ.length-1){qi++;qRender();} };
+  $('#qReset').onclick=()=>{ for(const k in answered) delete answered[k]; qi=0; qRender(); };
+  document.addEventListener('keydown',e=>{ if($('#tab-act-panel').hidden||e.target.closest('input,textarea')) return;
+    const k=+e.key; if(k>=1&&k<=QUIZ[qi].o.length){ const b=$$('#qOpts button')[k-1]; if(b&&!b.disabled) b.click(); } });
+  qRender();
+
+  /* ---- share + QR ---- */
+  const SHARE_URL='';
+  const DEFAULT_URL='https://kranoedu.site/';
+  const shareUrl = SHARE_URL || (/(^|\.)kranoedu\.site$|\.pages\.dev$/.test(location.hostname) ? location.origin+location.pathname.replace(/index\.html$/,'').replace(/\.html$/,'') : DEFAULT_URL);
+  const shareTitle='Crowdfunding: o poder de muitos';
+  const shareText='Apresentação sobre crowdfunding: passo a passo, impacto social e plataformas de arrecadação.';
+  $$('[data-share-text]').forEach(el=>el.textContent=shareUrl);
+  function drawQR(){ if(!window.qrcode) return false;
+    const q=qrcode(0,'M'); q.addData(shareUrl); q.make();
+    const svg=q.createSvgTag({cellSize:4,margin:2,scalable:true});
+    $$('[data-qr]').forEach(el=>el.innerHTML=svg); return true; }
+  if(!drawQR()) window.addEventListener('load',drawQR);
+  const msg=t=>{ $('#shareMsg').textContent=t; };
+  async function copyLink(){ try{ await navigator.clipboard.writeText(shareUrl); msg('Link copiado.'); }
+    catch(e){ const r=document.createRange(); r.selectNodeContents($('#shareUrl')); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); msg('Selecione e copie o link acima.'); } }
+  $('#copyBtn').onclick=copyLink;
+  $('#shareBtn').onclick=async()=>{ if(navigator.share){ try{ await navigator.share({title:shareTitle,text:shareText,url:shareUrl}); return; }catch(e){ if(e.name==='AbortError') return; } } copyLink(); };
+  $('#waBtn').href='https://wa.me/?text='+encodeURIComponent(shareText+' '+shareUrl);
+
   $('#playBtn').onclick=()=>playing?pause():play();
   $('#bigPlay').onclick=e=>{e.stopPropagation();play();};
   video.addEventListener('click',()=>{ if(started) playing?pause():play(); });
@@ -971,7 +1223,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   document.addEventListener('keydown',e=>{
     if(e.target.closest('input,textarea'))return;
     const k=e.key.toLowerCase(), onVideo=!$('#tab-video-panel').hidden;
-    if(k==='v') show('video'); else if(k==='s') show('slides');
+    if(k==='v') show('video'); else if(k==='s') show('slides'); else if(k==='a' && !(e.ctrlKey||e.metaKey)) show('act');
     else if(k==='f'){ $(`[data-fs="${onVideo?'videoStage':'slideStage'}"]`).click(); }
     else if(['arrowright','pagedown'].includes(k) && !onVideo){ e.preventDefault(); go(si+1); }
     else if(['arrowleft','pageup'].includes(k) && !onVideo){ e.preventDefault(); go(si-1); }
@@ -980,7 +1232,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 
   let start='slides', s0=0;
   try{start=localStorage.getItem('cf-tab')||'slides'; s0=+localStorage.getItem('cf-slide')||0;}catch(e){}
-  if(location.hash==='#video'||rec) start='video';
+  if(location.hash==='#video'||rec) start='video'; if(location.hash==='#atividade') start='act'; if(!tabs[start]) start='slides';
   if(!(s0>=0 && s0<frames.length)) s0=0;
   go(s0); enter(0); render(); show(start);
   if(rec && !location.search.includes('frames')) setTimeout(play,600);
