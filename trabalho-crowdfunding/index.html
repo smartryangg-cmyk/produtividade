@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Trabalho escolar sobre crowdfunding: slide e vídeo com passo a passo, impacto social e plataformas de arrecadação.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23FFC23D%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-size=%2213%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22%2316213B%22%3ER$%3C/text%3E%3C/svg%3E">
+<title>Crowdfunding em Cena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<style>
+/* Layout: a presentation console — tab bar on top, one 16:9 stage, notes underneath. */
+:root{
+  --bg:#EEF1F7; --surface:#FFFFFF; --fg:#18233D; --muted:#56607A; --line:#D5DBE8;
+  --navy:#16213B; --blue:#3D8BFF; --coral:#FF5C77; --green:#22B573; --gold:#FFC23D;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Nunito Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1424; --surface:#172038; --fg:#E7ECF7; --muted:#9AA5C0; --line:#2A3553; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1424; --surface:#172038; --fg:#E7ECF7; --muted:#9AA5C0; --line:#2A3553; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:grid;gap:20px}
+header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.01em;text-wrap:balance}
+.brand small{display:block;font-family:var(--body);font-weight:600;font-size:.8rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.tabs{display:flex;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.tabs button{min-height:44px;font:600 .95rem var(--body);color:var(--muted);background:none;border:0;border-radius:999px;padding:8px 18px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--navy);color:#fff}
+:root[data-theme="dark"] .tabs button[aria-selected="true"]{background:var(--blue)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tabs button[aria-selected="true"]{background:var(--blue)}}
+button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.stage{position:relative;width:100%;aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;container-type:inline-size;box-shadow:0 18px 50px -20px rgba(10,20,50,.45)}
+.stage:fullscreen{border-radius:0;width:100vw;height:100vh;aspect-ratio:auto;display:grid;place-items:center;background:#000}
+.stage:fullscreen > .frame{width:min(100vw, calc(100vh * 16 / 9));aspect-ratio:16/9;height:auto;container-type:inline-size}
+.frame{position:absolute;inset:0}
+.stage:fullscreen > .frame{position:relative;inset:auto}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font:600 .9rem var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:8px 14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.ic{width:18px;height:18px;flex:none}
+.btn{min-height:44px;text-decoration:none}
+.btn.primary{background:var(--coral);border-color:var(--coral);color:#fff}
+.hint{color:var(--muted);font-size:.85rem}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 10px}
+.notes{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.notes li{display:grid;grid-template-columns:4.2rem 1fr;gap:12px;align-items:baseline}
+.notes li > *{min-width:0}
+.notes .tc{font-variant-numeric:tabular-nums;font-weight:700;color:var(--coral);font-size:.85rem}
+.notes li.now{color:var(--fg)} .notes li:not(.now){color:var(--muted)}
+.notes li.now .say{font-weight:600}
+[role="tabpanel"]{display:grid;gap:14px}
+
+/* ===== SLIDE (fixed light look, sized in cqw) ===== */
+.slide{background:#F6F8FC;color:#1C2640;font-family:var(--body);display:grid;grid-template-rows:auto 1fr auto}
+.s-head{background:#16213B;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:3cqw;padding:2.2cqw 3.4cqw}
+.s-head h1{font-family:var(--display);font-weight:800;font-size:4.6cqw;margin:0;letter-spacing:-.02em;line-height:1}
+.s-head h1 span{color:#FFC23D}
+.s-head p{margin:0;font-size:1.45cqw;max-width:52cqw;text-align:right;line-height:1.35;color:#D9E1F2}
+.s-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2cqw;padding:2.4cqw 3cqw}
+.s-card{background:#fff;border-radius:1.4cqw;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 .4cqw 1.6cqw -0.6cqw rgba(22,33,59,.25)}
+.s-card h2{margin:0;color:#fff;font-family:var(--display);font-weight:700;font-size:1.9cqw;padding:1cqw 1.4cqw;display:flex;gap:1cqw;align-items:center}
+.s-card h2 b{display:grid;place-items:center;width:2.6cqw;height:2.6cqw;border-radius:50%;background:rgba(255,255,255,.25);font-size:1.4cqw}
+.s-card ul{list-style:none;margin:0;padding:1.3cqw 1.5cqw;display:grid;gap:.75cqw;font-size:1.42cqw;line-height:1.3;color:#3B4560}
+.s-card li strong{color:#1C2640}
+.c1 h2{background:#3D8BFF} .c2 h2{background:#FF5C77} .c3 h2{background:#22B573}
+.c1 li{display:grid;grid-template-columns:2.1cqw 1fr;gap:.6cqw}
+.c1 li i{font-style:normal;font-weight:800;color:#3D8BFF;font-variant-numeric:tabular-nums}
+.c3 .grp{font-family:var(--display);font-weight:700;color:#22B573;font-size:1.25cqw;letter-spacing:.08em;text-transform:uppercase;margin-top:.3cqw}
+.c2 li.risk{border-top:.12cqw dashed #E3C2C9;padding-top:.7cqw;color:#8A3A4B}
+.s-foot{background:#16213B;color:#E2E8F5;font-size:1.25cqw;padding:1.1cqw 3cqw;display:flex;flex-wrap:wrap;gap:.8cqw 1.6cqw;align-items:center;justify-content:center}
+.s-foot .flow{display:flex;gap:.8cqw;align-items:center}
+.s-foot .pill{background:rgba(255,255,255,.12);border-radius:99px;padding:.35cqw 1cqw}
+.s-foot .arrow{color:#FFC23D;font-weight:800}
+
+/* ===== VIDEO (fixed dark look) ===== */
+.video{background:radial-gradient(120% 90% at 85% 0%, #22325A 0%, #121B31 55%, #0D1426 100%);color:#fff;font-family:var(--body);overflow:hidden}
+.video::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:4cqw 4cqw}
+.scene{position:absolute;inset:0;padding:5cqw 6cqw 9cqw;display:none;flex-direction:column;justify-content:center;gap:2cqw}
+.scene.on{display:flex}
+.paused .scene *, .paused .scene{animation-play-state:paused!important}
+.kicker{font-family:var(--body);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:1.4cqw;color:#FFC23D}
+.h{font-family:var(--display);font-weight:800;font-size:5.2cqw;line-height:1.02;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.h.xl{font-size:8cqw}
+.lead{font-size:2.1cqw;color:#C9D3EA;max-width:64cqw;margin:0;line-height:1.35}
+.in{animation:rise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0) * 1s)}
+.pop{animation:pop .5s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(var(--d,0) * 1s)}
+@keyframes rise{from{opacity:0;transform:translateY(2.4cqw)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+.hl-b{color:#6FAAFF} .hl-c{color:#FF7D93} .hl-g{color:#4CD495} .hl-y{color:#FFC23D}
+
+/* scene: title */
+.coins-row{display:flex;gap:1.2cqw}
+.coin{width:3.4cqw;height:3.4cqw;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE08A,#FFC23D 55%,#D9971A);box-shadow:inset 0 0 0 .3cqw rgba(255,255,255,.25);display:grid;place-items:center;color:#7A4E00;font-weight:800;font-size:1.5cqw}
+/* scene: what is */
+.jar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4cqw;align-items:center}
+.field{position:relative;height:28cqw}
+.dot{position:absolute;width:2.2cqw;height:2.2cqw;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE08A,#FFC23D 60%,#D9971A);left:var(--x);top:var(--y);animation:fly 1.4s cubic-bezier(.5,0,.3,1) both;animation-delay:calc(var(--d) * 1s)}
+@keyframes fly{0%{opacity:0;transform:scale(.4)}20%{opacity:1;transform:scale(1)}100%{opacity:0;left:76%;top:62%;transform:scale(.5)}}
+.people{position:absolute;inset:0}
+.person{position:absolute;left:var(--x);top:var(--y);width:3cqw;height:4cqw;transform:translate(-50%,-50%)}
+.person::before{content:"";position:absolute;left:50%;top:0;width:1.6cqw;height:1.6cqw;margin-left:-.8cqw;border-radius:50%;background:#6FAAFF}
+.person::after{content:"";position:absolute;left:0;bottom:0;width:3cqw;height:2cqw;border-radius:1.5cqw 1.5cqw .4cqw .4cqw;background:#3D8BFF}
+.jar{position:absolute;right:4%;top:40%;width:13cqw;height:15cqw;border:.4cqw solid #C9D3EA;border-top:0;border-radius:0 0 2cqw 2cqw;overflow:hidden}
+.jar i{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(#FFD666,#F0A91F);height:0;animation:fill 5.5s ease-out both;animation-delay:.8s}
+@keyframes fill{to{height:88%}}
+/* scene: history */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4cqw;position:relative;margin-top:1cqw}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:2.2cqw;height:.3cqw;background:rgba(255,255,255,.18)}
+.tl{position:relative;display:grid;gap:.8cqw}
+.tl .yr{font-family:var(--display);font-weight:800;font-size:3.4cqw;color:#FFC23D;background:#16213B;justify-self:start;padding-right:1cqw;line-height:1.3}
+.tl p{margin:0;font-size:1.8cqw;color:#D6DEF0;line-height:1.35}
+.tl p b{color:#fff}
+/* scene: steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1.3cqw}
+.steps li{display:grid;grid-template-columns:5cqw 1fr;align-items:center;gap:1.6cqw;font-size:2.4cqw;line-height:1.2}
+.steps li b{display:grid;place-items:center;width:5cqw;height:5cqw;border-radius:1.2cqw;background:#3D8BFF;font-family:var(--display);font-size:2.5cqw}
+.steps li span em{font-style:normal;color:#9EB5DD;font-size:1.9cqw;display:block}
+/* scene: goal meter */
+.meter{background:rgba(255,255,255,.1);border-radius:99px;height:4cqw;overflow:hidden;position:relative}
+.meter i{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#22B573,#4CD495);border-radius:99px}
+.meter-row{display:flex;justify-content:space-between;align-items:baseline;font-variant-numeric:tabular-nums}
+.big-num{font-family:var(--display);font-weight:800;font-size:6cqw;color:#4CD495;line-height:1}
+.models{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
+.model{border:.2cqw solid rgba(255,255,255,.18);border-radius:1.4cqw;padding:1.4cqw 1.8cqw;font-size:1.8cqw;color:#D6DEF0}
+.model b{display:block;font-family:var(--display);font-size:2.3cqw;color:#fff}
+/* scene: impact */
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8cqw}
+.imp{background:rgba(255,255,255,.07);border:.15cqw solid rgba(255,255,255,.12);border-radius:1.6cqw;padding:1.6cqw;display:grid;gap:.6cqw}
+.imp svg{width:3.6cqw;height:3.6cqw}
+.imp b{font-family:var(--display);font-size:2.2cqw}
+.imp span{font-size:1.6cqw;color:#C9D3EA;line-height:1.3}
+/* scene: platforms */
+.plat{display:grid;grid-template-columns:1fr 1fr;gap:3cqw}
+.plat h3{margin:0 0 1.2cqw;font-size:1.5cqw;letter-spacing:.16em;text-transform:uppercase;color:#4CD495}
+.chips{display:grid;gap:1cqw}
+.chip{display:flex;justify-content:space-between;gap:1.5cqw;align-items:baseline;background:rgba(255,255,255,.08);border-radius:1.2cqw;padding:1.1cqw 1.6cqw}
+.chip b{font-family:var(--display);font-size:2.5cqw}
+.chip span{font-size:1.55cqw;color:#C9D3EA;text-align:right}
+/* scene: money flow */
+.mflow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:1.5cqw}
+.node{background:rgba(255,255,255,.08);border-radius:1.6cqw;padding:2cqw 1.4cqw;text-align:center;display:grid;gap:.6cqw}
+.node b{font-family:var(--display);font-size:2.4cqw}
+.node span{font-size:1.6cqw;color:#C9D3EA}
+.node .amt{font-family:var(--display);font-weight:800;font-size:3.6cqw;font-variant-numeric:tabular-nums}
+.arr{font-size:4cqw;color:#FFC23D;font-weight:800}
+/* captions + controls inside video */
+.cap{position:absolute;left:6cqw;right:6cqw;bottom:2.6cqw;text-align:center;font-size:1.75cqw;line-height:1.35;color:#fff;text-shadow:0 .15cqw .5cqw rgba(0,0,0,.6);min-height:2.4cqw}
+.cap span{background:rgba(5,10,22,.55);padding:.3cqw 1cqw;border-radius:.6cqw;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.nocap .cap{display:none}
+.prog{position:absolute;left:0;right:0;bottom:0;height:.6cqw;background:rgba(255,255,255,.12)}
+.prog i{position:absolute;inset:0 auto 0 0;background:#FF5C77;width:0}
+.video{cursor:pointer}
+.bigplay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(8,12,24,.35);border:0;cursor:pointer;color:#fff}
+.bigplay span{width:10cqw;height:10cqw;border-radius:50%;background:#FF5C77;display:grid;place-items:center;box-shadow:0 1cqw 3cqw rgba(0,0,0,.4)}
+.bigplay svg{width:4cqw;height:4cqw;margin-left:.6cqw}
+.chapters{display:flex;flex-wrap:wrap;gap:6px}
+.chapters button{min-height:44px;font:600 .85rem var(--body);background:var(--surface);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chapters button.now{color:#fff;background:var(--coral);border-color:var(--coral)}
+.time{font-variant-numeric:tabular-nums;font-weight:700}
+
+/* record mode (used locally to export the MP4) */
+.rec .wrap{padding:0;max-width:none}
+.rec header.top,.rec .bar,.rec .panel,.rec .chapters,.rec #tab-slide-panel{display:none!important}
+.rec .stage{border-radius:0;box-shadow:none}
+.rec .bigplay{display:none}
+
+
+/* phones: the 16:9 slide becomes a stacked, readable version */
+@media (max-width:720px){
+  #slideStage:not(:fullscreen){aspect-ratio:auto}
+  #slideStage:not(:fullscreen) > .frame{position:relative;inset:auto}
+  #slideStage:not(:fullscreen) .s-head{flex-direction:column;align-items:flex-start;gap:8px;padding:18px}
+  #slideStage:not(:fullscreen) .s-head h1{font-size:2.2rem}
+  #slideStage:not(:fullscreen) .s-head p{font-size:.95rem;text-align:left;max-width:none}
+  #slideStage:not(:fullscreen) .s-cols{grid-template-columns:1fr;gap:14px;padding:14px}
+  #slideStage:not(:fullscreen) .s-card{border-radius:12px}
+  #slideStage:not(:fullscreen) .s-card h2{font-size:1.15rem;padding:10px 14px;gap:10px}
+  #slideStage:not(:fullscreen) .s-card h2 b{width:28px;height:28px;font-size:.9rem}
+  #slideStage:not(:fullscreen) .s-card ul{font-size:.95rem;padding:12px 14px;gap:8px}
+  #slideStage:not(:fullscreen) .c1 li{grid-template-columns:24px 1fr;gap:6px}
+  #slideStage:not(:fullscreen) .c3 .grp{font-size:.8rem}
+  #slideStage:not(:fullscreen) .c2 li.risk{border-top-width:1px;padding-top:8px}
+  #slideStage:not(:fullscreen) .s-foot{font-size:.85rem;padding:14px;gap:8px;justify-content:flex-start}
+  #slideStage:not(:fullscreen) .s-foot .flow{flex-wrap:wrap;gap:6px}
+  #slideStage:not(:fullscreen) .s-foot .pill{padding:4px 10px}
+}
+@media (prefers-reduced-motion: reduce){.in,.pop,.dot,.jar i{animation-duration:.01s!important}}
+@media (max-width:640px){.notes li{grid-template-columns:3.4rem 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><small>Trabalho escolar</small>Crowdfunding: o poder de muitos</div>
+    <div class="tabs" role="tablist" aria-label="Parte da apresentação">
+      <button role="tab" id="tab-slide" aria-controls="tab-slide-panel" aria-selected="true">Slide</button>
+      <button role="tab" id="tab-video" aria-controls="tab-video-panel" aria-selected="false">Vídeo</button>
+    </div>
+  </header>
+
+  <!-- ================= SLIDE ================= -->
+  <section role="tabpanel" id="tab-slide-panel" aria-labelledby="tab-slide">
+    <div class="stage" id="slideStage">
+      <div class="frame slide">
+        <div class="s-head">
+          <h1>Crowd<span>funding</span></h1>
+          <p>Financiamento coletivo: muitas pessoas contribuem com pequenas quantias, pela internet, para tirar um projeto do papel.</p>
+        </div>
+        <div class="s-cols">
+          <div class="s-card c1">
+            <h2><b>1</b>Passo a passo</h2>
+            <ul>
+              <li><i>1</i><span><strong>Defina</strong> o projeto e o público</span></li>
+              <li><i>2</i><span><strong>Calcule a meta</strong> (custos + taxa)</span></li>
+              <li><i>3</i><span><strong>Escolha a plataforma</strong></span></li>
+              <li><i>4</i><span><strong>Modelo:</strong> tudo ou nada / flexível</span></li>
+              <li><i>5</i><span><strong>Prazo:</strong> 30 a 60 dias</span></li>
+              <li><i>6</i><span><strong>Página:</strong> vídeo, história, fotos</span></li>
+              <li><i>7</i><span><strong>Recompensas</strong> por faixa de valor</span></li>
+              <li><i>8</i><span><strong>Divulgue</strong> nas redes e no WhatsApp</span></li>
+              <li><i>9</i><span><strong>Atualize</strong> os apoiadores</span></li>
+              <li><i>10</i><span><strong>Entregue</strong> e preste contas</span></li>
+            </ul>
+          </div>
+          <div class="s-card c2">
+            <h2><b>2</b>Impacto social</h2>
+            <ul>
+              <li><strong>Democratiza</strong> o acesso a dinheiro, sem depender de banco</li>
+              <li><strong>Solidariedade:</strong> enchentes do RS (2024) mobilizaram milhões em poucos dias</li>
+              <li><strong>Saúde:</strong> vaquinhas para tratamentos e cirurgias</li>
+              <li><strong>Cultura:</strong> filmes, livros e jogos independentes</li>
+              <li><strong>Empreendedorismo:</strong> gera renda e empregos</li>
+              <li><strong>Comunidade:</strong> escolas, ONGs, meio ambiente</li>
+              <li class="risk"><strong>Riscos:</strong> golpes e desigualdade de alcance</li>
+            </ul>
+          </div>
+          <div class="s-card c3">
+            <h2><b>3</b>Plataformas</h2>
+            <ul>
+              <li class="grp">Brasil</li>
+              <li><strong>Vakinha</strong> · doações e causas pessoais</li>
+              <li><strong>Catarse</strong> · projetos criativos</li>
+              <li><strong>Benfeitoria</strong> · projetos sociais</li>
+              <li><strong>Apoia.se</strong> · apoio mensal a criadores</li>
+              <li class="grp">Mundo</li>
+              <li><strong>Kickstarter</strong> · o mais famoso</li>
+              <li><strong>Indiegogo</strong> · tecnologia e inovação</li>
+              <li><strong>GoFundMe</strong> · maior de doações</li>
+            </ul>
+          </div>
+        </div>
+        <div class="s-foot">
+          <strong>Como o dinheiro circula:</strong>
+          <span class="flow"><span class="pill">Criador publica</span><span class="arrow">→</span><span class="pill">Apoiadores pagam (Pix, cartão, boleto)</span><span class="arrow">→</span><span class="pill">Plataforma desconta 5% a 13%</span><span class="arrow">→</span><span class="pill">Criador recebe</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="bar">
+      <button class="btn primary" data-fs="slideStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
+      <a class="btn" href="slide-crowdfunding.pptx" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar slide (.pptx)</span></a>
+      <span class="hint">Atalhos: F = tela cheia · V = ir para o vídeo</span>
+    </div>
+    <div class="panel">
+      <h2>Fala sugerida para o slide (cerca de 1 minuto)</h2>
+      <p style="margin:0;color:var(--muted)">“Crowdfunding é o financiamento coletivo: várias pessoas doam pequenos valores pela internet para realizar um projeto. Para criar uma campanha, seguimos dez passos, desde definir a ideia e calcular a meta até entregar as recompensas e prestar contas. O impacto social é grande: ele dá acesso a recursos para quem não tem banco ou investidor, ajuda em emergências como as enchentes do Rio Grande do Sul e viabiliza cultura e pequenos negócios. Mas também existem riscos, como golpes. As principais plataformas no Brasil são Vakinha, Catarse, Benfeitoria e Apoia.se. No mundo, Kickstarter, Indiegogo e GoFundMe.”</p>
+    </div>
+  </section>
+
+  <!-- ================= VÍDEO ================= -->
+  <section role="tabpanel" id="tab-video-panel" aria-labelledby="tab-video" hidden>
+    <div class="stage" id="videoStage">
+      <div class="frame video" id="video">
+        <!-- 1 -->
+        <div class="scene" data-dur="5" data-name="Abertura" data-cap="Crowdfunding: quando muitas pessoas se juntam para realizar uma ideia.">
+          <div class="coins-row"><div class="coin pop" style="--d:.1">R$</div><div class="coin pop" style="--d:.25">R$</div><div class="coin pop" style="--d:.4">R$</div></div>
+          <h2 class="h xl in" style="--d:.3">Crowd<span class="hl-y">funding</span></h2>
+          <p class="lead in" style="--d:.9">O poder de muitos</p>
+        </div>
+        <!-- 2 -->
+        <div class="scene" data-dur="7" data-name="O que é" data-cap="Em vez de um banco ou um grande investidor, centenas de pessoas contribuem com pequenos valores pela internet.">
+          <div class="jar-wrap">
+            <div>
+              <div class="kicker in">O que é</div>
+              <h2 class="h in" style="--d:.2">Financiamento <span class="hl-b">coletivo</span></h2>
+              <p class="lead in" style="--d:.6">Muitas pessoas, pequenas quantias, uma meta em comum.</p>
+            </div>
+            <div class="field" id="field"><div class="people" id="people"></div><div class="jar"><i></i></div></div>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="scene" data-dur="8" data-name="História" data-cap="A ideia é antiga: em 1885, mais de 160 mil pessoas pagaram a base da Estátua da Liberdade. A internet levou isso para o mundo todo.">
+          <div class="kicker in">Uma ideia antiga</div>
+          <h2 class="h in" style="--d:.2">De jornal a plataforma</h2>
+          <div class="timeline">
+            <div class="tl in" style="--d:.8"><span class="yr">1885</span><p><b>Estátua da Liberdade:</b> mais de 160 mil doadores pagaram a base</p></div>
+            <div class="tl in" style="--d:2.4"><span class="yr">2009</span><p><b>Kickstarter</b> é lançado e populariza o modelo</p></div>
+            <div class="tl in" style="--d:4"><span class="yr">2011</span><p><b>Catarse</b>, a primeira grande plataforma brasileira</p></div>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="scene" data-dur="10" data-name="Passo a passo 1" data-cap="Passo a passo: defina o projeto, calcule a meta, escolha a plataforma, o modelo de arrecadação e o prazo.">
+          <div class="kicker in">Passo a passo · parte 1</div>
+          <ol class="steps">
+            <li class="in" style="--d:.4"><b>1</b><span>Defina o projeto<em>O que é, para quem e por que importa</em></span></li>
+            <li class="in" style="--d:2"><b>2</b><span>Calcule a meta<em>Custos + recompensas + taxa da plataforma</em></span></li>
+            <li class="in" style="--d:3.6"><b>3</b><span>Escolha a plataforma<em>Doação, recompensa ou apoio mensal</em></span></li>
+            <li class="in" style="--d:5.2"><b>4</b><span>Escolha o modelo<em>Tudo ou nada, ou flexível</em></span></li>
+            <li class="in" style="--d:6.8"><b>5</b><span>Defina o prazo<em>O ideal: 30 a 60 dias</em></span></li>
+          </ol>
+        </div>
+        <!-- 5 -->
+        <div class="scene" data-dur="10" data-name="Passo a passo 2" data-cap="Depois: monte a página com vídeo e história, crie recompensas, divulgue, mantenha os apoiadores informados e entregue o que prometeu.">
+          <div class="kicker in">Passo a passo · parte 2</div>
+          <ol class="steps">
+            <li class="in" style="--d:.4"><b style="background:#FF5C77">6</b><span>Monte a página<em>Vídeo curto, história, fotos e uso do dinheiro</em></span></li>
+            <li class="in" style="--d:2"><b style="background:#FF5C77">7</b><span>Crie recompensas<em>Ex.: R$ 10 agradecimento · R$ 50 adesivo · R$ 100 produto</em></span></li>
+            <li class="in" style="--d:3.6"><b style="background:#FF5C77">8</b><span>Divulgue<em>Família e amigos primeiro, depois redes sociais</em></span></li>
+            <li class="in" style="--d:5.2"><b style="background:#FF5C77">9</b><span>Atualize os apoiadores<em>Transparência gera confiança</em></span></li>
+            <li class="in" style="--d:6.8"><b style="background:#FF5C77">10</b><span>Entregue e preste contas<em>Mostre como o dinheiro foi usado</em></span></li>
+          </ol>
+        </div>
+        <!-- 6 -->
+        <div class="scene" data-dur="8" data-name="Meta" data-cap="No modelo tudo ou nada, o dinheiro só é liberado se a meta for atingida. No flexível, o criador fica com o que arrecadar.">
+          <div class="kicker in">Exemplo: reforma da biblioteca da escola</div>
+          <div class="meter-row in" style="--d:.3"><span class="big-num" id="raised">R$ 0</span><span class="lead">meta: <b style="color:#fff">R$ 10.000</b></span></div>
+          <div class="meter in" style="--d:.3"><i id="meterFill"></i></div>
+          <div class="models">
+            <div class="model in" style="--d:4.4"><b>Tudo ou nada</b>Só recebe se bater a meta. Se não, o dinheiro volta.</div>
+            <div class="model in" style="--d:5.2"><b>Flexível</b>Fica com o valor arrecadado, mesmo abaixo da meta.</div>
+          </div>
+        </div>
+        <!-- 7 -->
+        <div class="scene" data-dur="10" data-name="Impacto social" data-cap="O impacto social é enorme: acesso a recursos, ajuda em emergências, saúde, cultura, empregos e comunidades mais fortes. Mas é preciso cuidado com golpes.">
+          <div class="kicker in">Impacto social</div>
+          <div class="grid6">
+            <div class="imp pop" style="--d:.5"><svg viewBox="0 0 24 24" fill="none" stroke="#6FAAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M10 21v-6h4v6"/></svg><b>Acesso</b><span>Dinheiro sem depender de banco ou investidor</span></div>
+            <div class="imp pop" style="--d:1.6"><svg viewBox="0 0 24 24" fill="none" stroke="#FF7D93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><b>Solidariedade</b><span>Enchentes do RS (2024): milhões arrecadados em dias</span></div>
+            <div class="imp pop" style="--d:2.7"><svg viewBox="0 0 24 24" fill="none" stroke="#4CD495" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg><b>Saúde</b><span>Tratamentos, cirurgias e remédios caros</span></div>
+            <div class="imp pop" style="--d:3.8"><svg viewBox="0 0 24 24" fill="none" stroke="#FFC23D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg><b>Cultura</b><span>Filmes, livros, música e jogos independentes</span></div>
+            <div class="imp pop" style="--d:4.9"><svg viewBox="0 0 24 24" fill="none" stroke="#6FAAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-2 4H5zM5 11v9h14v-9M10 20v-5h4v5"/></svg><b>Empreendedorismo</b><span>Capital inicial, renda e empregos</span></div>
+            <div class="imp pop" style="--d:6" ><svg viewBox="0 0 24 24" fill="none" stroke="#FF7D93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M12 8v5M12 16h.01"/></svg><b>Atenção</b><span>Golpes e desigualdade de alcance nas redes</span></div>
+          </div>
+        </div>
+        <!-- 8 -->
+        <div class="scene" data-dur="9" data-name="Plataformas" data-cap="As principais plataformas no Brasil são Vakinha, Catarse, Benfeitoria e Apoia.se. No mundo, Kickstarter, Indiegogo e GoFundMe.">
+          <div class="kicker in">Plataformas de arrecadação</div>
+          <div class="plat">
+            <div><h3 class="in" style="--d:.3">Brasil</h3><div class="chips">
+              <div class="chip in" style="--d:.7"><b>Vakinha</b><span>doações e causas pessoais</span></div>
+              <div class="chip in" style="--d:1.4"><b>Catarse</b><span>projetos criativos</span></div>
+              <div class="chip in" style="--d:2.1"><b>Benfeitoria</b><span>projetos sociais</span></div>
+              <div class="chip in" style="--d:2.8"><b>Apoia.se</b><span>apoio mensal</span></div>
+            </div></div>
+            <div><h3 class="in" style="--d:3.6">Mundo</h3><div class="chips">
+              <div class="chip in" style="--d:4"><b>Kickstarter</b><span>o mais famoso</span></div>
+              <div class="chip in" style="--d:4.7"><b>Indiegogo</b><span>tecnologia e inovação</span></div>
+              <div class="chip in" style="--d:5.4"><b>GoFundMe</b><span>maior de doações</span></div>
+            </div></div>
+          </div>
+        </div>
+        <!-- 9 -->
+        <div class="scene" data-dur="8" data-name="O dinheiro" data-cap="Os apoiadores pagam por Pix, cartão ou boleto. A plataforma guarda o dinheiro, desconta uma taxa de 5% a 13% e repassa ao criador.">
+          <div class="kicker in">Como o dinheiro circula</div>
+          <h2 class="h in" style="--d:.2" >Exemplo com R$ 100</h2>
+          <div class="mflow">
+            <div class="node pop" style="--d:1"><b>Apoiadores</b><span class="amt hl-y">R$ 100</span><span>Pix, cartão, boleto</span></div>
+            <div class="arr in" style="--d:2">→</div>
+            <div class="node pop" style="--d:2.6"><b>Plataforma</b><span class="amt hl-c">− R$ 8</span><span>taxa (5% a 13%)</span></div>
+            <div class="arr in" style="--d:3.6">→</div>
+            <div class="node pop" style="--d:4.2"><b>Criador</b><span class="amt hl-g">R$ 92</span><span>realiza o projeto</span></div>
+          </div>
+        </div>
+        <!-- 10 -->
+        <div class="scene" data-dur="6" data-name="Encerramento" data-cap="Uma ideia mais muitas pessoas pode virar realidade. Obrigado!">
+          <h2 class="h xl in" style="--d:.2">Uma ideia <span class="hl-y">+</span> muitas pessoas</h2>
+          <p class="lead in" style="--d:1.2" >= um projeto que sai do papel.</p>
+          <p class="kicker in" style="--d:2.4">Obrigado!</p>
+        </div>
+
+        <div class="cap" id="cap"></div>
+        <div class="prog"><i id="progFill"></i></div>
+        <button class="bigplay" id="bigPlay" aria-label="Reproduzir vídeo"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span></button>
+      </div>
+    </div>
+    <div class="bar">
+      <button class="btn primary" id="playBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l12 7.5-12 7.5z" fill="currentColor"/></svg><span>Reproduzir</span></button>
+      <button class="btn" id="restartBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Recomeçar</span></button>
+      <button class="btn" id="capBtn" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg><span>Legendas: ligadas</span></button>
+      <button class="btn" data-fs="videoStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
+      <a class="btn" href="video-crowdfunding.mp4" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar vídeo (.mp4)</span></a>
+      <span class="time" id="timeLbl">0:00 / 1:21</span>
+    </div>
+    <div class="chapters" id="chapters" aria-label="Capítulos"></div>
+    <div class="panel">
+      <h2>Roteiro de narração (leia junto com o vídeo)</h2>
+      <ol class="notes" id="notes"></ol>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const rec = location.hash==='#rec';
+  if(rec) document.documentElement.classList.add('rec');
+
+  /* ---- tabs ---- */
+  const tabs={slide:$('#tab-slide'),video:$('#tab-video')};
+  function show(which){
+    for(const k in tabs){const on=k===which;tabs[k].setAttribute('aria-selected',on);$('#'+tabs[k].getAttribute('aria-controls')).hidden=!on;}
+    if(which!=='video') pause();
+    try{localStorage.setItem('cf-tab',which)}catch(e){}
+  }
+  tabs.slide.onclick=()=>show('slide'); tabs.video.onclick=()=>show('video');
+  let start='slide'; try{start=localStorage.getItem('cf-tab')||'slide'}catch(e){}
+  if(location.hash==='#video'||rec) start='video';
+
+  /* ---- fullscreen ---- */
+  $$('[data-fs]').forEach(b=>b.onclick=()=>{const el=$('#'+b.dataset.fs);
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+    else if(el.requestFullscreen) el.requestFullscreen().catch(()=>{});});
+
+  /* ---- video timeline ---- */
+  const video=$('#video'), scenes=$$('.scene');
+  const starts=[]; let total=0;
+  scenes.forEach(s=>{starts.push(total);total+=+s.dataset.dur});
+  const fmt=t=>{t=Math.max(0,Math.floor(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')};
+
+  // people + coins for scene 2
+  const people=$('#people'), field=$('#field');
+  const spots=[[8,18],[22,8],[36,22],[12,48],[28,40],[42,52],[6,78],[20,68],[34,82],[46,30]];
+  spots.forEach(([x,y],i)=>{const p=document.createElement('div');p.className='person pop';p.style.cssText=`--x:${x}%;--y:${y}%;--d:${(i*.12).toFixed(2)}`;people.appendChild(p);});
+  for(let i=0;i<22;i++){const [x,y]=spots[i%spots.length];const d=document.createElement('div');d.className='dot';d.style.cssText=`--x:${x}%;--y:${y-8}%;--d:${(1+i*.22).toFixed(2)}`;field.appendChild(d);}
+
+  // chapters + notes
+  const chap=$('#chapters'), notes=$('#notes');
+  scenes.forEach((s,i)=>{
+    const b=document.createElement('button');b.textContent=(i+1)+'. '+s.dataset.name;b.onclick=()=>{seek(starts[i]);};chap.appendChild(b);
+    const li=document.createElement('li');li.innerHTML=`<span class="tc">${fmt(starts[i])}</span><span class="say"></span>`;li.lastChild.textContent=s.dataset.cap;notes.appendChild(li);
+  });
+
+  let t=0, playing=false, last=0, cur=-1, started=false;
+  function sceneAt(time){let i=0;while(i<starts.length-1&&time>=starts[i+1])i++;return i;}
+  function enter(i){
+    scenes.forEach((s,k)=>s.classList.toggle('on',k===i));
+    const s=scenes[i]; s.classList.remove('on'); void s.offsetWidth; s.classList.add('on'); // restart animations
+    $('#cap').innerHTML='<span></span>'; $('#cap').firstChild.textContent=s.dataset.cap;
+    $$('#chapters button').forEach((b,k)=>b.classList.toggle('now',k===i));
+    $$('#notes li').forEach((l,k)=>l.classList.toggle('now',k===i));
+    cur=i;
+  }
+  function render(){
+    const i=sceneAt(t); if(i!==cur) enter(i);
+    const local=t-starts[i];
+    if(scenes[i].dataset.name==='Meta'){
+      const k=Math.min(1,Math.max(0,(local-.8)/3.4)), e=1-Math.pow(1-k,3), v=Math.round(e*10000/10)*10;
+      $('#raised').textContent='R$ '+v.toLocaleString('pt-BR'); $('#meterFill').style.width=(e*100)+'%';
+    }
+    $('#progFill').style.width=(t/total*100)+'%';
+    $('#timeLbl').textContent=fmt(t)+' / '+fmt(total);
+  }
+  function loop(now){
+    if(!playing) return;
+    t+=(now-last)/1000; last=now;
+    if(t>=total){t=total;render();pause();return;}
+    render(); requestAnimationFrame(loop);
+  }
+  function play(){ if(t>=total) seek(0); if(!started){started=true; enter(sceneAt(t));}
+    playing=true; video.classList.remove('paused'); $('#bigPlay').hidden=true;
+    $('#playBtn').innerHTML='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg><span>Pausar</span>'; last=performance.now(); requestAnimationFrame(loop); }
+  function pause(){ playing=false; if(started) video.classList.add('paused');
+    $('#playBtn').innerHTML='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l12 7.5-12 7.5z" fill="currentColor"/></svg><span>Reproduzir</span>'; }
+  function seek(time){ $('#bigPlay').hidden=true; t=time; cur=-1; started=true; render(); if(!playing) video.classList.add('paused'); }
+  window.cfPlay=play;
+  // frame-exact export: set the clock and every running animation to that instant
+  window.cfRenderAt=function(time){
+    started=true; playing=false; t=Math.min(time,total); render();
+    const local=(t-starts[cur])*1000;
+    scenes[cur].getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=local;});
+    $('#bigPlay').hidden=true;
+  };
+
+  $('#playBtn').onclick=()=>playing?pause():play();
+  $('#bigPlay').onclick=e=>{e.stopPropagation();play();};
+  video.addEventListener('click',()=>{ if(started) playing?pause():play(); });
+  $('#restartBtn').onclick=()=>{seek(0); play();};
+  $('#capBtn').onclick=e=>{const off=video.classList.toggle('nocap');e.currentTarget.setAttribute('aria-pressed',!off);e.currentTarget.querySelector('span').textContent='Legendas: '+(off?'desligadas':'ligadas');};
+
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest('input,textarea'))return;
+    const k=e.key.toLowerCase();
+    if(k==='v') show('video'); else if(k==='s') show('slide');
+    else if(k==='f'){ const id=$('#tab-video-panel').hidden?'slideStage':'videoStage'; $(`[data-fs="${id}"]`).click(); }
+    else if(k===' ' && !$('#tab-video-panel').hidden){ e.preventDefault(); playing?pause():play(); }
+  });
+
+  enter(0); render(); show(start);
+  if(rec && !location.search.includes('frames')){ setTimeout(play,600); }
+})();
+</script>
+</body>
+</html>
