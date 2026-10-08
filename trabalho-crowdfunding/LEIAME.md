@@ -1,12 +1,14 @@
 # Trabalho: Crowdfunding
 
-Site da apresentação com **12 slides** e **1 vídeo** (passo a passo, impacto social e plataformas de arrecadação), com fala sugerida para cada slide e referências.
+Versão final para visualizadores e professores: **16 slides** e **1 vídeo narrado** sobre financiamento coletivo, com passo a passo, impacto social, plataformas de arrecadação, casos reais, imagens reais e referências.
 
 | Arquivo | O que é |
 |---|---|
-| `index.html` | Site da apresentação: aba Slides (12 slides, setas, tela cheia, fala de cada slide) e aba Vídeo (legendas, capítulos, roteiro) |
-| `video-crowdfunding.mp4` | Vídeo exportado (1080p, 1min41s, sem áudio: narre usando o roteiro do site) |
-| `slides-crowdfunding.pptx` | Os 12 slides em PowerPoint, com a fala nas anotações do apresentador |
+| `index.html` | Site da apresentação: aba Slides (16 slides, setas, tela cheia) e aba Vídeo (narração, legendas, capítulos) |
+| `video-crowdfunding.mp4` | Vídeo final em 1080p com narração (4min16s) |
+| `narracao-crowdfunding.mp3` | Narração do vídeo, gerada com ElevenLabs (Eleven v4, voz "Henrique") |
+| `slides-crowdfunding.pptx` | Os 16 slides em PowerPoint |
+| `img/` | Imagens usadas: fotos do Wikimedia Commons e capturas de tela das plataformas (créditos no site) |
 
 Atalhos no site: setas trocam de slide · `F` tela cheia · `S` slides · `V` vídeo · `Espaço` play/pausa.
 
