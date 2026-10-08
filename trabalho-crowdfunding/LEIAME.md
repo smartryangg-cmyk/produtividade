@@ -1,14 +1,14 @@
 # Trabalho: Crowdfunding
 
-Site da apresentação com **1 slide** e **1 vídeo** (passo a passo, impacto social e plataformas de arrecadação).
+Site da apresentação com **12 slides** e **1 vídeo** (passo a passo, impacto social e plataformas de arrecadação), com fala sugerida para cada slide e referências.
 
 | Arquivo | O que é |
 |---|---|
-| `index.html` | Site da apresentação: aba Slide e aba Vídeo (tela cheia, legendas, capítulos, roteiro de narração) |
-| `video-crowdfunding.mp4` | Vídeo exportado (1080p, 1min21s, sem áudio: narre usando o roteiro do site) |
-| `slide-crowdfunding.pptx` | O slide em PowerPoint, para entregar ou abrir offline |
+| `index.html` | Site da apresentação: aba Slides (12 slides, setas, tela cheia, fala de cada slide) e aba Vídeo (legendas, capítulos, roteiro) |
+| `video-crowdfunding.mp4` | Vídeo exportado (1080p, 1min41s, sem áudio: narre usando o roteiro do site) |
+| `slides-crowdfunding.pptx` | Os 12 slides em PowerPoint, com a fala nas anotações do apresentador |
 
-Atalhos no site: `F` tela cheia · `S` slide · `V` vídeo · `Espaço` play/pausa.
+Atalhos no site: setas trocam de slide · `F` tela cheia · `S` slides · `V` vídeo · `Espaço` play/pausa.
 
 ## Publicar em .pages.dev
 

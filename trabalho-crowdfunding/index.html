@@ -50,6 +50,8 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .hint{color:var(--muted);font-size:.85rem}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
 .panel h2{font-family:var(--display);font-size:1.15rem;margin:0 0 10px}
+.refs ul{margin:0 0 8px;padding-left:1.1rem;display:grid;gap:6px;color:var(--muted);font-size:.9rem}
+.refs a{color:var(--fg);overflow-wrap:anywhere}
 .notes{display:grid;gap:10px;margin:0;padding:0;list-style:none}
 .notes li{display:grid;grid-template-columns:4.2rem 1fr;gap:12px;align-items:baseline}
 .notes li > *{min-width:0}
@@ -60,15 +62,18 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 
 /* ===== SLIDE (fixed light look, sized in cqw) ===== */
 .slide{background:#F6F8FC;color:#1C2640;font-family:var(--body);display:grid;grid-template-rows:auto 1fr auto}
-.s-head{background:#16213B;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:3cqw;padding:2.2cqw 3.4cqw}
+.s-head{background:#16213B;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:3cqw;padding:1.7cqw 3.4cqw}
 .s-head h1{font-family:var(--display);font-weight:800;font-size:4.6cqw;margin:0;letter-spacing:-.02em;line-height:1}
 .s-head h1 span{color:#FFC23D}
-.s-head p{margin:0;font-size:1.45cqw;max-width:52cqw;text-align:right;line-height:1.35;color:#D9E1F2}
-.s-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2cqw;padding:2.4cqw 3cqw}
+.s-def{display:grid;gap:.8cqw;justify-items:end;max-width:56cqw}
+.s-head p{margin:0;font-size:1.4cqw;text-align:right;line-height:1.35;color:#D9E1F2}
+.s-types{display:flex;flex-wrap:wrap;gap:.6cqw;justify-content:flex-end}
+.s-types span{font-size:1.1cqw;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#16213B;background:#FFC23D;border-radius:99px;padding:.25cqw .9cqw}
+.s-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2cqw;padding:2cqw 3cqw}
 .s-card{background:#fff;border-radius:1.4cqw;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 .4cqw 1.6cqw -0.6cqw rgba(22,33,59,.25)}
 .s-card h2{margin:0;color:#fff;font-family:var(--display);font-weight:700;font-size:1.9cqw;padding:1cqw 1.4cqw;display:flex;gap:1cqw;align-items:center}
 .s-card h2 b{display:grid;place-items:center;width:2.6cqw;height:2.6cqw;border-radius:50%;background:rgba(255,255,255,.25);font-size:1.4cqw}
-.s-card ul{list-style:none;margin:0;padding:1.3cqw 1.5cqw;display:grid;gap:.75cqw;font-size:1.42cqw;line-height:1.3;color:#3B4560}
+.s-card ul{list-style:none;margin:0;padding:1.3cqw 1.5cqw;display:grid;gap:.6cqw;font-size:1.36cqw;line-height:1.28;color:#3B4560}
 .s-card li strong{color:#1C2640}
 .c1 h2{background:#3D8BFF} .c2 h2{background:#FF5C77} .c3 h2{background:#22B573}
 .c1 li{display:grid;grid-template-columns:2.1cqw 1fr;gap:.6cqw}
@@ -79,6 +84,136 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .s-foot .flow{display:flex;gap:.8cqw;align-items:center}
 .s-foot .pill{background:rgba(255,255,255,.12);border-radius:99px;padding:.35cqw 1cqw}
 .s-foot .arrow{color:#FFC23D;font-weight:800}
+
+/* ===== DECK (fixed light look; --u = 1% of slide width) ===== */
+.sd{--u:1cqw;--ac:#3D8BFF;background:#F6F8FC;color:#1C2640;font-family:var(--body);display:grid;grid-template-rows:auto 1fr;gap:calc(var(--u)*2.4);padding:calc(var(--u)*4) calc(var(--u)*5) calc(var(--u)*3.6);overflow:hidden}
+.sd::after{content:"";position:absolute;left:0;top:0;bottom:0;width:calc(var(--u)*.8);background:var(--ac)}
+.sd > *{min-width:0}
+.sd-h{display:grid;gap:calc(var(--u)*.6)}
+.sd-k{margin:0;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:calc(var(--u)*1.25);color:var(--ac)}
+.sd-h h2{margin:0;font-family:var(--display);font-weight:800;font-size:calc(var(--u)*4.2);line-height:1.02;letter-spacing:-.02em;color:#16213B;text-wrap:balance}
+.sd-note{margin:0;font-size:calc(var(--u)*1.2);color:#6A7390}
+.pgn{position:absolute;right:calc(var(--u)*2.4);bottom:calc(var(--u)*1.8);font-size:calc(var(--u)*1.15);font-weight:700;color:#8A93AE;font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.cover .pgn{color:rgba(255,255,255,.55)}
+.slide .pgn{display:none}
+/* cover */
+.cover{background:radial-gradient(110% 120% at 90% 0%,#24365F 0%,#16213B 55%,#0F1830 100%);color:#fff;grid-template-rows:auto 1fr auto;align-content:stretch}
+.cover::after{background:#FFC23D}
+.cover .sd-k{color:#FFC23D}
+.cv-coins{display:flex;gap:calc(var(--u)*1)}
+.cv-coins i{font-style:normal;width:calc(var(--u)*3.6);height:calc(var(--u)*3.6);border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:calc(var(--u)*1.35);color:#7A4E00;background:radial-gradient(circle at 35% 30%,#FFE08A,#FFC23D 55%,#D9971A)}
+.cv-coins i:nth-child(n+2){opacity:.85}.cv-coins i:nth-child(n+4){opacity:.55}
+.cv-main{align-self:center;display:grid;gap:calc(var(--u)*1.2)}
+.cv-t{margin:0;font-family:var(--display);font-weight:800;font-size:calc(var(--u)*10);line-height:.95;letter-spacing:-.03em}
+.cv-t span{color:#FFC23D}
+.end .cv-t{font-size:calc(var(--u)*7.4)}
+.end{grid-template-rows:1fr auto}
+.cv-topics{align-self:end;align-items:center}
+.cv-s{margin:0;font-size:calc(var(--u)*2.4);color:#C9D3EA}
+.cv-topics{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:calc(var(--u)*1.2)}
+.cv-topics li{display:flex;align-items:center;gap:calc(var(--u)*.8);font-size:calc(var(--u)*1.6);font-weight:600;background:rgba(255,255,255,.08);border-radius:99px;padding:calc(var(--u)*.7) calc(var(--u)*1.6) calc(var(--u)*.7) calc(var(--u)*.8)}
+.end .cv-topics li{padding-left:calc(var(--u)*1.6)}
+.cv-topics b{display:grid;place-items:center;width:calc(var(--u)*2.4);height:calc(var(--u)*2.4);border-radius:50%;background:#FFC23D;color:#16213B;font-size:calc(var(--u)*1.2)}
+.thanks{position:absolute;right:calc(var(--u)*5);top:calc(var(--u)*4);margin:0;font-family:var(--display);font-weight:800;font-size:calc(var(--u)*2.4);color:#FFC23D}
+/* o que é */
+.def{display:grid;grid-template-columns:1fr 1.25fr;gap:calc(var(--u)*3.4);align-items:center}
+.def blockquote{margin:0;font-size:calc(var(--u)*2.5);line-height:1.35;color:#2A3553;border-left:calc(var(--u)*.4) solid var(--ac);padding-left:calc(var(--u)*2)}
+.def blockquote b{color:#16213B}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*1.4)}
+.ty2{background:#fff;border-radius:calc(var(--u)*1.2);padding:calc(var(--u)*1.6);display:grid;gap:calc(var(--u)*.4);border-top:calc(var(--u)*.45) solid var(--tc);box-shadow:0 calc(var(--u)*.3) calc(var(--u)*1.4) calc(var(--u)*-.5) rgba(22,33,59,.2)}
+.ty2 b{font-family:var(--display);font-size:calc(var(--u)*2.1);color:#16213B}
+.ty2 span{font-size:calc(var(--u)*1.55);color:#3B4560}
+.ty2 em{font-style:normal;font-size:calc(var(--u)*1.3);color:#6A7390}
+/* história */
+.tline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*2.2);position:relative;align-self:center}
+.tline::before{content:"";position:absolute;left:0;right:0;top:calc(var(--u)*5.6);height:calc(var(--u)*.3);background:#D5DBE8}
+.tline li{display:grid;gap:calc(var(--u)*.8);align-content:start}
+.tline .yr{font-family:var(--display);font-weight:800;font-size:calc(var(--u)*4.2);color:var(--ac);line-height:1.1;padding-bottom:calc(var(--u)*1.6)}
+.tline b{font-size:calc(var(--u)*1.9);color:#16213B}
+.tline p{margin:0;font-size:calc(var(--u)*1.55);line-height:1.35;color:#3B4560}
+/* passo a passo */
+.steps10{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:calc(var(--u)*1.1) calc(var(--u)*3);align-content:center}
+.steps10 li{display:grid;grid-template-columns:calc(var(--u)*3.6) 1fr;gap:calc(var(--u)*1.2);align-items:center}
+.steps10 li > b{display:grid;place-items:center;width:calc(var(--u)*3.6);height:calc(var(--u)*3.6);border-radius:calc(var(--u)*.9);background:var(--ac);color:#fff;font-family:var(--display);font-size:calc(var(--u)*1.7)}
+.steps10 li:nth-child(n+6) > b{background:#FF5C77}
+.steps10 div{display:grid;min-width:0}
+.steps10 strong{font-size:calc(var(--u)*1.75);color:#16213B}
+.steps10 span{font-size:calc(var(--u)*1.35);color:#56607A}
+/* meta e dinheiro */
+.mod2{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2)}
+.mc{background:#fff;border-radius:calc(var(--u)*1.4);padding:calc(var(--u)*2) calc(var(--u)*2.2);display:grid;gap:calc(var(--u)*.6);box-shadow:0 calc(var(--u)*.3) calc(var(--u)*1.4) calc(var(--u)*-.5) rgba(22,33,59,.2)}
+.mc b{font-family:var(--display);font-size:calc(var(--u)*2.6);color:#16213B}
+.mc p{margin:0;font-size:calc(var(--u)*1.7);line-height:1.35;color:#3B4560}
+.mc em{font-style:normal;font-weight:700;font-size:calc(var(--u)*1.3);color:var(--ac)}
+.sd .money{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:calc(var(--u)*1.2);background:#16213B;border-radius:calc(var(--u)*1.4);padding:calc(var(--u)*1.6) calc(var(--u)*2.2);color:#fff;align-self:end}
+.money div{display:grid;gap:calc(var(--u)*.2);text-align:center}
+.money span{font-size:calc(var(--u)*1.3);color:#C9D3EA}
+.money strong{font-family:var(--display);font-size:calc(var(--u)*3);font-variant-numeric:tabular-nums}
+.money .neg strong{color:#FF7D93}.money .pos strong{color:#4CD495}
+.money i{font-style:normal;font-weight:800;font-size:calc(var(--u)*2.6);color:#FFC23D}
+.sd[data-title="Meta e dinheiro"]{grid-template-rows:auto auto 1fr}
+/* impacto */
+.imp-wrap{display:grid;grid-template-columns:.9fr 1.6fr;gap:calc(var(--u)*2.4);align-items:stretch}
+.stat{background:#FF5C77;color:#fff;border-radius:calc(var(--u)*1.6);padding:calc(var(--u)*2.4);display:grid;align-content:center;gap:calc(var(--u)*.8)}
+.stat span{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:calc(var(--u)*1.2);opacity:.9}
+.stat strong{font-family:var(--display);font-size:calc(var(--u)*6.4);line-height:1}
+.stat p{margin:0;font-size:calc(var(--u)*1.6);line-height:1.35}
+.imp6{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*1.2)}
+.imp6 div{background:#fff;border-radius:calc(var(--u)*1.2);padding:calc(var(--u)*1.4) calc(var(--u)*1.6);display:grid;gap:calc(var(--u)*.3);align-content:center;box-shadow:0 calc(var(--u)*.3) calc(var(--u)*1.2) calc(var(--u)*-.5) rgba(22,33,59,.2)}
+.imp6 b{font-family:var(--display);font-size:calc(var(--u)*1.9);color:#16213B}
+.imp6 span{font-size:calc(var(--u)*1.4);color:#56607A}
+/* plataformas */
+.ptab-wrap{overflow-x:auto;align-self:start}
+.ptab{width:100%;border-collapse:collapse;font-size:calc(var(--u)*1.55)}
+.ptab th{text-align:left;font-size:calc(var(--u)*1.15);letter-spacing:.12em;text-transform:uppercase;color:#6A7390;padding:0 calc(var(--u)*1.2) calc(var(--u)*.8)}
+.ptab td{padding:calc(var(--u)*.95) calc(var(--u)*1.2);border-top:calc(var(--u)*.12) solid #DDE2EE;color:#3B4560}
+.ptab td b{font-family:var(--display);font-size:calc(var(--u)*1.85);color:#16213B}
+.ptab td:last-child{font-weight:700;color:var(--ac)}
+/* vantagens e riscos */
+.pros{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.4);align-self:center}
+.pc{border-radius:calc(var(--u)*1.6);padding:calc(var(--u)*3) calc(var(--u)*3);display:grid;gap:calc(var(--u)*1.8);align-content:start}
+.pc.good{background:#E3F6EC}.pc.bad{background:#FDE7EB}
+.pc b{font-family:var(--display);font-size:calc(var(--u)*3.4);color:#16213B}
+.pc ul{margin:0;padding:0;list-style:none;display:grid;gap:calc(var(--u)*1.6)}
+.pc li{font-size:calc(var(--u)*2.3);color:#2A3553;display:grid;grid-template-columns:calc(var(--u)*2.4) 1fr;align-items:baseline}
+.pc.good li::before{content:"+";font-weight:800;color:#1E9A61}
+.pc.bad li::before{content:"–";font-weight:800;color:#D63D5A}
+/* segurança */
+.chk4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*1.6);align-self:center}
+.chk4 li{background:#fff;border-radius:calc(var(--u)*1.4);padding:calc(var(--u)*2.2) calc(var(--u)*1.8);display:grid;gap:calc(var(--u)*.8);align-content:start;box-shadow:0 calc(var(--u)*.3) calc(var(--u)*1.4) calc(var(--u)*-.5) rgba(22,33,59,.2)}
+.chk4 b{display:grid;place-items:center;width:calc(var(--u)*3.6);height:calc(var(--u)*3.6);border-radius:50%;background:var(--ac);color:#fff;font-family:var(--display);font-size:calc(var(--u)*1.7)}
+.chk4 strong{font-family:var(--display);font-size:calc(var(--u)*2.2);color:#16213B}
+.chk4 span{font-size:calc(var(--u)*1.55);line-height:1.35;color:#3B4560}
+/* referências */
+.refs-sd{margin:0;padding-left:calc(var(--u)*2);display:grid;gap:calc(var(--u)*1);font-size:calc(var(--u)*1.55);color:#3B4560;line-height:1.35;align-content:start}
+.sd[data-title="Referências"]{grid-template-rows:auto 1fr auto}
+/* deck controls */
+.deck-nav{display:flex;gap:8px;align-items:center}
+.deck-count{font-variant-numeric:tabular-nums;font-weight:700;min-width:4.5rem;text-align:center}
+.btn.icon{width:44px;justify-content:center;padding:0}
+.btn:disabled{opacity:.4;cursor:default}
+.thumbs{display:flex;flex-wrap:wrap;gap:6px}
+.thumbs button{min-height:44px;font:600 .85rem var(--body);background:var(--surface);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.thumbs button.now{color:#fff;background:var(--navy);border-color:var(--navy)}
+:root[data-theme="dark"] .thumbs button.now{background:var(--blue);border-color:var(--blue)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .thumbs button.now{background:var(--blue);border-color:var(--blue)}}
+.stage:fullscreen{cursor:pointer}
+@media (max-width:820px){
+  #slideStage:not(:fullscreen) .sd{--u:6.2px;padding:28px 18px 34px 24px;gap:16px}
+  #slideStage:not(:fullscreen) .def,#slideStage:not(:fullscreen) .imp-wrap,#slideStage:not(:fullscreen) .pros{grid-template-columns:1fr}
+  #slideStage:not(:fullscreen) .tline,#slideStage:not(:fullscreen) .chk4,#slideStage:not(:fullscreen) .steps10{grid-template-columns:1fr}
+  #slideStage:not(:fullscreen) .tline::before{display:none}
+  #slideStage:not(:fullscreen) .tline .yr{padding-bottom:0}
+  #slideStage:not(:fullscreen) .mod2,#slideStage:not(:fullscreen) .types{grid-template-columns:1fr}
+  #slideStage:not(:fullscreen) .sd .money{grid-template-columns:1fr}
+  #slideStage:not(:fullscreen) .money i{transform:rotate(90deg);justify-self:center}
+  #slideStage:not(:fullscreen) .imp6{grid-template-columns:1fr}
+  #slideStage:not(:fullscreen) .cover{min-height:480px}
+  #slideStage:not(:fullscreen) .cv-t{font-size:clamp(36px,12vw,56px)}
+  #slideStage:not(:fullscreen) .end .cv-t{font-size:clamp(30px,9.5vw,44px)}
+  #slideStage:not(:fullscreen) .thanks{position:static}
+  #slideStage:not(:fullscreen) .steps10{grid-auto-flow:row;grid-template-rows:none}
+}
 
 /* ===== VIDEO (fixed dark look) ===== */
 .video{background:radial-gradient(120% 90% at 85% 0%, #22325A 0%, #121B31 55%, #0D1426 100%);color:#fff;font-family:var(--body);overflow:hidden}
@@ -112,10 +247,10 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .jar i{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(#FFD666,#F0A91F);height:0;animation:fill 5.5s ease-out both;animation-delay:.8s}
 @keyframes fill{to{height:88%}}
 /* scene: history */
-.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4cqw;position:relative;margin-top:1cqw}
-.timeline::before{content:"";position:absolute;left:0;right:0;top:2.2cqw;height:.3cqw;background:rgba(255,255,255,.18)}
-.tl{position:relative;display:grid;gap:.8cqw}
-.tl .yr{font-family:var(--display);font-weight:800;font-size:3.4cqw;color:#FFC23D;background:#16213B;justify-self:start;padding-right:1cqw;line-height:1.3}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4cqw;position:relative;margin-top:1cqw}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:5.2cqw;height:.25cqw;background:rgba(255,255,255,.18)}
+.tl{position:relative;display:grid;gap:.8cqw;align-content:start}
+.tl .yr{font-family:var(--display);font-weight:800;font-size:3.4cqw;color:#FFC23D;justify-self:start;line-height:1.3;padding-bottom:1.2cqw}
 .tl p{margin:0;font-size:1.8cqw;color:#D6DEF0;line-height:1.35}
 .tl p b{color:#fff}
 /* scene: steps */
@@ -131,6 +266,13 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .models{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
 .model{border:.2cqw solid rgba(255,255,255,.18);border-radius:1.4cqw;padding:1.4cqw 1.8cqw;font-size:1.8cqw;color:#D6DEF0}
 .model b{display:block;font-family:var(--display);font-size:2.3cqw;color:#fff}
+/* scene: types */
+.types4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw}
+.ty{background:rgba(255,255,255,.07);border:.15cqw solid rgba(255,255,255,.12);border-radius:1.6cqw;padding:2cqw 1.6cqw;display:grid;gap:.8cqw;align-content:start}
+.ty b{font-family:var(--display);font-size:2.6cqw}
+.ty span{font-size:1.75cqw;color:#E2E8F5;line-height:1.3}
+.ty em{font-style:normal;font-size:1.4cqw;color:#9EB5DD;line-height:1.3}
+.steps.safe li{font-size:2.2cqw}
 /* scene: impact */
 .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8cqw}
 .imp{background:rgba(255,255,255,.07);border:.15cqw solid rgba(255,255,255,.12);border-radius:1.6cqw;padding:1.6cqw;display:grid;gap:.6cqw}
@@ -174,12 +316,15 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 
 
 /* phones: the 16:9 slide becomes a stacked, readable version */
-@media (max-width:720px){
+@media (max-width:820px){
   #slideStage:not(:fullscreen){aspect-ratio:auto}
   #slideStage:not(:fullscreen) > .frame{position:relative;inset:auto}
   #slideStage:not(:fullscreen) .s-head{flex-direction:column;align-items:flex-start;gap:8px;padding:18px}
   #slideStage:not(:fullscreen) .s-head h1{font-size:2.2rem}
   #slideStage:not(:fullscreen) .s-head p{font-size:.95rem;text-align:left;max-width:none}
+  #slideStage:not(:fullscreen) .s-def{justify-items:start;max-width:none;gap:10px}
+  #slideStage:not(:fullscreen) .s-types{justify-content:flex-start;gap:6px}
+  #slideStage:not(:fullscreen) .s-types span{font-size:.7rem;padding:3px 9px}
   #slideStage:not(:fullscreen) .s-cols{grid-template-columns:1fr;gap:14px;padding:14px}
   #slideStage:not(:fullscreen) .s-card{border-radius:12px}
   #slideStage:not(:fullscreen) .s-card h2{font-size:1.15rem;padding:10px 14px;gap:10px}
@@ -201,7 +346,7 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
   <header class="top">
     <div class="brand"><small>Trabalho escolar</small>Crowdfunding: o poder de muitos</div>
     <div class="tabs" role="tablist" aria-label="Parte da apresentação">
-      <button role="tab" id="tab-slide" aria-controls="tab-slide-panel" aria-selected="true">Slide</button>
+      <button role="tab" id="tab-slide" aria-controls="tab-slide-panel" aria-selected="true">Slides</button>
       <button role="tab" id="tab-video" aria-controls="tab-video-panel" aria-selected="false">Vídeo</button>
     </div>
   </header>
@@ -209,10 +354,135 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
   <!-- ================= SLIDE ================= -->
   <section role="tabpanel" id="tab-slide-panel" aria-labelledby="tab-slide">
     <div class="stage" id="slideStage">
-      <div class="frame slide">
+            <!-- 1 capa -->
+      <div class="frame sd cover" data-title="Capa" data-notes="Bom dia. Nosso trabalho é sobre crowdfunding, ou financiamento coletivo. Vamos mostrar o que é, como criar uma campanha passo a passo, o impacto social e as principais plataformas de arrecadação.">
+        <div class="cv-coins"><i>R$</i><i>R$</i><i>R$</i><i>R$</i><i>R$</i></div>
+        <div class="cv-main">
+          <p class="sd-k">Trabalho escolar</p>
+          <h2 class="cv-t">Crowd<span>funding</span></h2>
+          <p class="cv-s">Financiamento coletivo: o poder de muitos</p>
+        </div>
+        <ul class="cv-topics"><li><b>1</b>Passo a passo</li><li><b>2</b>Impacto social</li><li><b>3</b>Plataformas de arrecadação</li></ul>
+      </div>
+
+      <!-- 2 o que é -->
+      <div class="frame sd" style="--ac:#3D8BFF" data-title="O que é" data-notes="Crowdfunding é quando muitas pessoas contribuem com pequenas quantias, normalmente pela internet, para realizar um projeto. Existem quatro tipos. Na doação, a pessoa ajuda sem receber nada em troca. Na recompensa, recebe um brinde ou o próprio produto. No recorrente, apoia um criador todo mês. E no investimento, vira sócio da empresa. No Brasil, esse último é regulado pela CVM, com limite de 15 milhões de reais por ano.">
+        <header class="sd-h"><p class="sd-k">O que é</p><h2>Financiamento coletivo</h2></header>
+        <div class="def">
+          <blockquote>Muitas pessoas contribuem com <b>pequenas quantias</b>, pela internet, para tirar um <b>projeto do papel</b>, sem depender de banco ou de um grande investidor.</blockquote>
+          <div class="types">
+            <div class="ty2" style="--tc:#3D8BFF"><b>Doação</b><span>Ajuda sem retorno</span><em>Vaquinha para tratamento</em></div>
+            <div class="ty2" style="--tc:#E0A100"><b>Recompensa</b><span>Recebe brinde ou produto</span><em>Livro, jogo, camiseta</em></div>
+            <div class="ty2" style="--tc:#FF5C77"><b>Recorrente</b><span>Apoio todo mês</span><em>Podcast, artista</em></div>
+            <div class="ty2" style="--tc:#22B573"><b>Investimento</b><span>Apoiador vira sócio</span><em>CVM: até R$ 15 mi por ano</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 história -->
+      <div class="frame sd" style="--ac:#E0A100" data-title="História" data-notes="A ideia é antiga. Em 1885 faltava dinheiro para a base da Estátua da Liberdade, e um jornal pediu ajuda aos leitores: cerca de 120 mil pessoas doaram e a obra foi concluída. Com a internet o modelo cresceu: o Kickstarter surgiu em 2009, o Catarse chegou ao Brasil em 2011 e, em 2012, o relógio Pebble arrecadou mais de 10 milhões de dólares.">
+        <header class="sd-h"><p class="sd-k">Uma ideia antiga</p><h2>De jornal a plataforma</h2></header>
+        <ol class="tline">
+          <li><span class="yr">1885</span><b>Estátua da Liberdade</b><p>Um jornal pede ajuda e cerca de 120 mil pessoas pagam a base da estátua.</p></li>
+          <li><span class="yr">2009</span><b>Kickstarter</b><p>A plataforma é lançada nos EUA e populariza o modelo na internet.</p></li>
+          <li><span class="yr">2011</span><b>Catarse</b><p>Surge a primeira grande plataforma de financiamento coletivo do Brasil.</p></li>
+          <li><span class="yr">2012</span><b>Relógio Pebble</b><p>Arrecada mais de US$ 10 milhões no Kickstarter com a ajuda dos fãs.</p></li>
+        </ol>
+      </div>
+
+      <!-- 4 passo a passo -->
+      <div class="frame sd" style="--ac:#3D8BFF" data-title="Passo a passo" data-notes="Para criar uma campanha, seguimos dez passos. Primeiro definimos o projeto, calculamos a meta já incluindo a taxa da plataforma, escolhemos a plataforma, o modelo de arrecadação e o prazo. Depois montamos a página com vídeo e história, criamos recompensas, divulgamos, mantemos os apoiadores informados e, no fim, entregamos o que prometemos e prestamos contas.">
+        <header class="sd-h"><p class="sd-k">Tópico 1</p><h2>Passo a passo de uma campanha</h2></header>
+        <ol class="steps10">
+          <li><b>1</b><div><strong>Defina o projeto</strong><span>O que é, para quem e por que importa</span></div></li>
+          <li><b>2</b><div><strong>Calcule a meta</strong><span>Custos + recompensas + taxa da plataforma</span></div></li>
+          <li><b>3</b><div><strong>Escolha a plataforma</strong><span>Doação, recompensa ou apoio mensal</span></div></li>
+          <li><b>4</b><div><strong>Escolha o modelo</strong><span>Tudo ou nada, ou flexível</span></div></li>
+          <li><b>5</b><div><strong>Defina o prazo</strong><span>O ideal é de 30 a 60 dias</span></div></li>
+          <li><b>6</b><div><strong>Monte a página</strong><span>Vídeo curto, história, fotos e uso do dinheiro</span></div></li>
+          <li><b>7</b><div><strong>Crie recompensas</strong><span>R$ 10 agradecimento · R$ 50 adesivo · R$ 100 produto</span></div></li>
+          <li><b>8</b><div><strong>Divulgue</strong><span>Família e amigos primeiro, depois redes sociais</span></div></li>
+          <li><b>9</b><div><strong>Atualize os apoiadores</strong><span>Transparência gera confiança</span></div></li>
+          <li><b>10</b><div><strong>Entregue e preste contas</strong><span>Mostre como o dinheiro foi usado</span></div></li>
+        </ol>
+      </div>
+
+      <!-- 5 modelos e dinheiro -->
+      <div class="frame sd" style="--ac:#22B573" data-title="Meta e dinheiro" data-notes="Existem dois modelos de arrecadação. No tudo ou nada, o criador só recebe se bater a meta; se não bater, o dinheiro volta para quem doou. No flexível, ele fica com o que arrecadar. E a plataforma cobra uma taxa: na Vakinha, por exemplo, são 6,4% mais 50 centavos por doação. Então, de uma doação de 100 reais, o criador recebe 93 reais e 10 centavos.">
+        <header class="sd-h"><p class="sd-k">Como funciona</p><h2>Meta, modelo e taxa</h2></header>
+        <div class="mod2">
+          <div class="mc"><b>Tudo ou nada</b><p>Só recebe se bater a meta. Se não bater, o dinheiro volta para os apoiadores.</p><em>Mais segurança para quem apoia</em></div>
+          <div class="mc"><b>Flexível</b><p>O criador fica com o valor arrecadado, mesmo abaixo da meta.</p><em>Bom para causas urgentes</em></div>
+        </div>
+        <div class="money">
+          <div><span>Doação</span><strong>R$ 100,00</strong></div>
+          <i aria-hidden="true">→</i>
+          <div class="neg"><span>Taxa Vakinha (6,4% + R$ 0,50)</span><strong>− R$ 6,90</strong></div>
+          <i aria-hidden="true">→</i>
+          <div class="pos"><span>Criador recebe</span><strong>R$ 93,10</strong></div>
+        </div>
+      </div>
+
+      <!-- 6 impacto social -->
+      <div class="frame sd" style="--ac:#FF5C77" data-title="Impacto social" data-notes="O impacto social do crowdfunding é grande. Ele democratiza o acesso a dinheiro, ajuda em emergências, paga tratamentos de saúde, viabiliza cultura independente, gera renda e fortalece comunidades. O maior exemplo recente foi nas enchentes do Rio Grande do Sul, em 2024: uma única vaquinha passou de 70 milhões de reais, segundo a própria plataforma.">
+        <header class="sd-h"><p class="sd-k">Tópico 2</p><h2>Impacto social</h2></header>
+        <div class="imp-wrap">
+          <div class="stat"><span>Enchentes do RS, 2024</span><strong>R$ 70 mi+</strong><p>arrecadados em <b>uma única vaquinha</b>. O recorde anterior da plataforma era R$ 3,2 milhões.</p></div>
+          <div class="imp6">
+            <div><b>Acesso</b><span>Dinheiro sem depender de banco</span></div>
+            <div><b>Solidariedade</b><span>Resposta rápida a tragédias</span></div>
+            <div><b>Saúde</b><span>Tratamentos e cirurgias</span></div>
+            <div><b>Cultura</b><span>Filmes, livros e jogos independentes</span></div>
+            <div><b>Renda</b><span>Pequenos negócios e empregos</span></div>
+            <div><b>Comunidade</b><span>Escolas, ONGs e meio ambiente</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 plataformas -->
+      <div class="frame sd" style="--ac:#22B573" data-title="Plataformas" data-notes="Estas são as principais plataformas de arrecadação. No Brasil: Vakinha, para doações e causas pessoais; Catarse, para projetos criativos; Benfeitoria, para projetos sociais; e Apoia.se, para apoio mensal. No mundo: Kickstarter, Indiegogo e GoFundMe. Cada uma cobra uma taxa diferente, então vale comparar antes de escolher.">
+        <header class="sd-h"><p class="sd-k">Tópico 3</p><h2>Plataformas de arrecadação</h2></header>
+        <div class="ptab-wrap">
+          <table class="ptab">
+            <thead><tr><th>Plataforma</th><th>Tipo</th><th>Melhor para</th><th>Onde</th></tr></thead>
+            <tbody>
+              <tr><td><b>Vakinha</b></td><td>Doação</td><td>Causas pessoais, saúde, emergências</td><td>Brasil</td></tr>
+              <tr><td><b>Catarse</b></td><td>Recompensa e recorrente</td><td>Livros, filmes, música, jogos</td><td>Brasil</td></tr>
+              <tr><td><b>Benfeitoria</b></td><td>Recompensa</td><td>Projetos sociais e de impacto</td><td>Brasil</td></tr>
+              <tr><td><b>Apoia.se</b></td><td>Recorrente</td><td>Criadores de conteúdo</td><td>Brasil</td></tr>
+              <tr><td><b>Kickstarter</b></td><td>Recompensa</td><td>Produtos e projetos criativos</td><td>Mundo</td></tr>
+              <tr><td><b>Indiegogo</b></td><td>Recompensa</td><td>Tecnologia e inovação</td><td>Mundo</td></tr>
+              <tr><td><b>GoFundMe</b></td><td>Doação</td><td>A maior de doações do mundo</td><td>Mundo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 8 vantagens e riscos -->
+      <div class="frame sd" style="--ac:#3D8BFF" data-title="Vantagens e riscos" data-notes="O crowdfunding tem vantagens: acesso a dinheiro sem banco, testar se as pessoas querem o produto, criar uma comunidade e divulgar o projeto. Mas também tem riscos: muitas campanhas não batem a meta, a entrega pode atrasar, existem golpes e as taxas reduzem o valor recebido.">
+        <header class="sd-h"><p class="sd-k">Na balança</p><h2>Vantagens e riscos</h2></header>
+        <div class="pros">
+          <div class="pc good"><b>Vantagens</b><ul><li>Dinheiro sem banco ou investidor</li><li>Testa se o público quer o produto</li><li>Cria uma comunidade de apoiadores</li><li>Divulga o projeto de graça</li></ul></div>
+          <div class="pc bad"><b>Riscos</b><ul><li>Muitas campanhas não batem a meta</li><li>Atrasos na entrega das recompensas</li><li>Golpes e campanhas falsas</li><li>Taxas reduzem o valor recebido</li></ul></div>
+        </div>
+      </div>
+
+      <!-- 9 segurança -->
+      <div class="frame sd" style="--ac:#FF5C77" data-title="Segurança" data-notes="Para apoiar com segurança, antes de doar confira quatro coisas: quem criou a campanha, se a plataforma é conhecida e se o link é da página oficial, desconfie de pedidos de Pix urgente para desconhecidos, e veja se a campanha publica atualizações e presta contas.">
+        <header class="sd-h"><p class="sd-k">Como apoiar com segurança</p><h2>Antes de doar, confira</h2></header>
+        <ol class="chk4">
+          <li><b>1</b><strong>Quem criou?</strong><span>Nome, fotos, redes sociais e contato reais</span></li>
+          <li><b>2</b><strong>Plataforma conhecida?</strong><span>Doe pela página oficial, não por link de mensagem</span></li>
+          <li><b>3</b><strong>Pix urgente?</strong><span>Desconfie de pressão e de conta de desconhecido</span></li>
+          <li><b>4</b><strong>Presta contas?</strong><span>Campanhas sérias publicam atualizações</span></li>
+        </ol>
+      </div>
+
+      <!-- 10 resumo -->
+      <div class="frame slide" data-title="Resumo" data-notes="Crowdfunding é o financiamento coletivo: muitas pessoas contribuem com pequenos valores pela internet para realizar um projeto. Ele pode ser por doação, por recompensa, com apoio mensal ou como investimento, quando o apoiador vira sócio. Para criar uma campanha, seguimos dez passos: definir a ideia, calcular a meta já com a taxa da plataforma, escolher a plataforma e o modelo, montar a página, divulgar e, no fim, entregar o que foi prometido e prestar contas. O impacto social é grande: nas enchentes do Rio Grande do Sul, em 2024, uma única vaquinha passou de 70 milhões de reais. Mas existem golpes, então é preciso conferir quem criou a campanha antes de doar. No Brasil, as principais plataformas são Vakinha, Catarse, Benfeitoria e Apoia.se. No mundo, Kickstarter, Indiegogo e GoFundMe.">
         <div class="s-head">
           <h1>Crowd<span>funding</span></h1>
-          <p>Financiamento coletivo: muitas pessoas contribuem com pequenas quantias, pela internet, para tirar um projeto do papel.</p>
+          <div class="s-def"><p>Financiamento coletivo: muitas pessoas contribuem com pequenas quantias, pela internet, para tirar um projeto do papel.</p><div class="s-types"><span>Doação</span><span>Recompensa</span><span>Recorrente</span><span>Investimento</span></div></div>
         </div>
         <div class="s-cols">
           <div class="s-card c1">
@@ -233,13 +503,13 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
           <div class="s-card c2">
             <h2><b>2</b>Impacto social</h2>
             <ul>
-              <li><strong>Democratiza</strong> o acesso a dinheiro, sem depender de banco</li>
-              <li><strong>Solidariedade:</strong> enchentes do RS (2024) mobilizaram milhões em poucos dias</li>
+              <li><strong>Democratiza</strong> o acesso a dinheiro, sem banco</li>
+              <li><strong>Solidariedade:</strong> enchentes do RS (2024): uma só vaquinha passou de R$ 70 milhões</li>
               <li><strong>Saúde:</strong> vaquinhas para tratamentos e cirurgias</li>
               <li><strong>Cultura:</strong> filmes, livros e jogos independentes</li>
               <li><strong>Empreendedorismo:</strong> gera renda e empregos</li>
-              <li><strong>Comunidade:</strong> escolas, ONGs, meio ambiente</li>
-              <li class="risk"><strong>Riscos:</strong> golpes e desigualdade de alcance</li>
+              <li><strong>Comunidade:</strong> escolas, ONGs e meio ambiente</li>
+              <li class="risk"><strong>Riscos:</strong> golpes. Confira quem criou antes de doar</li>
             </ul>
           </div>
           <div class="s-card c3">
@@ -259,18 +529,45 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
         </div>
         <div class="s-foot">
           <strong>Como o dinheiro circula:</strong>
-          <span class="flow"><span class="pill">Criador publica</span><span class="arrow">→</span><span class="pill">Apoiadores pagam (Pix, cartão, boleto)</span><span class="arrow">→</span><span class="pill">Plataforma desconta 5% a 13%</span><span class="arrow">→</span><span class="pill">Criador recebe</span></span>
+          <span class="flow"><span class="pill">Criador publica</span><span class="arrow">→</span><span class="pill">Apoiadores pagam por Pix ou cartão</span><span class="arrow">→</span><span class="pill">Plataforma desconta a taxa</span><span class="arrow">→</span><span class="pill">Criador recebe</span></span>
         </div>
+      </div>
+
+      <!-- 11 conclusão -->
+      <div class="frame sd cover end" data-title="Conclusão" data-notes="Para concluir: o crowdfunding mostra que uma ideia, somada a muitas pessoas, pode virar realidade. Ele dá poder a quem não tem acesso a banco, ajuda em emergências e movimenta a cultura e a economia. Mas exige planejamento de quem cria e cuidado de quem apoia. Obrigado!">
+        <div class="cv-main">
+          <p class="sd-k">Conclusão</p>
+          <h2 class="cv-t">Uma ideia <span>+</span><br>muitas pessoas</h2>
+          <p class="cv-s">= um projeto que sai do papel</p>
+        </div>
+        <ul class="cv-topics"><li>Planejamento de quem cria</li><li>Cuidado de quem apoia</li><li>Impacto para todos</li></ul>
+        <p class="thanks">Obrigado!</p>
+      </div>
+
+      <!-- 12 referências -->
+      <div class="frame sd" style="--ac:#56607A" data-title="Referências" data-notes="Estas são as fontes que usamos no trabalho. As taxas das plataformas mudam com frequência, por isso conferimos os valores em outubro de 2026.">
+        <header class="sd-h"><p class="sd-k">Fontes</p><h2>Referências</h2></header>
+        <ul class="refs-sd">
+          <li>NATIONAL PARK SERVICE. <i>Joseph Pulitzer</i>. Statue of Liberty National Monument. nps.gov/stli</li>
+          <li>HISTORY. <i>How Joseph Pulitzer saved the Statue of Liberty</i>. history.com</li>
+          <li>O ANTAGONISTA / CRUSOÉ. <i>“Nada se compara com o volume de doações desta enchente”</i>. Maio 2024.</li>
+          <li>CVM. <i>Resolução CVM nº 88, de 27 de abril de 2022</i>. Crowdfunding de investimento.</li>
+          <li>REMESSA ONLINE. <i>Como sacar dinheiro da Vakinha online</i>. Taxas da plataforma.</li>
+          <li>Sites oficiais: vakinha.com.br, catarse.me, benfeitoria.com, apoia.se, kickstarter.com, indiegogo.com, gofundme.com</li>
+        </ul>
+        <p class="sd-note">Valores e taxas conferidos em outubro de 2026.</p>
       </div>
     </div>
     <div class="bar">
+      <div class="deck-nav"><button class="btn icon" id="prevSlide" aria-label="Slide anterior"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><span class="deck-count" id="deckCount">1 / 12</span><button class="btn icon" id="nextSlide" aria-label="Próximo slide"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div>
       <button class="btn primary" data-fs="slideStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
-      <a class="btn" href="slide-crowdfunding.pptx" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar slide (.pptx)</span></a>
-      <span class="hint">Atalhos: F = tela cheia · V = ir para o vídeo</span>
+      <a class="btn" href="slides-crowdfunding.pptx" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar slides (.pptx)</span></a>
+      <span class="hint">Atalhos: setas = trocar slide · F = tela cheia · V = vídeo</span>
     </div>
+    <div class="thumbs" id="thumbs" aria-label="Slides"></div>
     <div class="panel">
-      <h2>Fala sugerida para o slide (cerca de 1 minuto)</h2>
-      <p style="margin:0;color:var(--muted)">“Crowdfunding é o financiamento coletivo: várias pessoas doam pequenos valores pela internet para realizar um projeto. Para criar uma campanha, seguimos dez passos, desde definir a ideia e calcular a meta até entregar as recompensas e prestar contas. O impacto social é grande: ele dá acesso a recursos para quem não tem banco ou investidor, ajuda em emergências como as enchentes do Rio Grande do Sul e viabiliza cultura e pequenos negócios. Mas também existem riscos, como golpes. As principais plataformas no Brasil são Vakinha, Catarse, Benfeitoria e Apoia.se. No mundo, Kickstarter, Indiegogo e GoFundMe.”</p>
+      <h2 id="notesTitle">Fala sugerida</h2>
+      <p id="notesText" style="margin:0;color:var(--muted)"></p>
     </div>
   </section>
 
@@ -295,14 +592,25 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
             <div class="field" id="field"><div class="people" id="people"></div><div class="jar"><i></i></div></div>
           </div>
         </div>
+        <!-- tipos -->
+        <div class="scene" data-dur="9" data-name="Tipos" data-cap="Existem quatro tipos: doação, recompensa, apoio recorrente e investimento, em que o apoiador vira sócio. No Brasil, o de investimento é regulado pela CVM.">
+          <div class="kicker in">Tipos de crowdfunding</div>
+          <div class="types4">
+            <div class="ty pop" style="--d:.5"><b class="hl-b">Doação</b><span>Ajuda sem retorno</span><em>Ex.: vaquinha para tratamento</em></div>
+            <div class="ty pop" style="--d:1.8"><b class="hl-y">Recompensa</b><span>Apoiador recebe brinde ou produto</span><em>Ex.: livro, jogo, camiseta</em></div>
+            <div class="ty pop" style="--d:3.1"><b class="hl-c">Recorrente</b><span>Apoio todo mês a um criador</span><em>Ex.: podcast, artista</em></div>
+            <div class="ty pop" style="--d:4.4"><b class="hl-g">Investimento</b><span>Apoiador vira sócio da empresa</span><em>Regulado pela CVM: até R$ 15 mi por ano</em></div>
+          </div>
+        </div>
         <!-- 3 -->
-        <div class="scene" data-dur="8" data-name="História" data-cap="A ideia é antiga: em 1885, mais de 160 mil pessoas pagaram a base da Estátua da Liberdade. A internet levou isso para o mundo todo.">
+        <div class="scene" data-dur="9" data-name="História" data-cap="A ideia é antiga: em 1885, cerca de 120 mil pessoas pagaram a base da Estátua da Liberdade. Com a internet, o modelo se espalhou pelo mundo.">
           <div class="kicker in">Uma ideia antiga</div>
           <h2 class="h in" style="--d:.2">De jornal a plataforma</h2>
           <div class="timeline">
-            <div class="tl in" style="--d:.8"><span class="yr">1885</span><p><b>Estátua da Liberdade:</b> mais de 160 mil doadores pagaram a base</p></div>
-            <div class="tl in" style="--d:2.4"><span class="yr">2009</span><p><b>Kickstarter</b> é lançado e populariza o modelo</p></div>
-            <div class="tl in" style="--d:4"><span class="yr">2011</span><p><b>Catarse</b>, a primeira grande plataforma brasileira</p></div>
+            <div class="tl in" style="--d:.8"><span class="yr">1885</span><p><b>Estátua da Liberdade:</b> cerca de 120 mil doadores pagaram a base</p></div>
+            <div class="tl in" style="--d:2.2"><span class="yr">2009</span><p><b>Kickstarter</b> é lançado e populariza o modelo</p></div>
+            <div class="tl in" style="--d:3.6"><span class="yr">2011</span><p><b>Catarse</b>, a primeira grande plataforma brasileira</p></div>
+            <div class="tl in" style="--d:5"><span class="yr">2012</span><p><b>Relógio Pebble</b> arrecada mais de US$ 10 milhões no Kickstarter</p></div>
           </div>
         </div>
         <!-- 4 -->
@@ -338,16 +646,27 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
           </div>
         </div>
         <!-- 7 -->
-        <div class="scene" data-dur="10" data-name="Impacto social" data-cap="O impacto social é enorme: acesso a recursos, ajuda em emergências, saúde, cultura, empregos e comunidades mais fortes. Mas é preciso cuidado com golpes.">
+        <div class="scene" data-dur="10" data-name="Impacto social" data-cap="O impacto social é enorme: acesso a recursos, ajuda em emergências, saúde, cultura, empregos e comunidades mais fortes. Nas enchentes do Rio Grande do Sul, uma única vaquinha passou de 70 milhões de reais.">
           <div class="kicker in">Impacto social</div>
           <div class="grid6">
             <div class="imp pop" style="--d:.5"><svg viewBox="0 0 24 24" fill="none" stroke="#6FAAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M10 21v-6h4v6"/></svg><b>Acesso</b><span>Dinheiro sem depender de banco ou investidor</span></div>
-            <div class="imp pop" style="--d:1.6"><svg viewBox="0 0 24 24" fill="none" stroke="#FF7D93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><b>Solidariedade</b><span>Enchentes do RS (2024): milhões arrecadados em dias</span></div>
+            <div class="imp pop" style="--d:1.6"><svg viewBox="0 0 24 24" fill="none" stroke="#FF7D93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><b>Solidariedade</b><span>Enchentes do RS (2024): uma vaquinha passou de R$ 70 milhões</span></div>
             <div class="imp pop" style="--d:2.7"><svg viewBox="0 0 24 24" fill="none" stroke="#4CD495" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg><b>Saúde</b><span>Tratamentos, cirurgias e remédios caros</span></div>
             <div class="imp pop" style="--d:3.8"><svg viewBox="0 0 24 24" fill="none" stroke="#FFC23D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg><b>Cultura</b><span>Filmes, livros, música e jogos independentes</span></div>
             <div class="imp pop" style="--d:4.9"><svg viewBox="0 0 24 24" fill="none" stroke="#6FAAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-2 4H5zM5 11v9h14v-9M10 20v-5h4v5"/></svg><b>Empreendedorismo</b><span>Capital inicial, renda e empregos</span></div>
             <div class="imp pop" style="--d:6" ><svg viewBox="0 0 24 24" fill="none" stroke="#FF7D93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M12 8v5M12 16h.01"/></svg><b>Atenção</b><span>Golpes e desigualdade de alcance nas redes</span></div>
           </div>
+        </div>
+        <!-- segurança -->
+        <div class="scene" data-dur="9" data-name="Segurança" data-cap="Para apoiar com segurança: confira quem criou a campanha, prefira plataformas conhecidas, desconfie de Pix para desconhecidos e acompanhe as atualizações.">
+          <div class="kicker in">Como apoiar com segurança</div>
+          <h2 class="h in" style="--d:.2">Antes de doar, <span class="hl-c">confira</span></h2>
+          <ol class="steps safe">
+            <li class="in" style="--d:1.2"><b style="background:#22B573">1</b><span>Quem criou a campanha?<em>Nome, fotos, redes sociais e contato reais</em></span></li>
+            <li class="in" style="--d:2.6"><b style="background:#22B573">2</b><span>A plataforma é conhecida?<em>Doe pela página oficial, não por link de mensagem</em></span></li>
+            <li class="in" style="--d:4"><b style="background:#22B573">3</b><span>Pix direto para desconhecido?<em>Desconfie de urgência e pressão</em></span></li>
+            <li class="in" style="--d:5.4"><b style="background:#22B573">4</b><span>Há prestação de contas?<em>Campanhas sérias publicam atualizações</em></span></li>
+          </ol>
         </div>
         <!-- 8 -->
         <div class="scene" data-dur="9" data-name="Plataformas" data-cap="As principais plataformas no Brasil são Vakinha, Catarse, Benfeitoria e Apoia.se. No mundo, Kickstarter, Indiegogo e GoFundMe.">
@@ -367,15 +686,15 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
           </div>
         </div>
         <!-- 9 -->
-        <div class="scene" data-dur="8" data-name="O dinheiro" data-cap="Os apoiadores pagam por Pix, cartão ou boleto. A plataforma guarda o dinheiro, desconta uma taxa de 5% a 13% e repassa ao criador.">
+        <div class="scene" data-dur="9" data-name="O dinheiro" data-cap="Os apoiadores pagam por Pix, cartão ou boleto. A plataforma desconta uma taxa e repassa o resto ao criador. Na Vakinha, por exemplo, a taxa é de 6,4% mais 50 centavos por doação.">
           <div class="kicker in">Como o dinheiro circula</div>
           <h2 class="h in" style="--d:.2" >Exemplo com R$ 100</h2>
           <div class="mflow">
             <div class="node pop" style="--d:1"><b>Apoiadores</b><span class="amt hl-y">R$ 100</span><span>Pix, cartão, boleto</span></div>
             <div class="arr in" style="--d:2">→</div>
-            <div class="node pop" style="--d:2.6"><b>Plataforma</b><span class="amt hl-c">− R$ 8</span><span>taxa (5% a 13%)</span></div>
+            <div class="node pop" style="--d:2.6"><b>Plataforma</b><span class="amt hl-c">− R$ 6,90</span><span>6,4% + R$ 0,50 (Vakinha)</span></div>
             <div class="arr in" style="--d:3.6">→</div>
-            <div class="node pop" style="--d:4.2"><b>Criador</b><span class="amt hl-g">R$ 92</span><span>realiza o projeto</span></div>
+            <div class="node pop" style="--d:4.2"><b>Criador</b><span class="amt hl-g">R$ 93,10</span><span>realiza o projeto</span></div>
           </div>
         </div>
         <!-- 10 -->
@@ -396,7 +715,7 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
       <button class="btn" id="capBtn" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg><span>Legendas: ligadas</span></button>
       <button class="btn" data-fs="videoStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
       <a class="btn" href="video-crowdfunding.mp4" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar vídeo (.mp4)</span></a>
-      <span class="time" id="timeLbl">0:00 / 1:21</span>
+      <span class="time" id="timeLbl">0:00 / 1:41</span>
     </div>
     <div class="chapters" id="chapters" aria-label="Capítulos"></div>
     <div class="panel">
@@ -404,7 +723,20 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
       <ol class="notes" id="notes"></ol>
     </div>
   </section>
+  <section class="panel refs" aria-labelledby="refs-h">
+    <h2 id="refs-h">Referências</h2>
+    <ul>
+      <li>NATIONAL PARK SERVICE. <em>Joseph Pulitzer</em>. Statue of Liberty National Monument. Disponível em: <a href="https://www.nps.gov/stli/learn/historyculture/joseph-pulitzer.htm" target="_blank" rel="noopener">nps.gov/stli</a>.</li>
+      <li>HISTORY. <em>How Joseph Pulitzer saved the Statue of Liberty</em>. Disponível em: <a href="https://www.history.com/articles/statue-of-liberty-funding-pulitzer" target="_blank" rel="noopener">history.com</a>.</li>
+      <li>O ANTAGONISTA / CRUSOÉ. <em>“Nada se compara com o volume de doações desta enchente”</em>. Maio 2024. Disponível em: <a href="https://oantagonista.com.br/brasil/crusoe-nada-se-compara-com-o-volume-de-doacoes-desta-enchente/" target="_blank" rel="noopener">oantagonista.com.br</a>.</li>
+      <li>CVM. <em>Resolução CVM nº 88, de 27 de abril de 2022</em> (crowdfunding de investimento). Resumo em: <a href="https://finsidersbrasil.com.br/noticias-sobre-fintechs/nova-regra-aumenta-limite-de-oferta-em-crowdfunding-para-r-15-milhoes" target="_blank" rel="noopener">finsidersbrasil.com.br</a>.</li>
+      <li>REMESSA ONLINE. <em>Como sacar dinheiro da Vakinha online</em> (taxas da plataforma). Disponível em: <a href="https://www.remessaonline.com.br/blog/como-sacar-dinheiro-da-vakinha-online/" target="_blank" rel="noopener">remessaonline.com.br</a>.</li>
+      <li>Sites oficiais das plataformas: vakinha.com.br, catarse.me, benfeitoria.com, apoia.se, kickstarter.com, indiegogo.com, gofundme.com.</li>
+    </ul>
+    <p class="hint">Taxas e regras das plataformas mudam com frequência; valores conferidos em outubro de 2026.</p>
+  </section>
 </div>
+
 
 <script>
 (function(){
@@ -422,6 +754,25 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
   tabs.slide.onclick=()=>show('slide'); tabs.video.onclick=()=>show('video');
   let start='slide'; try{start=localStorage.getItem('cf-tab')||'slide'}catch(e){}
   if(location.hash==='#video'||rec) start='video';
+
+
+  /* ---- deck ---- */
+  const frames=$$('#slideStage > .frame'); let si=0;
+  frames.forEach((f,i)=>{const n=document.createElement('span');n.className='pgn';n.textContent=(i+1)+' / '+frames.length;f.appendChild(n);
+    const b=document.createElement('button');b.textContent=(i+1)+'. '+f.dataset.title;b.onclick=()=>go(i);$('#thumbs').appendChild(b);});
+  function go(i){ si=Math.max(0,Math.min(frames.length-1,i));
+    frames.forEach((f,k)=>f.hidden=k!==si);
+    $('#deckCount').textContent=(si+1)+' / '+frames.length;
+    $('#prevSlide').disabled=si===0; $('#nextSlide').disabled=si===frames.length-1;
+    $$('#thumbs button').forEach((b,k)=>b.classList.toggle('now',k===si));
+    $('#notesTitle').textContent='Fala sugerida · slide '+(si+1)+': '+frames[si].dataset.title;
+    $('#notesText').textContent='“'+frames[si].dataset.notes+'”';
+    try{localStorage.setItem('cf-slide',si)}catch(e){} }
+  window.cfGo=go;
+  $('#prevSlide').onclick=()=>go(si-1); $('#nextSlide').onclick=()=>go(si+1);
+  $('#slideStage').addEventListener('click',e=>{ if(document.fullscreenElement===$('#slideStage')) go(e.clientX<innerWidth/3?si-1:si+1); });
+  let s0=0; try{s0=+localStorage.getItem('cf-slide')||0}catch(e){}
+  go(s0);
 
   /* ---- fullscreen ---- */
   $$('[data-fs]').forEach(b=>b.onclick=()=>{const el=$('#'+b.dataset.fs);
@@ -499,6 +850,8 @@ button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
     const k=e.key.toLowerCase();
     if(k==='v') show('video'); else if(k==='s') show('slide');
     else if(k==='f'){ const id=$('#tab-video-panel').hidden?'slideStage':'videoStage'; $(`[data-fs="${id}"]`).click(); }
+    else if(['arrowright','pagedown'].includes(k) && $('#tab-video-panel').hidden){ e.preventDefault(); go(si+1); }
+    else if(['arrowleft','pageup'].includes(k) && $('#tab-video-panel').hidden){ e.preventDefault(); go(si-1); }
     else if(k===' ' && !$('#tab-video-panel').hidden){ e.preventDefault(); playing?pause():play(); }
   });
 
