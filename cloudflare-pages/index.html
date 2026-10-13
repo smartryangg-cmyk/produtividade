@@ -458,6 +458,33 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 .bigplay svg{width:4cqw;height:4cqw;margin-left:.6cqw}
 .time{font-variant-numeric:tabular-nums;font-weight:700}
 
+/* player controls, YouTube style */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vctl{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:max(4cqw,26px) max(1cqw,6px) 0;background:linear-gradient(transparent,rgba(0,0,0,.75));transition:opacity .25s;cursor:default}
+.vctl .prog{position:relative;left:auto;right:auto;bottom:auto;margin:0 max(.6cqw,6px)}
+.vrow{display:flex;align-items:center;gap:max(.3cqw,2px);color:#fff}
+.vb{flex:none;width:max(3.6cqw,44px);height:max(3.6cqw,44px);display:grid;place-items:center;background:none;border:0;color:#fff;cursor:pointer;border-radius:10px;padding:0;position:relative}
+.vb svg{width:58%;height:58%;pointer-events:none}
+.vb:hover{background:rgba(255,255,255,.14)}
+.vb:focus-visible,.volbar:focus-visible{outline:3px solid #6FAAFF;outline-offset:-3px}
+#capBtn[aria-pressed="true"]::after{content:"";position:absolute;left:28%;right:28%;bottom:16%;height:max(.25cqw,3px);border-radius:2px;background:#FF5C77}
+.vgrow{flex:1}
+.vctl .time{font-size:max(1.2cqw,12px);color:#fff;white-space:nowrap;padding:0 .5em}
+.vol{display:flex;align-items:center}
+.volbar{width:0;height:max(3.6cqw,44px);position:relative;cursor:pointer;overflow:hidden;transition:width .2s;touch-action:none}
+.vol:hover .volbar,.vol:focus-within .volbar,.volbar.drag{width:max(7cqw,76px)}
+.volbar::before,.volbar i{content:"";position:absolute;left:8px;top:50%;height:4px;margin-top:-2px;border-radius:2px}
+.volbar::before{right:8px;background:rgba(255,255,255,.3)}
+.volbar i{background:#fff;width:calc((100% - 16px) * var(--v,1))}
+.volbar i::after{content:"";position:absolute;right:-6px;top:-4px;width:12px;height:12px;border-radius:50%;background:#fff}
+@media (hover:none){.volbar{display:none}}
+@container (max-width:420px){.vctl .time{font-size:11px;padding:0 .2em}}
+.video.idle .vctl{opacity:0;pointer-events:none}
+.video.idle{cursor:none}
+.cap{transition:bottom .25s}
+html:not(.rec) .video:not(.idle) .cap{bottom:calc(max(3.6cqw,44px) + max(1.6cqw,14px))}
+@container (max-width:560px){html:not(.rec) .video:not(.idle) .cap{opacity:0}}
+.rec .vctl{display:none!important}
 /* record mode (used locally to export the MP4) */
 .rec .wrap{padding:0;max-width:none}
 .rec header.top,.rec .guide,.rec .bar,.rec .panel,.rec .chips,.rec #tab-slides-panel,.rec #tab-act-panel{display:none!important}
@@ -496,7 +523,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><small>Trabalho escolar</small><span class="fun">Crowdfunding: o poder de muitos</span></div>
+    <div class="brand"><small>Trabalho escolar</small><span class="fun">Crowdfunding: o poder de muitos</span><br><a class="btn vlink" href="comico.html">Ver tema cômico</a></div>
     <div class="tabs" role="tablist" aria-label="Parte da apresentação">
       <button role="tab" id="tab-slides" aria-controls="tab-slides-panel" aria-selected="true">Slides</button>
       <button role="tab" id="tab-video" aria-controls="tab-video-panel" aria-selected="false">Vídeo</button>
@@ -920,19 +947,27 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 
         <div class="cap" id="cap"></div>
         <div class="load" aria-hidden="true"><i></i></div>
-        <div class="prog" id="prog" role="slider" tabindex="0" aria-label="Posição do vídeo" aria-valuemin="0"><i id="progFill"></i></div>
+        <div class="vctl" id="vctl">
+          <div class="prog" id="prog" role="slider" tabindex="0" aria-label="Posição do vídeo" aria-valuemin="0"><i id="progFill"></i></div>
+          <div class="vrow">
+            <button class="vb" id="playBtn" title="Reproduzir ou pausar (espaço)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span class="sr">Reproduzir</span></button>
+            <div class="vol">
+              <button class="vb" id="muteBtn" title="Som (M)"></button>
+              <div class="volbar" id="volBar" role="slider" tabindex="0" aria-label="Volume" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+            </div>
+            <span class="time" id="timeLbl">0:00 / 5:24</span>
+            <span class="vgrow"></span>
+            <button class="vb" id="capBtn" aria-pressed="true" title="Legendas (C)"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg><span class="sr">Legendas</span></button>
+            <button class="vb" id="fsBtn" data-fs="videoStage" title="Tela cheia (F)"></button>
+          </div>
+        </div>
         <button class="bigplay" id="bigPlay" aria-label="Reproduzir vídeo"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span></button>
       </div>
-      <button class="fsx" aria-label="Sair da tela cheia"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <audio id="narr" preload="none" src="narracao-com-videogame.mp3"></audio>
     <div class="bar">
-      <button class="btn primary" id="playBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l12 7.5-12 7.5z" fill="currentColor"/></svg><span>Reproduzir</span></button>
       <button class="btn" id="restartBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Recomeçar</span></button>
-      <button class="btn" id="capBtn" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg><span>Legendas: ligadas</span></button>
-      <button class="btn" data-fs="videoStage"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Tela cheia</span></button>
       <a class="btn" href="video-com-videogame.mp4" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Baixar vídeo (.mp4)</span></a>
-      <span class="time" id="timeLbl">0:00 / 5:24</span>
     </div>
     <div class="chips" id="chapters" aria-label="Capítulos"></div>
   </section>
@@ -1002,9 +1037,9 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
   const rec = location.hash==='#rec';
   if(rec) document.documentElement.classList.add('rec');
-  const PLAY='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l12 7.5-12 7.5z" fill="currentColor"/></svg><span>Reproduzir</span>';
-  const PAUSE='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg><span>Pausar</span>';
-  const REPLAY='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Assistir de novo</span>';
+  const PLAY='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span class="sr">Reproduzir</span>';
+  const PAUSE='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg><span class="sr">Pausar</span>';
+  const REPLAY='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span class="sr">Assistir de novo</span>';
   let ready=false;
   // bring a stage back into view when a control below it changes it (phones)
   function reveal(el){ if(!ready||fsEl()) return; const r=el.getBoundingClientRect(); if(r.top<0||r.top>innerHeight*.6) el.scrollIntoView({block:'start',behavior:'smooth'}); }
@@ -1044,7 +1079,10 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 
   /* ---- fullscreen: the real API, or a fixed overlay where it is missing (iPhone) ---- */
   function fsEl(){ return document.fullscreenElement||document.webkitFullscreenElement||$('.stage.fake-fs'); }
-  function fsLabel(){ const on=!!fsEl(); $$('[data-fs] span').forEach(s=>s.textContent=on?'Sair da tela cheia':'Tela cheia'); }
+  const FS_IN='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span class="sr">Tela cheia</span>';
+  const FS_OUT='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg><span class="sr">Sair da tela cheia</span>';
+  function fsLabel(){ const on=!!fsEl();
+    $$('[data-fs]').forEach(b=>{ if(b.classList.contains('vb')){ b.innerHTML=on?FS_OUT:FS_IN; b.title=on?'Sair da tela cheia (F)':'Tela cheia (F)'; } else b.querySelector('span').textContent=on?'Sair da tela cheia':'Tela cheia'; }); }
   function fakeFs(el,on){ el.classList.toggle('fake-fs',on); document.documentElement.classList.toggle('fs-lock',on); fsLabel(); }
   function enterFs(el){ const req=el.requestFullscreen||el.webkitRequestFullscreen;
     if(!req) return fakeFs(el,true);
@@ -1054,7 +1092,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
     if(ex){ try{ const r=ex.call(document); if(r&&r.catch) r.catch(()=>{}); }catch(e){} } }
   $$('[data-fs]').forEach(b=>b.onclick=()=>fsEl()?exitFs():enterFs($('#'+b.dataset.fs)));
   $$('.fsx').forEach(b=>b.onclick=e=>{e.stopPropagation();exitFs();});
-  document.addEventListener('fullscreenchange',fsLabel); document.addEventListener('webkitfullscreenchange',fsLabel);
+  document.addEventListener('fullscreenchange',fsLabel); document.addEventListener('webkitfullscreenchange',fsLabel); fsLabel();
 
   /* ---- video timeline, driven by the narration audio ---- */
   const video=$('#video'), scenes=$$('.scene'), audio=$('#narr'), prog=$('#prog');
@@ -1121,8 +1159,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   }
   function play(){ if(t>=total-.05) seek(0); if(!started){started=true; enter(sceneAt(t));}
     playing=true; video.classList.remove('paused'); $('#bigPlay').hidden=true; $('#playBtn').innerHTML=PAUSE;
-    startAudio(); last=performance.now(); waitFrom=0; requestAnimationFrame(loop); }
-  function pause(){ playing=false; audio.pause(); video.classList.remove('buffering'); if(started) video.classList.add('paused'); $('#playBtn').innerHTML=PLAY; }
+    startAudio(); last=performance.now(); waitFrom=0; requestAnimationFrame(loop); wake(); }
+  function pause(){ playing=false; clearTimeout(idleT); video.classList.remove('idle'); audio.pause(); video.classList.remove('buffering'); if(started) video.classList.add('paused'); $('#playBtn').innerHTML=PLAY; }
   function finish(){ t=total; render(); pause(); $('#playBtn').innerHTML=REPLAY; }
   function seek(time){ $('#bigPlay').hidden=true; t=Math.max(0,Math.min(total,time)); cur=-1; started=true;
     if(audio.readyState>=1){ try{audio.currentTime=Math.min(t,audio.duration);}catch(e){} needSync=false; } else needSync=true;
@@ -1172,9 +1210,42 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 
   $('#playBtn').onclick=()=>playing?pause():play();
   $('#bigPlay').onclick=e=>{e.stopPropagation();play();};
-  video.addEventListener('click',e=>{ if(started && !e.target.closest('a,button')) playing?pause():play(); });
+  /* ---- volume ---- */
+  const VOL_ICON=(d,l)=>'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>'+d+'</svg><span class="sr">'+l+'</span>';
+  const volBar=$('#volBar'), muteBtn=$('#muteBtn');
+  try{ const v=localStorage.getItem('cf-vol'); if(v!==null) audio.volume=Math.min(1,Math.max(0,+v)); audio.muted=localStorage.getItem('cf-mute')==='1'; }catch(e){}
+  function volUI(){ const v=audio.muted?0:audio.volume;
+    muteBtn.innerHTML=v===0?VOL_ICON('<path d="M16 9.5l5 5M21 9.5l-5 5"/>','Ativar som'):VOL_ICON(v<.5?'<path d="M16 9a4 4 0 0 1 0 6"/>':'<path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/>','Desativar som');
+    volBar.style.setProperty('--v',v); volBar.setAttribute('aria-valuenow',Math.round(v*100)); volBar.setAttribute('aria-valuetext',Math.round(v*100)+'%');
+    try{ localStorage.setItem('cf-vol',audio.volume); localStorage.setItem('cf-mute',audio.muted?'1':'0'); }catch(e){} }
+  function setVol(v){ v=Math.min(1,Math.max(0,v)); audio.volume=v; audio.muted=v===0; volUI(); }
+  function toggleMute(){ if(audio.muted||audio.volume===0){ audio.muted=false; if(audio.volume===0) audio.volume=.6; } else audio.muted=true; volUI(); }
+  muteBtn.onclick=toggleMute;
+  const volX=x=>{ const r=volBar.getBoundingClientRect(); setVol((x-r.left-8)/(r.width-16)); };
+  volBar.addEventListener('pointerdown',e=>{ e.preventDefault(); e.stopPropagation(); try{volBar.setPointerCapture(e.pointerId);}catch(err){} volBar.classList.add('drag'); volX(e.clientX); });
+  volBar.addEventListener('pointermove',e=>{ if(volBar.classList.contains('drag')) volX(e.clientX); });
+  ['pointerup','pointercancel','lostpointercapture'].forEach(n=>volBar.addEventListener(n,()=>volBar.classList.remove('drag')));
+  volBar.addEventListener('click',e=>e.stopPropagation());
+  volBar.addEventListener('keydown',e=>{ const k=e.key; let v=null; const cur=audio.muted?0:audio.volume;
+    if(k==='ArrowRight'||k==='ArrowUp') v=cur+.1; else if(k==='ArrowLeft'||k==='ArrowDown') v=cur-.1; else if(k==='Home') v=0; else if(k==='End') v=1;
+    if(v!==null){ e.preventDefault(); e.stopPropagation(); setVol(v); } });
+  volUI();
+
+  /* ---- controls hide while playing, come back on mouse move / tap / focus ---- */
+  let idleT=0;
+  function wake(){ video.classList.remove('idle'); clearTimeout(idleT); idleT=setTimeout(()=>{ if(playing && !$('#vctl').matches(':hover,:focus-within') && !prog.classList.contains('drag')) video.classList.add('idle'); },2600); }
+  ['pointermove','pointerdown','focusin'].forEach(n=>video.addEventListener(n,wake));
+  video.addEventListener('pointerleave',()=>{ if(playing){ clearTimeout(idleT); idleT=setTimeout(()=>{ if(playing) video.classList.add('idle'); },800); } });
+  let tapType='mouse', wasIdle=false;
+  video.addEventListener('pointerdown',e=>{ tapType=e.pointerType; wasIdle=video.classList.contains('idle'); },true);
+  video.addEventListener('click',e=>{ if(!started || e.target.closest('a,button,.vctl')) return;
+    if(tapType==='touch' && wasIdle) return; // first tap on a phone only shows the controls
+    playing?pause():play(); });
+  $('#vctl').addEventListener('click',e=>e.stopPropagation()); // control clicks never reach the video's play/pause
+  video.addEventListener('dblclick',e=>{ if(e.target.closest('.vctl')) return; fsEl()?exitFs():enterFs($('#videoStage')); });
   $('#restartBtn').onclick=()=>{seek(0); play();};
-  $('#capBtn').onclick=e=>{const off=video.classList.toggle('nocap');e.currentTarget.setAttribute('aria-pressed',!off);e.currentTarget.querySelector('span').textContent='Legendas: '+(off?'desligadas':'ligadas');};
+  const toggleCap=()=>{ const off=video.classList.toggle('nocap'); $('#capBtn').setAttribute('aria-pressed',!off); };
+  $('#capBtn').onclick=toggleCap;
 
   // arrow keys move between the two tabs (ARIA tabs pattern)
   $('[role="tablist"]')?.addEventListener('keydown',e=>{ if(!['ArrowLeft','ArrowRight'].includes(e.key)) return;
@@ -1186,6 +1257,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
     const k=e.key.toLowerCase(), onVideo=!$('#tab-video-panel').hidden;
     if((k===' '||k==='enter') && e.target.closest('button,a')) return; // let the focused control handle it
     if(k==='escape' && $('.stage.fake-fs')) exitFs();
+    else if(k==='m' && onVideo) toggleMute();
+    else if(k==='c' && onVideo) toggleCap();
     else if(k==='v') show('video'); else if(k==='s') show('slides');
     else if(k==='f'){ const el=$('#'+(onVideo?'videoStage':'slideStage')); fsEl()?exitFs():enterFs(el); }
     else if(['arrowright','pagedown'].includes(k)){ e.preventDefault(); onVideo?seek(t+5):go(si+1); }
