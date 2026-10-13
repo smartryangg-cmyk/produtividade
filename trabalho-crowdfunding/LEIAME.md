@@ -4,7 +4,7 @@ Versão final para visualizadores e professores, em **duas versões**: com e sem
 
 | | Com videogames | Sem videogames |
 |---|---|---|
-| Site | `index.html` (19 slides), `comico.html` (tema de quadrinhos) e `branco.html` (tema branco) | `sem-videogame.html` (17 slides) |
+| Site | `index.html` (tema branco, principal, 19 slides), `classico.html` e `comico.html` (quadrinhos) | `sem-videogame.html` (17 slides) |
 | Vídeo narrado | `video-com-videogame.mp4` (6min51s) | `video-sem-videogame.mp4` (4min25s) |
 | Vídeo leve (para enviar) | `video-com-videogame-leve.mp4` | `video-sem-videogame-leve.mp4` |
 | Narração | `narracao-com-videogame.mp3` | `narracao-sem-videogame.mp3` |
@@ -26,4 +26,4 @@ npx wrangler pages project create crowdfunding-trabalho --production-branch main
 npx wrangler pages deploy trabalho-crowdfunding --project-name crowdfunding-trabalho --branch main
 ```
 
-Domínio: https://kranoedu.site (com videogames), https://kranoedu.site/comico (tema de quadrinhos), https://kranoedu.site/branco (tema branco) e https://kranoedu.site/sem-videogame (sem videogames). No painel do Cloudflare Pages, adicione o domínio em Custom domains.
+Domínio: https://kranoedu.site (tema branco, principal), https://kranoedu.site/classico (tema clássico), https://kranoedu.site/comico (tema de quadrinhos) e https://kranoedu.site/sem-videogame (sem videogames). No painel do Cloudflare Pages, adicione o domínio em Custom domains.

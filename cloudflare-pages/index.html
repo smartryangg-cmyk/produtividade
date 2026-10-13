@@ -543,11 +543,65 @@ html:not(.rec) .video:not(.idle) .cap{bottom:calc(max(3.6cqw,44px) + max(1.6cqw,
 @media (max-width:480px){ #slideStage:not(:fullscreen):not(.fake-fs) :is(.shots,.shots.three){grid-template-columns:1fr} }
 @media (prefers-reduced-motion: reduce){.in,.pop,.kb{animation-duration:.01s!important}}
 </style>
+<style id="tema">
+/* ===== TEMA BRANCO: tudo claro, slides e vídeo em fundo branco ===== */
+:root,:root[data-theme="dark"]{--bg:#FFFFFF;--surface:#FAFAF7;--fg:#18233D;--muted:#56607A;--line:#E9E4D8;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#FFFFFF;--surface:#FAFAF7;--fg:#18233D;--muted:#56607A;--line:#E9E4D8;color-scheme:light}}
+.tabs button[aria-selected="true"],:root .chips button.now{background:#FFC23D!important;border-color:#FFC23D!important;color:#16213B!important}
+.stage{box-shadow:0 0 0 1px #E9E4D8,0 18px 50px -24px rgba(10,20,50,.25)}
+.panel{box-shadow:none}
+/* slides */
+.sd{background:#FFFFFF}
+.card{box-shadow:0 0 0 1px #ECE8DE,0 calc(var(--u)*.4) calc(var(--u)*1.4) calc(var(--u)*-.6) rgba(22,33,59,.18)}
+.dark{background:#FFFFFF;color:#16213B}
+.dark::after{background:#FFC23D}
+.dark .sd-k{color:#B87D00}
+.dark .pgn{color:#8A93AE}
+.dark .cap-img{color:#7A839D}
+.cv-t{color:#16213B}
+.cv-t span{color:#C48A00}
+.cv-s{color:#3B4560}
+.cv-topics li{background:#F6F4EE;color:#16213B}
+.cv-topics b{background:#FFC23D;color:#16213B}
+.thanks{color:#C48A00}
+.money,.alert,.pick{background:#F6F4EE;color:#16213B}
+.money span,.alert p,.pick div{color:#3B4560}
+.money i,.alert .lbl,.pick b{color:#B87D00}
+.alert h3{color:#16213B}
+/* vídeo */
+.video{background:#FFFFFF;color:#16213B}
+.video::before{background-image:linear-gradient(rgba(22,33,59,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,33,59,.05) 1px,transparent 1px)}
+.kicker{color:#B87D00}
+.h{color:#16213B}
+.video p,.video li,.video em,.video figure + * span,.lead{color:#3B4560}
+.vcard{background:#FAFAF7;border-color:#E9E4D8}
+.vcard b,.vcard h3,.vcard strong{color:#16213B}
+.vcard span{color:#3B4560}
+.vstat .vnum,.v9 .vstat .vnum{color:#B87D00}
+.vstat.hot,.v9 .vstat.hot{background:#FFC23D;border-color:#FFC23D}
+.vstat.hot span,.vstat.hot .vnum{color:#16213B!important}
+.hl-b{color:#2F6FE0}.hl-c{color:#B87D00}.hl-g{color:#178A57}.hl-y{color:#B87D00}
+.vig{color:#B87D00}
+.vimg{background:#F6F4EE}
+.cap span{background:rgba(255,255,255,.92);color:#16213B;text-shadow:none;box-shadow:0 0 0 1px #E9E4D8}
+.bigplay{background:rgba(255,255,255,.35)}
+/* amarelo como destaque, sem exagero */
+.sd::after,.dark::after{background:#FFC23D}
+.h.xl,.cv-t{color:#16213B}
+.h.xl .hl-y,.cv-t span{color:#FFC23D;-webkit-text-stroke:calc(var(--u,1cqw)*.14) #16213B;paint-order:stroke fill}
+.v-open .vimg::after{background:linear-gradient(90deg,#FFFFFF 0%,rgba(255,255,255,.35) 40%,transparent)}
+.video::before{background-image:linear-gradient(rgba(22,33,59,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(22,33,59,.04) 1px,transparent 1px)}
+.video .kicker{color:#B87D00}
+.vcard{background:#FFFFFF;border-color:#E9E4D8}
+.vstat.hot .vnum{color:#16213B!important}
+.vctl{background:linear-gradient(transparent,rgba(22,33,59,.72))}
+.video .vcard:not(.hot) .vnum{color:#16213B}
+</style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><small>Trabalho escolar</small><span class="fun">Crowdfunding: o poder de muitos</span><br><a class="btn vlink" href="comico.html">Ver tema cômico</a> <a class="btn vlink" href="branco.html">Ver tema branco</a></div>
+    <div class="brand"><small>Trabalho escolar</small><span class="fun">Crowdfunding: o poder de muitos</span><br><a class="btn vlink" href="classico.html">Ver tema clássico</a> <a class="btn vlink" href="comico.html">Ver tema cômico</a></div>
     <div class="tabs" role="tablist" aria-label="Parte da apresentação">
       <button role="tab" id="tab-slides" aria-controls="tab-slides-panel" aria-selected="true">Slides</button>
       <button role="tab" id="tab-video" aria-controls="tab-video-panel" aria-selected="false">Vídeo</button>

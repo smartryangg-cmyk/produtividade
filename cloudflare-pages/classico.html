@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Crowdfunding em Branco</title>
+<title>Crowdfunding em Cena · Clássico</title>
 <meta name="description" content="Crowdfunding, o poder de muitos: apresentação e vídeo narrado sobre financiamento coletivo, com passo a passo, impacto social, plataformas de arrecadação e casos reais.">
-<link rel="canonical" href="https://kranoedu.site/branco">
+<link rel="canonical" href="https://kranoedu.site/classico">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Crowdfunding: o poder de muitos">
 <meta property="og:description" content="Apresentação e vídeo narrado sobre crowdfunding: passo a passo, impacto social, plataformas de arrecadação e casos reais.">
-<meta property="og:url" content="https://kranoedu.site/branco">
+<meta property="og:url" content="https://kranoedu.site/classico">
 <meta property="og:image" content="https://kranoedu.site/img/og-capa.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23FFC23D%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-size=%2213%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22%2316213B%22%3ER$%3C/text%3E%3C/svg%3E">
@@ -543,80 +543,11 @@ html:not(.rec) .video:not(.idle) .cap{bottom:calc(max(3.6cqw,44px) + max(1.6cqw,
 @media (max-width:480px){ #slideStage:not(:fullscreen):not(.fake-fs) :is(.shots,.shots.three){grid-template-columns:1fr} }
 @media (prefers-reduced-motion: reduce){.in,.pop,.kb{animation-duration:.01s!important}}
 </style>
-<style id="tema">
-/* ===== TEMA BRANCO: tudo claro, slides e vídeo em fundo branco ===== */
-:root,:root[data-theme="dark"]{--bg:#FFFFFF;--surface:#FFFBEF;--fg:#18233D;--muted:#6B5D3F;--line:#F2DC9B;color-scheme:light}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#FFFFFF;--surface:#FFFBEF;--fg:#18233D;--muted:#6B5D3F;--line:#F2DC9B;color-scheme:light}}
-.tabs button[aria-selected="true"],:root .chips button.now{background:#FFC23D!important;border-color:#FFC23D!important;color:#16213B!important}
-.stage{box-shadow:0 0 0 1px #F2DC9B,0 18px 50px -24px rgba(10,20,50,.25)}
-.panel{box-shadow:none}
-/* slides */
-.sd{background:#FFFFFF}
-.card{box-shadow:0 0 0 1px #F6E6B5,0 calc(var(--u)*.4) calc(var(--u)*1.4) calc(var(--u)*-.6) rgba(22,33,59,.18)}
-.dark{background:#FFFFFF;color:#16213B}
-.dark::after{background:#FFC23D}
-.dark .sd-k{color:#B87D00}
-.dark .pgn{color:#8A93AE}
-.dark .cap-img{color:#7A839D}
-.cv-t{color:#16213B}
-.cv-t span{color:#C48A00}
-.cv-s{color:#3B4560}
-.cv-topics li{background:#FFF4D6;color:#16213B}
-.cv-topics b{background:#FFC23D;color:#16213B}
-.thanks{color:#C48A00}
-.money,.alert,.pick{background:#FFF4D6;color:#16213B}
-.money span,.alert p,.pick div{color:#3B4560}
-.money i,.alert .lbl,.pick b{color:#B87D00}
-.alert h3{color:#16213B}
-/* vídeo */
-.video{background:#FFFFFF;color:#16213B}
-.video::before{background-image:linear-gradient(rgba(22,33,59,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,33,59,.05) 1px,transparent 1px)}
-.kicker{color:#B87D00}
-.h{color:#16213B}
-.video p,.video li,.video em,.video figure + * span,.lead{color:#3B4560}
-.vcard{background:#FFFBEF;border-color:#F2DC9B}
-.vcard b,.vcard h3,.vcard strong{color:#16213B}
-.vcard span{color:#3B4560}
-.vstat .vnum,.v9 .vstat .vnum{color:#B87D00}
-.vstat.hot,.v9 .vstat.hot{background:#FFC23D;border-color:#FFC23D}
-.vstat.hot span,.vstat.hot .vnum{color:#16213B!important}
-.hl-b{color:#2F6FE0}.hl-c{color:#B87D00}.hl-g{color:#178A57}.hl-y{color:#B87D00}
-.vig{color:#B87D00}
-.vimg{background:#FFF4D6}
-.cap span{background:rgba(255,255,255,.92);color:#16213B;text-shadow:none;box-shadow:0 0 0 1px #F2DC9B}
-.bigplay{background:rgba(255,255,255,.35)}
-/* amarelo em vez de cinza */
-.sd{--ac:#C48A00!important}
-.sd::after,.dark::after{background:#FFC23D}
-.sd-h h2{box-shadow:none}
-.card{border-top:calc(var(--u)*.35) solid #FFC23D}
-.stat.hot{border-top:0}
-.ph{background:#FFF4D6}
-.pgn,.dark .pgn{color:#B87D00}
-.cap-img,.dark .cap-img{color:#8A7440}
-.video::before{background-image:linear-gradient(rgba(255,194,61,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,194,61,.16) 1px,transparent 1px)}
-.v-open .vimg::after{background:linear-gradient(90deg,#FFFFFF 0%,rgba(255,255,255,.35) 40%,transparent)}
-.h.xl,.cv-t{color:#16213B}
-.h.xl .hl-y,.cv-t span{color:#FFC23D;-webkit-text-stroke:calc(var(--u,1cqw)*.14) #16213B;paint-order:stroke fill}
-.hl-y,.hl-b{color:#B87D00}
-.vcard{background:#FFFBEF;border-color:#F2DC9B}
-.vstat .vnum,.v9 .vstat .vnum,.v12 .vnum,.vnum{color:#B87D00}
-.vstat.hot .vnum{color:#16213B!important}
-.prog{background:rgba(255,194,61,.25)}
-.vctl{background:linear-gradient(transparent,rgba(22,33,59,.72))}
-.guide li{border-color:#F2DC9B}
-.panel{border-color:#F2DC9B;background:#FFFBEF}
-.btn{border-color:#F2DC9B}
-.ig{color:#B87D00}
-.video .kicker{color:#B87D00}
-.video .vcard:not(.hot) :is(.vnum,.big,.num,.hl-y,.hl-c,.hl-g,.hl-b){color:#B87D00}
-.video .vcard:not(.hot) .vnum{-webkit-text-stroke:0}
-</style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><small>Trabalho escolar</small><span class="fun">Crowdfunding: o poder de muitos</span><br><a class="btn vlink" href="index.html">Ver tema clássico</a> <a class="btn vlink" href="comico.html">Ver tema cômico</a></div>
+    <div class="brand"><small>Trabalho escolar</small><span class="fun">Crowdfunding: o poder de muitos</span><br><a class="btn vlink" href="index.html">Ver tema branco</a> <a class="btn vlink" href="comico.html">Ver tema cômico</a></div>
     <div class="tabs" role="tablist" aria-label="Parte da apresentação">
       <button role="tab" id="tab-slides" aria-controls="tab-slides-panel" aria-selected="true">Slides</button>
       <button role="tab" id="tab-video" aria-controls="tab-video-panel" aria-selected="false">Vídeo</button>
@@ -1321,7 +1252,7 @@ html:not(.rec) .video:not(.idle) .cap{bottom:calc(max(3.6cqw,44px) + max(1.6cqw,
 
   /* ---- share + QR ---- */
   const SHARE_URL='';
-  const DEFAULT_URL='https://kranoedu.site/branco';
+  const DEFAULT_URL='https://kranoedu.site/classico';
   const shareUrl = SHARE_URL || (/(^|\.)kranoedu\.site$|\.pages\.dev$/.test(location.hostname) ? location.origin+location.pathname.replace(/index\.html$/,'').replace(/\.html$/,'') : DEFAULT_URL);
   const shareTitle='Crowdfunding: o poder de muitos';
   const shareText='Apresentação sobre crowdfunding: passo a passo, impacto social e plataformas de arrecadação.';
