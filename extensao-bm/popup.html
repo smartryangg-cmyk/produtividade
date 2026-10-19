@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>BM Unit Midia</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>🔥 BM Unit Midia</header>
+
+  <section>
+    <label for="token">Token de acesso</label>
+    <div class="linha">
+      <input id="token" type="password" placeholder="EAA..." autocomplete="off">
+      <button id="capturar" type="button" title="Pega o token de uma aba aberta do Gerenciador de Anúncios">Capturar</button>
+    </div>
+    <button id="carregarBMs" type="button" class="primario">Carregar BMs</button>
+  </section>
+
+  <section id="secaoBM" hidden>
+    <label for="bm">Business Manager</label>
+    <select id="bm"></select>
+    <div class="linha">
+      <div>
+        <label for="codigo">Código</label>
+        <input id="codigo" placeholder="A3290">
+      </div>
+      <div>
+        <label for="valor">Valor</label>
+        <input id="valor" placeholder="700">
+      </div>
+    </div>
+    <button id="gerar" type="button" class="primario">Gerar mensagem</button>
+  </section>
+
+  <section id="secaoContas" hidden>
+    <label>Limite Extensão por conta</label>
+    <div id="contas"></div>
+  </section>
+
+  <section id="secaoMsg" hidden>
+    <label for="mensagem">Mensagem</label>
+    <textarea id="mensagem" rows="16" spellcheck="false"></textarea>
+    <button id="copiar" type="button" class="primario">Copiar</button>
+  </section>
+
+  <p id="status" role="status"></p>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

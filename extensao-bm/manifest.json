@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "BM Unit Midia",
+  "version": "1.0.0",
+  "description": "Lê os dados da Business Manager e monta a mensagem no padrão UNIT MIDIA.",
+  "action": { "default_popup": "popup.html", "default_title": "BM Unit Midia" },
+  "permissions": ["storage", "scripting"],
+  "host_permissions": [
+    "https://graph.facebook.com/*",
+    "https://adsmanager.facebook.com/*",
+    "https://business.facebook.com/*"
+  ]
+}
