@@ -6,6 +6,7 @@
   --muted: #6b7084;
   --accent: #ea580c;
   --danger: #dc2626;
+  --warn: #d97706;
   --ok: #16a34a;
   color-scheme: light;
 }
@@ -19,6 +20,7 @@
     --muted: #9298ab;
     --accent: #fb923c;
     --danger: #f87171;
+    --warn: #fbbf24;
     --ok: #4ade80;
     color-scheme: dark;
   }
@@ -27,53 +29,72 @@
 * { box-sizing: border-box; }
 
 body {
-  width: 380px;
+  width: 620px;
+  min-height: 260px;
   margin: 0;
-  padding: 12px;
+  padding: 0 12px 12px;
   background: var(--bg);
   color: var(--text);
   font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-header { font-weight: 700; font-size: 15px; margin-bottom: 10px; }
-
-section {
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
   gap: 6px;
-  padding: 10px;
-  margin-bottom: 10px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  align-items: center;
+  padding: 10px 0;
+  background: var(--bg);
 }
+header strong { font-size: 15px; white-space: nowrap; }
+header #busca { flex: 1; }
 
-label { font-size: 12px; color: var(--muted); }
-
-.linha { display: flex; gap: 6px; align-items: flex-end; }
-.linha > * { flex: 1; }
-.linha > button { flex: 0 0 auto; }
-
-input, select, textarea, button {
+input, button {
   font: inherit;
   color: inherit;
-  background: var(--bg);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 6px 8px;
-  width: 100%;
 }
-
-textarea { font-family: ui-monospace, Consolas, monospace; font-size: 12px; resize: vertical; }
-
-button { cursor: pointer; width: auto; }
+button { cursor: pointer; }
 button.primario { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 button:disabled { opacity: .6; cursor: wait; }
 
-.conta { display: flex; gap: 6px; align-items: center; }
-.conta span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.conta input { width: 110px; flex: 0 0 auto; }
-
-#status { margin: 0; min-height: 1em; color: var(--muted); }
+#status { margin: 0 0 8px; color: var(--muted); min-height: 1em; }
 #status.erro { color: var(--danger); }
-#status.ok { color: var(--ok); }
+
+.bm {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.topo { display: flex; justify-content: space-between; gap: 8px; }
+.bm h2 { margin: 0; font-size: 14px; }
+.sub { color: var(--muted); }
+.selo { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; height: fit-content; white-space: nowrap; background: var(--bg); }
+.selo.ok { color: var(--ok); }
+.selo.warn { color: var(--warn); }
+
+.resumo { display: flex; gap: 16px; flex-wrap: wrap; margin: 8px 0; }
+.resumo b { display: block; font-size: 14px; }
+.resumo span { color: var(--muted); font-size: 11px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; color: var(--muted); font-weight: 500; padding: 4px; border-bottom: 1px solid var(--border); }
+td { padding: 4px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+td.nome { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+tr.off td { color: var(--muted); }
+td.divida { color: var(--danger); }
+td input { width: 84px; padding: 2px 6px; font-size: 12px; }
+
+.acoes { display: flex; gap: 6px; margin-top: 8px; }
+.acoes input { flex: 1; min-width: 0; }
+
+#avancado { margin-top: 6px; color: var(--muted); }
+#avancado .linha { display: flex; gap: 6px; margin-top: 6px; }
+#avancado input { flex: 1; }

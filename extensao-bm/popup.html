@@ -6,45 +6,46 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <header>🔥 BM Unit Midia</header>
-
-  <section>
-    <label for="token">Token de acesso</label>
-    <div class="linha">
-      <input id="token" type="password" placeholder="EAA..." autocomplete="off">
-      <button id="capturar" type="button" title="Pega o token de uma aba aberta do Gerenciador de Anúncios">Capturar</button>
-    </div>
-    <button id="carregarBMs" type="button" class="primario">Carregar BMs</button>
-  </section>
-
-  <section id="secaoBM" hidden>
-    <label for="bm">Business Manager</label>
-    <select id="bm"></select>
-    <div class="linha">
-      <div>
-        <label for="codigo">Código</label>
-        <input id="codigo" placeholder="A3290">
-      </div>
-      <div>
-        <label for="valor">Valor</label>
-        <input id="valor" placeholder="700">
-      </div>
-    </div>
-    <button id="gerar" type="button" class="primario">Gerar mensagem</button>
-  </section>
-
-  <section id="secaoContas" hidden>
-    <label>Limite Extensão por conta</label>
-    <div id="contas"></div>
-  </section>
-
-  <section id="secaoMsg" hidden>
-    <label for="mensagem">Mensagem</label>
-    <textarea id="mensagem" rows="16" spellcheck="false"></textarea>
-    <button id="copiar" type="button" class="primario">Copiar</button>
-  </section>
+  <header>
+    <strong>🔥 BM Unit Midia</strong>
+    <input id="busca" type="search" placeholder="Buscar BM ou conta">
+    <button id="atualizar" type="button" title="Recarregar">⟳</button>
+  </header>
 
   <p id="status" role="status"></p>
+  <main id="lista"></main>
+
+  <details id="avancado">
+    <summary>Token manual</summary>
+    <div class="linha">
+      <input id="token" type="password" placeholder="EAA..." autocomplete="off">
+      <button id="usarToken" type="button">Usar</button>
+    </div>
+  </details>
+
+  <template id="tplBM">
+    <article class="bm">
+      <div class="topo">
+        <div>
+          <h2></h2>
+          <small class="sub"></small>
+        </div>
+        <span class="selo"></span>
+      </div>
+      <div class="resumo"></div>
+      <table>
+        <thead>
+          <tr><th></th><th>Conta</th><th>Gastos</th><th>Limite</th><th>Lim. ext.</th><th>Ciclo</th><th>Dívida</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="acoes">
+        <input class="codigo" placeholder="Código (A3290)">
+        <input class="valor" placeholder="Valor (700)">
+        <button class="copiar primario" type="button">Copiar mensagem</button>
+      </div>
+    </article>
+  </template>
 
   <script type="module" src="popup.js"></script>
 </body>
