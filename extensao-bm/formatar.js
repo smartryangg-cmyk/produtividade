@@ -49,6 +49,28 @@ function moedaPrincipal(contas) {
   return Object.keys(contagem).sort((a, b) => contagem[b] - contagem[a])[0] || 'BRL';
 }
 
+/* ---------- formatação do WhatsApp (porte fiel do site unitmidia.com.br) ----------
+   Recebe texto puro (sem marcação) e aplica *negrito* e `destaque` linha a linha,
+   exatamente como a função formatarWhatsApp do site. */
+const normalizaTexto = (t) =>
+  String(t || '').replace(/\r/g, '').replace(/([^\n*`])[ \t]*(?=👉|Ⓜ|\*?`?💰\s*VALOR)/gu, '$1\n');
+
+export function formatarWhatsApp(texto) {
+  if (/[*`]/.test(String(texto || ''))) return normalizaTexto(texto);
+  let titulo = false;
+  return normalizaTexto(texto).split('\n').map((l) => {
+    const s = l.trim();
+    if (!s) return l;
+    if (!titulo) { titulo = true; return `*${s}*`; }
+    let m;
+    if ((m = s.match(/^(✅\s*CA\s*\d+\s*-\s*)(.+)$/i))) return `${m[1]}*\`${m[2]}\`*`;
+    if ((m = s.match(/^(Limite (?:Meta|Extens[ãa]o):\s*)(.+)$/i))) return `${m[1]}*${m[2]}*`;
+    if (/^Ⓜ️?\s*Informa[çc][õo]es Extras/i.test(s) || /^👉/u.test(s)) return `*\`${s}\`*`;
+    if (/^💰\s*VALOR/i.test(s)) return `*${s}*`;
+    return l;
+  }).join('\n');
+}
+
 /**
  * bm: { nome, criadoEm: 'YYYY-MM-DD...', contas: [conta] }
  * conta: { nome, moeda, status, gasto, limiteMeta (null = sem limite),
@@ -64,9 +86,10 @@ export function montarMensagem(bm, opcoes = {}) {
   const cicloAberto = ativas.reduce((s, c) => s + (c.ciclo || 0), 0);
   const ano = bm.criadoEm ? String(bm.criadoEm).slice(0, 4) : '—';
 
+  // Linhas em texto puro; a marcação do WhatsApp é aplicada no fim.
   const titulo = ['UNIT MIDIA', moeda, opcoes.codigo].filter(Boolean).join(' ');
   const linhas = [
-    `*🔥 ${titulo} 🔥*`,
+    `🔥 ${titulo} 🔥`,
     '',
     `💰 Gastos Totais: ${dinheiro(gastoTotal, moeda)}`,
     `💉 Ciclo Aberto: ${dinheiro(cicloAberto, moeda)}`,
@@ -76,25 +99,25 @@ export function montarMensagem(bm, opcoes = {}) {
 
   ativas.forEach((c, i) => {
     const num = String(i + 1).padStart(2, '0');
-    const icone = c.status === 1 ? '✅' : '⚠️';
-    const aviso = c.status === 1 ? '' : ` (${STATUS[c.status] || 'STATUS ' + c.status})`;
-    linhas.push('', `${icone} CA ${num} - *\`CONTA EM ${c.moeda}\`*${aviso}`);
+    const rotulo = c.status === 1 ? `CONTA EM ${c.moeda}` : `CONTA EM ${c.moeda} · ${STATUS[c.status] || 'STATUS ' + c.status}`;
+    linhas.push('', `✅ CA ${num} - ${rotulo}`);
     linhas.push(`Gastos: ${dinheiro(c.gasto, c.moeda)}`);
-    linhas.push(`Limite Meta: *${c.limiteMeta == null ? 'Sem limite' : dinheiro(c.limiteMeta, c.moeda)}*`);
+    linhas.push(`Limite Meta: ${c.limiteMeta == null ? 'Sem limite' : dinheiro(c.limiteMeta, c.moeda)}`);
     const ext = c.limiteExtensao ?? c.limiteMeta;
-    linhas.push(`Limite Extensão: *${ext == null ? 'Sem limite' : dinheiro(ext, c.moeda)}*`);
+    linhas.push(`Limite Extensão: ${ext == null ? 'Sem limite' : dinheiro(ext, c.moeda)}`);
     if (c.ciclo != null) linhas.push(`Ciclo: ${dinheiro(c.ciclo, c.moeda)}`);
     linhas.push(c.divida > 0 ? `Dívida: ${dinheiro(c.divida, c.moeda)}` : 'Sem Dívidas');
   });
 
   const extras = [];
   if (desabilitadas > 0) {
-    extras.push(`*\`👉🏼 ${desabilitadas} ${desabilitadas === 1 ? 'Conta desabilitada' : 'Contas desabilitadas'}\`*`);
+    extras.push(`👉🏼 ${desabilitadas} ${desabilitadas === 1 ? 'Conta desabilitada' : 'Contas desabilitadas'}`);
   }
   const fp = fusoPrincipal(contas);
-  if (fp) extras.push(`*\`👉🏼 Fuso Horário Principal: ${fp}\`*`);
-  if (extras.length) linhas.push('', '*`Ⓜ️ Informações Extras`*', '', ...extras);
+  if (fp) extras.push(`👉🏼 Fuso Horário Principal: ${fp}`);
+  if (extras.length) linhas.push('', 'Ⓜ️ Informações Extras', '', ...extras);
 
-  if (opcoes.valor) linhas.push('', `*💰 VALOR: ${opcoes.valor}*`);
-  return linhas.join('\n');
+  if (opcoes.valor) linhas.push('', `💰 VALOR: ${opcoes.valor}`);
+
+  return formatarWhatsApp(linhas.join('\n'));
 }
