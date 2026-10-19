@@ -93,6 +93,15 @@ $('copiar').addEventListener('click', async () => {
   status('Mensagem copiada!', 'ok');
 });
 
-chrome.storage.local.get('token').then(({ token }) => {
+// Ao abrir, prefere o token do perfil logado agora; senão usa o último salvo
+(async () => {
+  const atual = await capturarToken().catch(() => null);
+  if (atual) {
+    $('token').value = atual;
+    await chrome.storage.local.set({ token: atual });
+    status('Token do perfil logado capturado.', 'ok');
+    return;
+  }
+  const { token } = await chrome.storage.local.get('token');
   if (token) $('token').value = token;
-});
+})();
